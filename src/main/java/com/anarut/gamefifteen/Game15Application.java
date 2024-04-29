@@ -14,6 +14,8 @@ public class Game15Application extends Application {
 
     }
 
+
+
     @Override
     public void start(Stage stage) throws IOException {
         Scene scene = new MainMenuView(stage).getScene();
@@ -26,6 +28,7 @@ public class Game15Application extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
 
     @Override
     public void stop() throws Exception {

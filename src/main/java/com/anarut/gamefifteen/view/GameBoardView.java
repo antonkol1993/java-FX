@@ -25,6 +25,7 @@ public class GameBoardView {
         pane.setPadding(new Insets(10, 10, 10, 10));
         pane.setAlignment(Pos.CENTER);
 
+
         List<Integer> integers = List.of(5, 13, 11, 9,
                 4, 8, 1, 10,
                 15, 0, 12, 2,
@@ -42,6 +43,12 @@ public class GameBoardView {
 
                 if (value != 0) {
                     pane.add(button, j, i);
+                } else if (value == 0) {
+                    button.setText("");
+                    button.setMinWidth(35);
+                    button.setMinHeight(35);
+                    button.setStyle("-fx-border-color: #ff0000; -fx-border-width: 3px;");
+                    pane.add(button, j,i);
                 }
             }
         }
