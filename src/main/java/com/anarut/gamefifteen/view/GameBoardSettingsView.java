@@ -48,6 +48,9 @@ public class GameBoardSettingsView {
         backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         vBox.getChildren().add(backButton);
         backButton.setOnAction(e -> {
+            Scene scene = new MainMenuView(stage).getScene();
+            stage.setScene(scene);
+            stage.show();
 
         });
 
