@@ -1,6 +1,7 @@
 package com.anarut.gamefifteen.view;
 
 import com.anarut.gamefifteen.Constants;
+import com.anarut.gamefifteen.GameboardBackEnd.GameBoard;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,6 +17,7 @@ import java.io.File;
 public class MainMenuView {
 
     private Stage stage;
+    private
 
     public MainMenuView(Stage stage) {
         this.stage = stage;
