@@ -17,7 +17,7 @@ import java.io.File;
 public class MainMenuView {
 
     private Stage stage;
-    private
+
 
     public MainMenuView(Stage stage) {
         this.stage = stage;

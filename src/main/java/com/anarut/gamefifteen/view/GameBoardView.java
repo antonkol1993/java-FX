@@ -24,9 +24,12 @@ public class GameBoardView {
         this.stage = stage;
         this.size = size;
     }
+    public GameBoardView(Stage stage, int size, GameBoard gameBoard, GameBoardService gameBoardService) {
+        this.stage = stage;
+        this.size = size;
+    }
 
     public void show() {
-        gameBoard = gameBoardService.newGame(size);
 
         GridPane pane = new GridPane();
         pane.setPadding(new Insets(10, 10, 10, 10));

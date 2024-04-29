@@ -32,8 +32,12 @@ public class GameBoardSettingsView {
             Button startGameButton = new Button();
             startGameButton.setText("%d x %d".formatted(size, size));
             startGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-            startGameButton.setOnAction(e -> {new GameBoardView(stage, size).show()); new GameBoardService()};
-            vBox.getChildren().add(startGameButton);
+            startGameButton.setOnAction(e -> {
+                GameBoardService gameBoardService = new GameBoardService();
+                GameBoard gameBoard = gameBoardService.newGame(size);
+                new GameBoardView(stage, size, gameBoard, gameBoardService).show();
+            });
+                    vBox.getChildren().add(startGameButton);
         }
 
         Button backButton = new Button();
