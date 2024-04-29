@@ -24,10 +24,14 @@ public class GameBoardView {
         this.stage = stage;
         this.size = size;
     }
-    public GameBoardView(Stage stage, int size, GameBoard gameBoard, GameBoardService gameBoardService) {
+
+    public GameBoardView(Stage stage, int size, GameBoardService gameBoardService, GameBoard gameBoard) {
         this.stage = stage;
         this.size = size;
+        this.gameBoardService = gameBoardService;
+        this.gameBoard = gameBoard;
     }
+
 
     public void show() {
 

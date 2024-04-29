@@ -1,6 +1,7 @@
 package com.anarut.gamefifteen.view;
 
 import com.anarut.gamefifteen.Constants;
+import com.anarut.gamefifteen.Game15Application;
 import com.anarut.gamefifteen.GameboardBackEnd.GameBoard;
 import com.anarut.gamefifteen.GameboardBackEnd.GameBoardService;
 import javafx.geometry.Insets;
@@ -28,14 +29,16 @@ public class GameBoardSettingsView {
 
         List<Integer> boardSizes = List.of(4, 5, 6);
 
+
         for (int size : boardSizes) {
+
             Button startGameButton = new Button();
             startGameButton.setText("%d x %d".formatted(size, size));
             startGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
             startGameButton.setOnAction(e -> {
                 GameBoardService gameBoardService = new GameBoardService();
                 GameBoard gameBoard = gameBoardService.newGame(size);
-                new GameBoardView(stage, size, gameBoard, gameBoardService).show();
+                new GameBoardView(stage, size,gameBoardService, gameBoard).show();
             });
                     vBox.getChildren().add(startGameButton);
         }
@@ -44,6 +47,9 @@ public class GameBoardSettingsView {
         backButton.setText("Back");
         backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         vBox.getChildren().add(backButton);
+        backButton.setOnAction(e -> {
+
+        });
 
         Scene scene = new Scene(vBox, Constants.WIDTH, Constants.HEIGHT);
         stage.setScene(scene);
