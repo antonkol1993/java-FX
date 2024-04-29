@@ -46,7 +46,7 @@ public class GameBoardView {
 //                14, 6, 7, 3);
         //Board board = service.getNewBoard(int size)
 
-
+        //todo view board
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 Button button = new Button();
@@ -65,6 +65,7 @@ public class GameBoardView {
                 }
             }
         }
+
 
         Scene scene = new Scene(pane, Constants.WIDTH, Constants.HEIGHT);
         stage.setScene(scene);
