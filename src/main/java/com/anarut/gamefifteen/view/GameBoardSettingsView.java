@@ -27,7 +27,7 @@ public class GameBoardSettingsView {
         vBox.setPadding(new Insets(20.0, 20.0, 20.0, 20.0));
         vBox.setAlignment(Pos.CENTER);
 
-        List<Integer> boardSizes = List.of(4, 5, 6);
+        List<Integer> boardSizes = List.of(2, 3, 4, 5, 6);
 
 
         for (int size : boardSizes) {
@@ -37,10 +37,11 @@ public class GameBoardSettingsView {
             startGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
             startGameButton.setOnAction(e -> {
                 GameBoardService gameBoardService = new GameBoardService();
-                GameBoard gameBoard = gameBoardService.newGame(size);
-                new GameBoardView(stage, size,gameBoardService, gameBoard).show();
+//                GameBoard gameBoard = gameBoardService.newGame(size);
+                GameBoard gameBoard = gameBoardService.newGameNotRandom(size);
+                new GameBoardView(stage, size, gameBoardService, gameBoard).show();
             });
-                    vBox.getChildren().add(startGameButton);
+            vBox.getChildren().add(startGameButton);
         }
 
         Button backButton = new Button();

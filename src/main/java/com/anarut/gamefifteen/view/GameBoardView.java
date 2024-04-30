@@ -40,6 +40,7 @@ public class GameBoardView {
         pane.setAlignment(Pos.CENTER);
 
 
+
 //        List<Integer> integers = List.of(5, 13, 11, 9,
 //                4, 8, 1, 10,
 //                15, 0, 12, 2,
@@ -63,10 +64,30 @@ public class GameBoardView {
                     pane.add(button, j,i);
                 }
                 button.setOnAction(e -> {
+
                     gameBoardService.move(gameBoard,value);
                     show();
                         } );
             }
+        }
+        //todo check for victory
+        if (gameBoardService.win(gameBoard)) {
+            GridPane pane1 = new GridPane();
+            pane1.setPadding(new Insets(10, 10, 10, 10));
+            pane1.setAlignment(Pos.CENTER);
+            Button button1 = new Button();
+            button1.setText("YOU WIN");
+
+
+            button1.setPrefSize(400, 500);
+            button1.setStyle("-fx-border-color: #ff0000; -fx-border-width: 3px;");
+            Scene scene = new Scene(pane1, Constants.WIDTH, Constants.HEIGHT);
+            stage.setScene(scene);
+            button1.setOnAction(t -> {
+            System.out.println("GAME ENDED");
+            System.exit(0);
+        });
+
         }
 
 
