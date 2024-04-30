@@ -50,7 +50,6 @@ public class GameBoardView {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 Button button = new Button();
-//                Integer value = integers.get(i * size + j);
                 Integer value = gameBoard.getBoard()[i * size + j];
                 button.setText(String.valueOf(value));
                 button.setMinWidth(35);
@@ -63,6 +62,10 @@ public class GameBoardView {
                     button.setStyle("-fx-border-color: #ff0000; -fx-border-width: 3px;");
                     pane.add(button, j,i);
                 }
+                button.setOnAction(e -> {
+                    gameBoardService.move(gameBoard,value);
+                    show();
+                        } );
             }
         }
 
@@ -70,5 +73,6 @@ public class GameBoardView {
         Scene scene = new Scene(pane, Constants.WIDTH, Constants.HEIGHT);
         stage.setScene(scene);
     }
+
 
 }
