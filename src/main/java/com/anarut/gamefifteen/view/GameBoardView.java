@@ -71,28 +71,39 @@ public class GameBoardView {
             }
         }
         //todo check for victory
-        if (gameBoardService.win(gameBoard)) {
-            GridPane pane1 = new GridPane();
-            pane1.setPadding(new Insets(10, 10, 10, 10));
-            pane1.setAlignment(Pos.CENTER);
-            Button button1 = new Button();
-            button1.setText("YOU WIN");
-
-
-            button1.setPrefSize(400, 500);
-            button1.setStyle("-fx-border-color: #ff0000; -fx-border-width: 3px;");
-            Scene scene = new Scene(pane1, Constants.WIDTH, Constants.HEIGHT);
-            stage.setScene(scene);
-            button1.setOnAction(t -> {
-            System.out.println("GAME ENDED");
-            System.exit(0);
-        });
-
-        }
+//        if (gameBoardService.win(gameBoard)) {
+////            GridPane pane1 = new GridPane();
+////            pane1.setPadding(new Insets(10, 10, 10, 10));
+////            pane1.setAlignment(Pos.CENTER);
+////            Button button1 = new Button();
+////            button1.setText("YOU WIN");
+////
+////
+////            button1.setPrefSize(400, 500);
+////            button1.setStyle("-fx-border-color: #ff0000; -fx-border-width: 3px;");
+////            Scene scene = new Scene(pane1, Constants.WIDTH, Constants.HEIGHT);
+////            stage.setScene(scene);
+////            button1.setOnAction(t -> {
+////            System.out.println("GAME ENDED");
+////            System.exit(0);
+////        });
+//
+//            Scene scene = new MainMenuView(stage).getScene();
+//            stage.setScene(scene);
+//            stage.show();
+//
+//
+//        }
 
 
         Scene scene = new Scene(pane, Constants.WIDTH, Constants.HEIGHT);
         stage.setScene(scene);
+
+        if (gameBoardService.win(gameBoard)) {
+            scene = new WinReturnMainMenu(stage).getScene();
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
 

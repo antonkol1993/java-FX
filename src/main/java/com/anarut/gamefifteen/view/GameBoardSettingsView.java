@@ -37,8 +37,9 @@ public class GameBoardSettingsView {
             startGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
             startGameButton.setOnAction(e -> {
                 GameBoardService gameBoardService = new GameBoardService();
-//                GameBoard gameBoard = gameBoardService.newGame(size);
-                GameBoard gameBoard = gameBoardService.newGameNotRandom(size);
+                GameBoard gameBoard = gameBoardService.newGame(size);
+                //todo for check to "WIN" method
+//                GameBoard gameBoard = gameBoardService.newGameNotRandom(size);
                 new GameBoardView(stage, size, gameBoardService, gameBoard).show();
             });
             vBox.getChildren().add(startGameButton);
