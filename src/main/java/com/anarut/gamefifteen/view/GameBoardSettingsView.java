@@ -1,7 +1,6 @@
 package com.anarut.gamefifteen.view;
 
 import com.anarut.gamefifteen.Constants;
-import com.anarut.gamefifteen.Game15Application;
 import com.anarut.gamefifteen.GameboardBackEnd.GameBoard;
 import com.anarut.gamefifteen.GameboardBackEnd.GameBoardService;
 import javafx.geometry.Insets;

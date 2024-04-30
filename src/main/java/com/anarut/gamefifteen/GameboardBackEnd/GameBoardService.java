@@ -44,8 +44,7 @@ public class GameBoardService {
             int index = new Random().nextInt(allValues.size());
             gameBoard.getBoard()[i] = allValues.get(index);
             allValues.remove(index);
-            if (gameBoard.getBoard()[i] == 0) {
-            }
+
         }
         return gameBoard;
     }
@@ -81,8 +80,8 @@ public class GameBoardService {
         return gameBoard;
     }
 
-    private Integer [] whereIsZero (GameBoard gameBoard) {
-        Integer [] temp = new Integer[2];
+    private Integer[] whereIsZero(GameBoard gameBoard) {
+        Integer[] temp = new Integer[2];
         for (int i = 0; i < gameBoard.getSize(); i++) {
             for (int j = 0; j < gameBoard.getSize(); j++) {
                 if (gameBoard.getBoard()[i * gameBoard.getSize() + j] == 0) {

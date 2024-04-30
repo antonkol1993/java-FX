@@ -1,7 +1,6 @@
 package com.anarut.gamefifteen.view;
 
 import com.anarut.gamefifteen.Constants;
-import com.anarut.gamefifteen.GameboardBackEnd.GameBoard;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -61,7 +60,6 @@ public class MainMenuView {
         exitGameButton.setOnAction(actionEvent -> Platform.exit());
         vBox.getChildren().add(exitGameButton);
 
-        Scene scene = new Scene(vBox, Constants.WIDTH, Constants.HEIGHT);
-        return scene;
+        return new Scene(vBox, Constants.WIDTH, Constants.HEIGHT);
     }
 }

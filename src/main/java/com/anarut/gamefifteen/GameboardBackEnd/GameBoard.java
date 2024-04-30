@@ -8,8 +8,7 @@ public class GameBoard {
     private final Integer size;
 
 
-
-    private  Integer [] empty;
+    private Integer[] empty;
 
     public GameBoard(Integer size) {
         this.size = size;
@@ -35,7 +34,7 @@ public class GameBoard {
         this.board = board;
     }
 
-    public Integer []getEmpty() {
+    public Integer[] getEmpty() {
         return empty;
     }
 

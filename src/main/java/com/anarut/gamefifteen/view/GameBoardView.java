@@ -10,15 +10,13 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.util.List;
-
 public class GameBoardView {
 
     private Stage stage;
     private int size;
 
     private GameBoardService gameBoardService;
-    private GameBoard gameBoard ;
+    private GameBoard gameBoard;
 
     public GameBoardView(Stage stage, int size) {
         this.stage = stage;
@@ -39,14 +37,6 @@ public class GameBoardView {
         pane.setPadding(new Insets(10, 10, 10, 10));
         pane.setAlignment(Pos.CENTER);
 
-
-
-//        List<Integer> integers = List.of(5, 13, 11, 9,
-//                4, 8, 1, 10,
-//                15, 0, 12, 2,
-//                14, 6, 7, 3);
-        //Board board = service.getNewBoard(int size)
-
         //todo view board
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -58,44 +48,20 @@ public class GameBoardView {
 
                 if (value != 0) {
                     pane.add(button, j, i);
-                } else if (value == 0) {
+                } else {
                     button.setText("");
                     button.setStyle("-fx-border-color: #ff0000; -fx-border-width: 3px;");
-                    pane.add(button, j,i);
+                    pane.add(button, j, i);
                 }
                 button.setOnAction(e -> {
 
-                    gameBoardService.move(gameBoard,value);
+                    gameBoardService.move(gameBoard, value);
                     show();
-                        } );
+                });
             }
         }
+
         //todo check for victory
-//        if (gameBoardService.win(gameBoard)) {
-////            GridPane pane1 = new GridPane();
-////            pane1.setPadding(new Insets(10, 10, 10, 10));
-////            pane1.setAlignment(Pos.CENTER);
-////            Button button1 = new Button();
-////            button1.setText("YOU WIN");
-////
-////
-////            button1.setPrefSize(400, 500);
-////            button1.setStyle("-fx-border-color: #ff0000; -fx-border-width: 3px;");
-////            Scene scene = new Scene(pane1, Constants.WIDTH, Constants.HEIGHT);
-////            stage.setScene(scene);
-////            button1.setOnAction(t -> {
-////            System.out.println("GAME ENDED");
-////            System.exit(0);
-////        });
-//
-//            Scene scene = new MainMenuView(stage).getScene();
-//            stage.setScene(scene);
-//            stage.show();
-//
-//
-//        }
-
-
         Scene scene = new Scene(pane, Constants.WIDTH, Constants.HEIGHT);
         stage.setScene(scene);
 

@@ -1,17 +1,13 @@
 package com.anarut.gamefifteen.view;
 
 import com.anarut.gamefifteen.Constants;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
 
 public class WinReturnMainMenu {
 
@@ -30,7 +26,7 @@ public class WinReturnMainMenu {
         vBox.setAlignment(Pos.CENTER);
 
         Button youWinButton = new Button("You Win!!!");
-        youWinButton.setPrefSize(350,100);
+        youWinButton.setPrefSize(350, 100);
         vBox.getChildren().add(youWinButton);
 
         youWinButton.setOnAction(e -> {

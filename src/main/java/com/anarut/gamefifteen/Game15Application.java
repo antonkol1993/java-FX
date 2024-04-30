@@ -1,7 +1,5 @@
 package com.anarut.gamefifteen;
 
-import com.anarut.gamefifteen.GameboardBackEnd.GameBoard;
-import com.anarut.gamefifteen.GameboardBackEnd.GameBoardService;
 import com.anarut.gamefifteen.view.MainMenuView;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -16,7 +14,6 @@ public class Game15Application extends Application {
     public void init() throws Exception {
 
     }
-
 
 
     @Override
