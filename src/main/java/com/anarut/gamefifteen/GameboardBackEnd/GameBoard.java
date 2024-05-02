@@ -4,11 +4,10 @@ import java.util.Arrays;
 
 public class GameBoard {
 
-    private Integer[] board;
+    private final Integer[] board;
     private final Integer size;
     private Integer zeroInBoard;
 
-    private Integer[] empty;
 
     public GameBoard(Integer size) {
         this.size = size;
@@ -37,13 +36,8 @@ public class GameBoard {
         return size;
     }
 
-    public void setBoard(Integer[] board) {
-        this.board = board;
-    }
 
-    public Integer[] getEmpty() {
-        return empty;
-    }
+
 
 
     @Override
