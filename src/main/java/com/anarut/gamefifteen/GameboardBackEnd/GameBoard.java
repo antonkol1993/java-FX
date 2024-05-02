@@ -6,7 +6,7 @@ public class GameBoard {
 
     private Integer[] board;
     private final Integer size;
-
+    private Integer zeroInBoard;
 
     private Integer[] empty;
 
@@ -15,6 +15,13 @@ public class GameBoard {
         board = new Integer[size * size];
     }
 
+    public Integer getZeroInBoard() {
+        return zeroInBoard;
+    }
+
+    public void setZeroInBoard(Integer zeroInBoard) {
+        this.zeroInBoard = zeroInBoard;
+    }
 
     public Integer[] getBoard() {
         return board;
