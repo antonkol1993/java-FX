@@ -51,7 +51,7 @@ public class GameBoardService {
         return gameBoard;
     }
 
-    public GameBoard move(GameBoard gameBoard, int numb) {
+    public GameBoard moveToOneStep(GameBoard gameBoard, int numb) {
         for (int i = 0; i < gameBoard.getArrayLength(); i++) {
             if (gameBoard.getBoard()[i] == numb) {
                 //todo zeroToleft
@@ -108,45 +108,81 @@ public class GameBoardService {
     }
 
     public GameBoard superMove(GameBoard gameBoard, int numb) {
-
-
         for (int i = 0; i < gameBoard.getSize(); i++) {
             for (int j = 0; j < gameBoard.getSize(); j++) {
+
                 // todo if horizontal
-                if (gameBoard.getBoard()[i * gameBoard.getSize() + j] == numb && gameBoard.getZeroInBoard() / gameBoard.getSize() == i) {
+                if (gameBoard.getBoard()[i * gameBoard.getSize() + j] == numb &&
+                        gameBoard.getZeroInBoard() / gameBoard.getSize() == i) {
+
+
                     int gzCount = gameBoard.getZeroInBoard();
                     int ijCount = i * gameBoard.getSize() + j;
                     if (ijCount < gzCount) {
                         //todo zeroToLeft
-                        for (int c = 0; c < ijCount - gzCount; c++) {
-                            gameBoard.getBoard()[i - c] = 0;
-                            gameBoard.getBoard()[i - c - 1] = numb;
+                        for (int c = 0; c < gzCount - ijCount; c++) {
+                            int temp = gameBoard.getBoard()[gzCount - c - 1];
+                            gameBoard.getBoard()[gzCount - c - 1] = 0;
+                            gameBoard.getBoard()[gzCount - c] = temp;
 
-                            gameBoard.setZeroInBoard(i - c);
-                            return gameBoard;
-
+                            gameBoard.setZeroInBoard(gzCount - c - 1);
                         }
                         //todo zeroToRight
                     } else {
-                        for (int c = 0; c < gzCount - ijCount; c++) {
-                            gameBoard.getBoard()[i + c] = 0;
-                            gameBoard.getBoard()[i + c + 1] = numb;
+                        for (int c = 0; c < ijCount - gzCount; c++) {
+                            int temp = gameBoard.getBoard()[gzCount + c + 1];
+                            gameBoard.getBoard()[gzCount + c + 1] = 0;
+                            gameBoard.getBoard()[gzCount + c] = temp;
 
-                            gameBoard.setZeroInBoard(i + c);
-                            return gameBoard;
-
+                            gameBoard.setZeroInBoard(gzCount + c + 1);
                         }
                     }
+
+                    return gameBoard;
                 }
+                // todo if horizontal
+                else if (gameBoard.getBoard()[i * gameBoard.getSize() + j] == numb &&
+                        gameBoard.getZeroInBoard() % gameBoard.getSize() == j) {
+
+                    int zeroString = gameBoard.getZeroInBoard() / gameBoard.getSize();
+                    int numberString = (i * gameBoard.getSize() + j) / gameBoard.getSize();
+
+                    int gzCount = gameBoard.getZeroInBoard();
+                    int ijCount = (i * gameBoard.getSize() + j);
+
+                    if (numberString < zeroString) {
+                        //todo zero to up
+                        for (int c = 0; c < zeroString - numberString; c++) {
+                            int temp = gameBoard.getBoard()[gzCount - (gameBoard.getSize() * (c + 1))];
+                            gameBoard.getBoard()[gzCount - (gameBoard.getSize() * (c + 1))] = 0;
+                            gameBoard.getBoard()[gzCount - (gameBoard.getSize() * c)] = temp;
+
+                            gameBoard.setZeroInBoard(gzCount - (gameBoard.getSize() * (c + 1)));
+                        }
+
+                        //todo zero to down
+                    } else {
+                        for (int c = 0; c < numberString - zeroString; c++) {
+                            int temp = gameBoard.getBoard()[gzCount + (gameBoard.getSize() * (c + 1))];
+                            gameBoard.getBoard()[gzCount + (gameBoard.getSize() * (c + 1))] = 0;
+                            gameBoard.getBoard()[gzCount + (gameBoard.getSize() * c)] = temp;
+
+                            gameBoard.setZeroInBoard(gzCount + (gameBoard.getSize() * (c + 1)));
+                        }
+                    }
+
+                    return gameBoard;
+                }
+
 
             }
 
 
         }
         return gameBoard;
-
     }
 }
+
 //                System.out.print(gameBoard.getBoard()[i * gameBoard.getSize() + j]);
 //    }
 //            System.out.println();

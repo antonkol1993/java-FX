@@ -55,7 +55,7 @@ public class GameBoardView {
                 }
                 button.setOnAction(e -> {
 
-                    gameBoardService.move(gameBoard, value);
+                    gameBoardService.moveToOneStep(gameBoard, value);
                     show();
                 });
             }
