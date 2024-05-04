@@ -7,7 +7,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -27,6 +29,7 @@ public class MainMenuView {
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20.0, 20.0, 20.0, 20.0));
         vBox.setAlignment(Pos.CENTER);
+        vBox.setBackground(Background.fill(Color.BEIGE));
 
         Label titleLabel = new Label();
         titleLabel.setText("Game 15");
@@ -60,6 +63,8 @@ public class MainMenuView {
         exitGameButton.setOnAction(actionEvent -> Platform.exit());
         vBox.getChildren().add(exitGameButton);
 
-        return new Scene(vBox, Constants.WIDTH, Constants.HEIGHT);
+        Scene scene = new Scene(vBox, Constants.WIDTH, Constants.HEIGHT);
+        scene.setFill(Color.GOLD);
+        return  scene;
     }
 }

@@ -7,7 +7,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class GameBoardView {
@@ -36,6 +38,8 @@ public class GameBoardView {
         GridPane pane = new GridPane();
         pane.setPadding(new Insets(10, 10, 10, 10));
         pane.setAlignment(Pos.CENTER);
+        pane.setBackground(Background.fill(Color.GOLD));
+
 
         //todo view board
         for (int i = 0; i < size; i++) {
@@ -43,11 +47,12 @@ public class GameBoardView {
                 Button button = new Button();
                 Integer value = gameBoard.getBoard()[i * size + j];
                 button.setText(String.valueOf(value));
-                button.setMinWidth(35);
-                button.setMinHeight(35);
+                button.setMinWidth(45);
+                button.setMinHeight(45);
 
                 if (value != 0) {
                     pane.add(button, j, i);
+
                 } else {
                     button.setText("");
                     button.setStyle("-fx-border-color: #ff0000; -fx-border-width: 3px;");
@@ -55,18 +60,36 @@ public class GameBoardView {
                 }
                 button.setOnAction(e -> {
 
-                    gameBoardService.moveToOneStep(gameBoard, value);
+                    gameBoardService.superMove(gameBoard, value);
                     show();
                 });
+
+                //todo добавление кнопки 'back'
+//                VBox pane2 = new VBox();
+//
+//                Button backButton = new Button();
+//                backButton.setText("Back");
+//                backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+//
+//                pane2.getChildren().add(backButton);
+//                backButton.setOnAction(e -> {
+//                    Scene scene = new MainMenuView(stage).getScene();
+//                    stage.setScene(scene);
+//                    stage.show();
+//
+//                });
+
             }
         }
+
 
         //todo check for victory
         Scene scene = new Scene(pane, Constants.WIDTH, Constants.HEIGHT);
         stage.setScene(scene);
 
+
         if (gameBoardService.win(gameBoard)) {
-            scene = new WinReturnMainMenu(stage).getScene();
+            scene = new WinReturnToMainMenuView(stage).getScene();
             stage.setScene(scene);
             stage.show();
         }

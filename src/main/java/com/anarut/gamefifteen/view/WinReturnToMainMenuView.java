@@ -5,16 +5,18 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
-public class WinReturnMainMenu {
+public class WinReturnToMainMenuView {
 
     private Stage stage;
 
 
-    public WinReturnMainMenu(Stage stage) {
+    public WinReturnToMainMenuView(Stage stage) {
         this.stage = stage;
     }
 
@@ -24,6 +26,7 @@ public class WinReturnMainMenu {
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20.0, 20.0, 20.0, 20.0));
         vBox.setAlignment(Pos.CENTER);
+        vBox.setBackground(Background.fill(Color.AQUAMARINE));
 
         Button youWinButton = new Button("You Win!!!");
         youWinButton.setPrefSize(350, 100);

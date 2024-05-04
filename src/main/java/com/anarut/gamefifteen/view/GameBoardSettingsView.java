@@ -7,7 +7,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -25,6 +27,7 @@ public class GameBoardSettingsView {
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20.0, 20.0, 20.0, 20.0));
         vBox.setAlignment(Pos.CENTER);
+        vBox.setBackground(Background.fill(Color.ALICEBLUE));
 
         List<Integer> boardSizes = List.of(2, 3, 4, 5, 6);
 
