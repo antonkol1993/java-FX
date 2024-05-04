@@ -65,19 +65,19 @@ public class GameBoardView {
                 });
 
                 //todo добавление кнопки 'back'
-//                VBox pane2 = new VBox();
-//
-//                Button backButton = new Button();
-//                backButton.setText("Back");
-//                backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-//
-//                pane2.getChildren().add(backButton);
-//                backButton.setOnAction(e -> {
-//                    Scene scene = new MainMenuView(stage).getScene();
-//                    stage.setScene(scene);
-//                    stage.show();
-//
-//                });
+
+
+                Button backButton = new Button();
+                backButton.setText("Back");
+                backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+
+                pane.add(backButton,gameBoard.getArrayLength() + 20,gameBoard.getArrayLength() + 20);
+                backButton.setOnAction(e -> {
+                    Scene scene = new MainMenuView(stage).getScene();
+                    stage.setScene(scene);
+                    stage.show();
+
+                });
 
             }
         }
