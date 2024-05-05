@@ -36,7 +36,7 @@ public class MainMenuView {
         vBox.getChildren().add(titleLabel);
 
 
-        Button newGameButton = new Button();
+        Button newGameButton = new GameMenuButton();
         newGameButton.setText("New Game");
         newGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         newGameButton.setOnAction(actionEvent -> new GameBoardSettingsView(stage).show());
@@ -45,7 +45,7 @@ public class MainMenuView {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Game File");
 
-        Button loadGameButton = new Button();
+        Button loadGameButton = new GameMenuButton();
         loadGameButton.setDisable(true);
         loadGameButton.setText("Load Game");
         loadGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
@@ -57,7 +57,7 @@ public class MainMenuView {
 
         vBox.getChildren().add(loadGameButton);
 
-        Button exitGameButton = new Button();
+        Button exitGameButton = new GameMenuButton();
         exitGameButton.setText("Exit Game");
         exitGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         exitGameButton.setOnAction(actionEvent -> Platform.exit());

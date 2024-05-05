@@ -44,7 +44,7 @@ public class GameBoardView {
         //todo view board
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                Button button = new Button();
+                Button button = new GameMenuButton();
                 Integer value = gameBoard.getBoard()[i * size + j];
                 button.setText(String.valueOf(value));
                 button.setMinWidth(45);
@@ -65,7 +65,7 @@ public class GameBoardView {
                 });
 
                 //todo добавление кнопки 'back'
-                Button backButton = new Button();
+                Button backButton = new GameMenuButton();
                 backButton.setText("Back");
                 backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
 

@@ -28,7 +28,8 @@ public class WinReturnToMainMenuView {
         vBox.setAlignment(Pos.CENTER);
         vBox.setBackground(Background.fill(Color.AQUAMARINE));
 
-        Button youWinButton = new Button("You Win!!!");
+        Button youWinButton = new GameMenuButton();
+        youWinButton.setText("You Win!!!");
         youWinButton.setPrefSize(350, 100);
         vBox.getChildren().add(youWinButton);
 
