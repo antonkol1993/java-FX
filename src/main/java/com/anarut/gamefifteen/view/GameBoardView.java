@@ -65,8 +65,6 @@ public class GameBoardView {
                 });
 
                 //todo добавление кнопки 'back'
-
-
                 Button backButton = new Button();
                 backButton.setText("Back");
                 backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);

@@ -14,8 +14,13 @@ public class GameBoardService {
     private GameBoard getFinalGameBoard(int size) {
         GameBoard gameBoard = new GameBoard(size);
         for (int i = 0; i < gameBoard.getBoard().length; i++) {
-            gameBoard.getBoard()[i] = i;
+            gameBoard.getBoard()[i] = i + 1;
+            if (i == gameBoard.getArrayLength()-1) {
+
+                gameBoard.getBoard()[i] = 0;
+            }
         }
+
         return gameBoard;
     }
 
@@ -23,10 +28,13 @@ public class GameBoardService {
         GameBoard gameBoard = new GameBoard(n);
         List<Integer> allValues = new ArrayList<>();
         for (int i = 0; i < gameBoard.getArrayLength(); i++) {
-            allValues.add(i, i);
+            allValues.add(i, i+1);
         }
         for (int i = 0; i < gameBoard.getBoard().length; i++) {
             gameBoard.getBoard()[i] = allValues.get(i);
+                if (i == gameBoard.getArrayLength()-1) {
+                    gameBoard.getBoard()[i] = 0;
+                }
         }
         return gameBoard;
     }

@@ -6,8 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
         GameBoardService gameBoardService = new GameBoardService();
-        GameBoard gameBoard = gameBoardService.newGame(4);
-//        GameBoard gameBoard = gameBoardService.newGameNotRandom(4);
+//        GameBoard gameBoard = gameBoardService.newGame(4);
+        GameBoard gameBoard = gameBoardService.newGameNotRandom(4);
 //        System.out.println(gameBoard);
         System.out.println(gameBoard.getZeroInBoard());
         System.out.println(gameBoard);
