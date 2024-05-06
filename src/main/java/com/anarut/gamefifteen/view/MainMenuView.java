@@ -27,7 +27,7 @@ public class MainMenuView {
     public Scene getScene() {
         VBox vBox = new VBox();
         vBox.setSpacing(20);
-        vBox.setPadding(new Insets(20.0, 20.0, 20.0, 20.0));
+        vBox.setPadding(new Insets(20, 20, 20, 20));
         vBox.setAlignment(Pos.CENTER);
         vBox.setBackground(Background.fill(Color.BEIGE));
 
@@ -56,6 +56,12 @@ public class MainMenuView {
         });
 
         vBox.getChildren().add(loadGameButton);
+
+        Button settingsButton = new GameMenuButton();
+        settingsButton.setText("settings");
+        settingsButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+        settingsButton.setOnAction(actionEvent -> new SettingsButtonsView(stage).show());
+        vBox.getChildren().add(settingsButton);
 
         Button exitGameButton = new GameMenuButton();
         exitGameButton.setText("Exit Game");

@@ -23,7 +23,7 @@ public class GameBoardSettingsView {
     }
 
     public void show() {
-
+        GameBoardService gameBoardService = new GameBoardService();
 
         VBox vBox1 = new VBox();
         vBox1.setSpacing(20);
@@ -46,7 +46,6 @@ public class GameBoardSettingsView {
             Button startGameButton = new GameMenuButton();
             startGameButton.setText("%d x %d".formatted(size, size));
             startGameButton.setOnAction(e -> {
-                GameBoardService gameBoardService = new GameBoardService();
                 GameBoard gameBoard = gameBoardService.newGame(size);
                 //todo for check to "WIN" method
 //                GameBoard gameBoard = gameBoardService.newGameNotRandom(size);
