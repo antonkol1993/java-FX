@@ -7,30 +7,17 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class GameMenuButton extends Button {
-    private Stage stage;
 
-//    static final int largeScreen = 24;
-//    static final int mediumScreen = 16;
-//    static final int smallScreen = 8;
 
-    private int screenSize;
 
 
     public GameMenuButton() {
-
-            setFont(Font.font(12));
+        setFont(Font.font(ButtonSizes.size));
     }
-    public GameMenuButton(int size) {
+//    public GameMenuButton(ButtonSizes sizes) {
+//
+//        setFont(Font.font(sizes));
+//    }
 
-        setFont(Font.font(size));
-    }
 
-
-    public int getScreenSize() {
-        return screenSize;
-    }
-
-    public void setScreenSize(int screenSize) {
-        this.screenSize = screenSize;
-    }
 }
