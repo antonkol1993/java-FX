@@ -13,7 +13,6 @@ public class GameMenuButton extends Button {
 
     public GameMenuButton() {
         setFont(Font.font(size));
-
     }
 
     public Integer getSize() {

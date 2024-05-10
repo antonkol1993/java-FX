@@ -36,8 +36,7 @@ public class SettingsView {
         smallButton.setText("SMALL");
         smallButton.setPrefWidth(240);
         smallButton.setOnAction(e -> {
-            ButtonSettings.size = 8;
-            new GameMenuButton().setFont(Font.font(ButtonSettings.size));
+            new ButtonSettings().getButtonSmallSize(smallButton);
                 stage.setMinWidth(320 / 1.5);
                 stage.setMinHeight(240/ 1.5);
                 stage.setMaxWidth(640/ 1.5);
