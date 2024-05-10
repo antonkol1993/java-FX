@@ -1,8 +1,9 @@
 package com.anarut.gamefifteen.view;
 
 import com.anarut.gamefifteen.Constants;
-import com.anarut.gamefifteen.GameboardBackEnd.GameBoard;
-import com.anarut.gamefifteen.GameboardBackEnd.GameBoardService;
+import com.anarut.gamefifteen.button.settings.GameMenuButton;
+import com.anarut.gamefifteen.gameboard.back.end.GameBoard;
+import com.anarut.gamefifteen.gameboard.back.end.GameBoardService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

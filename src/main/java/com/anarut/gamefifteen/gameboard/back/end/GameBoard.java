@@ -1,4 +1,4 @@
-package com.anarut.gamefifteen.GameboardBackEnd;
+package com.anarut.gamefifteen.gameboard.back.end;
 
 import java.util.Arrays;
 

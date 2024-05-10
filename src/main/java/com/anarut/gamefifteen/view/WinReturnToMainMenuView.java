@@ -1,6 +1,7 @@
 package com.anarut.gamefifteen.view;
 
 import com.anarut.gamefifteen.Constants;
+import com.anarut.gamefifteen.button.settings.GameMenuButton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

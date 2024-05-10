@@ -1,6 +1,7 @@
 package com.anarut.gamefifteen.view;
 
 import com.anarut.gamefifteen.Constants;
+import com.anarut.gamefifteen.button.settings.GameMenuButton;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -60,7 +61,7 @@ public class MainMenuView {
         Button settingsButton = new GameMenuButton();
         settingsButton.setText("settings");
         settingsButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-        settingsButton.setOnAction(actionEvent -> new SettingsButtonsView(stage).show());
+        settingsButton.setOnAction(actionEvent -> new SettingsView(stage).show());
         vBox.getChildren().add(settingsButton);
 
         Button exitGameButton = new GameMenuButton();
