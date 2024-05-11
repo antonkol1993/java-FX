@@ -1,6 +1,7 @@
 package com.anarut.gamefifteen.view;
 
 import com.anarut.gamefifteen.Constants;
+import com.anarut.gamefifteen.button.settings.ButtonsSizes;
 import com.anarut.gamefifteen.button.settings.GameMenuButton;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -26,6 +27,7 @@ public class MainMenuView {
     }
 
     public Scene getScene() {
+        new ButtonsSizes();
         VBox vBox = new VBox();
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20, 20, 20, 20));

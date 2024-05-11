@@ -2,25 +2,18 @@ package com.anarut.gamefifteen.button.settings;
 
 public class ButtonsSizes {
 
+         private int defaultSize = 10;
+            GameMenuButton gameMenuButton;
 
 
-        int large = 24;
 
 
-        int medium = 16;
 
-        int small = 8;
-
-
-    public int getLarge() {
-        return large;
+    public int getDefaultSize() {
+        return defaultSize;
     }
 
-    public int getMedium() {
-        return medium;
-    }
-
-    public int getSmall() {
-        return small;
+    public void setDefaultSize(int defaultSize) {
+        this.defaultSize = defaultSize;
     }
 }

@@ -9,8 +9,9 @@ module com.anarut.gamefifteen {
     opens com.anarut.gamefifteen.view to javafx.fxml;
     exports com.anarut.gamefifteen.gameboard.back.end;
     opens com.anarut.gamefifteen.gameboard.back.end to javafx.fxml;
-    exports com.anarut.gamefifteen.button;
-    opens com.anarut.gamefifteen.button to javafx.fxml;
+//    exports com.anarut.gamefifteen.button;
+//    opens com.anarut.gamefifteen.button to javafx.fxml;
     exports com.anarut.gamefifteen.button.settings;
     opens com.anarut.gamefifteen.button.settings to javafx.fxml;
+
 }
