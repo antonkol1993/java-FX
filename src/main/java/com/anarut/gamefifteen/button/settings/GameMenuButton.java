@@ -15,6 +15,7 @@ public class GameMenuButton extends Button {
             buttonsSizes = new ButtonsSizes();
         }
             setFont(Font.font(buttonsSizes.getDefaultSize()));
+
     }
 
     //    public GameMenuButton(ButtonSizes sizes) {

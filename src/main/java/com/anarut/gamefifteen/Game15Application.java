@@ -20,10 +20,10 @@ public class Game15Application extends Application {
     public void start(Stage stage) throws IOException {
         Scene scene = new MainMenuView(stage).getScene();
 
-        stage.setMinWidth(320);
-        stage.setMinHeight(240);
-        stage.setMaxWidth(640);
-        stage.setMaxHeight(480);
+        stage.setMinWidth(420);
+        stage.setMinHeight(340);
+        stage.setMaxWidth(840);
+        stage.setMaxHeight(680);
         stage.setTitle("Game 15");
         stage.setScene(scene);
         stage.show();

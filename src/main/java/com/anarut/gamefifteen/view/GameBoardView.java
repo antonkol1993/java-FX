@@ -1,6 +1,7 @@
 package com.anarut.gamefifteen.view;
 
 import com.anarut.gamefifteen.Constants;
+import com.anarut.gamefifteen.button.settings.ButtonsSizes;
 import com.anarut.gamefifteen.button.settings.GameMenuButton;
 import com.anarut.gamefifteen.gameboard.back.end.GameBoard;
 import com.anarut.gamefifteen.gameboard.back.end.GameBoardService;
@@ -20,6 +21,7 @@ public class GameBoardView {
 
     private GameBoardService gameBoardService;
     private GameBoard gameBoard;
+    private ButtonsSizes buttonsSizes;
 
     public GameBoardView(Stage stage, int size) {
         this.stage = stage;
@@ -48,8 +50,11 @@ public class GameBoardView {
                 Button button = new GameMenuButton();
                 Integer value = gameBoard.getBoard()[i * size + j];
                 button.setText(String.valueOf(value));
-                button.setMinWidth(45);
-                button.setMinHeight(45);
+                if (buttonsSizes == null) {
+                    buttonsSizes = new ButtonsSizes();
+                }
+                button.setMinWidth((double) (45 * buttonsSizes.getDefaultSize()) / 15);
+                button.setMinHeight((double) (45 * buttonsSizes.getDefaultSize()) / 15);
 
                 if (value != 0) {
                     pane.add(button, j, i);

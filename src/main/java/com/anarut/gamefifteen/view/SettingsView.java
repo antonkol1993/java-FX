@@ -21,6 +21,7 @@ public class SettingsView {
     }
 
 
+
     public void show() {
         ButtonsSizes buttonsSizes = new ButtonsSizes();
         ButtonService buttonService = new ButtonService();
@@ -40,15 +41,14 @@ public class SettingsView {
         smallButton.setPrefWidth(240);
         smallButton.setOnAction(e -> {
             buttonService.getButtonSmallSize();
-
-                stage.setMinWidth(320 / 1.5);
-                stage.setMinHeight(240/ 1.5);
-                stage.setMaxWidth(640/ 1.5);
-                stage.setMaxHeight(480 / 1.5);
-                stage.setWidth(320 / 1.2);
-                stage.setHeight(240 / 1.2);
-
+            stage.setMinWidth((double) (420 * (buttonsSizes.getDefaultSize()) / 5));
+            stage.setMinHeight(340* ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stage.setMaxWidth(840* ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stage.setMaxHeight(680 * ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stage.setWidth(520 * ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stage.setHeight(440 * ((double) (buttonsSizes.getDefaultSize()) / 5));
                 new SettingsView(stage).show();
+
 
         });
         vBox.getChildren().add(smallButton);
@@ -62,13 +62,19 @@ public class SettingsView {
 //            mediumButton.setFont(Font.font(buttonsSizes.getMedium()));
 //            new GameMenuButton().setFont(Font.font(ButtonSettings.size));
 //            new GameMenuButton().setFont(Font.font(16));
-                stage.setMinWidth(320);
-                stage.setMinHeight(240);
-                stage.setMaxWidth(640);
-                stage.setMaxHeight(480);
-            stage.setWidth(420 );
-            stage.setHeight(340);
-
+//            stage.setMinWidth((double) (320 * (buttonsSizes.getDefaultSize()) / 5));
+//            stage.setMinHeight(240* ((double) (buttonsSizes.getDefaultSize()) / 5));
+//            stage.setMaxWidth(640* ((double) (buttonsSizes.getDefaultSize()) / 5));
+//            stage.setMaxHeight(480 * ((double) (buttonsSizes.getDefaultSize()) / 5));
+//            stage.setWidth(320 * ((double) (buttonsSizes.getDefaultSize()) / 5));
+//            stage.setHeight(240 * ((double) (buttonsSizes.getDefaultSize()) / 5));
+//            buttonService.stageSize();
+            stage.setMinWidth((double) (420 * (buttonsSizes.getDefaultSize()) / 5));
+            stage.setMinHeight(340* ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stage.setMaxWidth(840* ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stage.setMaxHeight(680 * ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stage.setWidth(520 * ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stage.setHeight(440 * ((double) (buttonsSizes.getDefaultSize()) / 5));
             new SettingsView(stage).show();
         });
         vBox.getChildren().add(mediumButton);
@@ -81,15 +87,21 @@ public class SettingsView {
             buttonService.getButtonLargeSize();
 //            largeButton.setFont(Font.font(buttonsSizes.getLarge()));
 //            new GameMenuButton().setFont(Font.font(24));
-            stage.setMinWidth(320 * 1.5);
-            stage.setMinHeight(240 * 1.5);
-            stage.setMaxWidth(640 * 1.5);
-            stage.setMaxHeight(480 * 1.5);
-            stage.setWidth(640 * 1.5);
-            stage.setHeight(480 * 1.5);
+//            stage.setMinWidth(320 * 1.5);
+//            stage.setMinHeight(240 * 1.5);
+//            stage.setMaxWidth(640 * 1.5);
+//            stage.setMaxHeight(480 * 1.5);
+//            stage.setWidth(640 * 1.5);
+//            stage.setHeight(480 * 1.5);
 
 
 
+            stage.setMinWidth((double) (420 * (buttonsSizes.getDefaultSize()) / 5));
+            stage.setMinHeight(340* ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stage.setMaxWidth(840* ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stage.setMaxHeight(680 * ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stage.setWidth(520 * ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stage.setHeight(440 * ((double) (buttonsSizes.getDefaultSize()) / 5));
             new SettingsView(stage).show();
 
         });
