@@ -1,28 +1,34 @@
 package com.anarut.gamefifteen.button.settings;
 
-import javafx.scene.control.Button;
-import javafx.scene.text.Font;
-
 public class ButtonService {
 
     //    public static int size = 13;
     ButtonsSizes size;
 
-//    public Button getButtonSmallSize(Button gameMenuButton) {
-//
+    public void getButtonSmallSize() {
+        if (size == null) {
+            size = new ButtonsSizes();
+        }
+        size.setDefaultSize(8);
 //        gameMenuButton.setFont(Font.font(new ButtonsSizes().getSmall()));
-//        return gameMenuButton;
-//    }
-//    public GameMenuButton getButtonMediumSize(GameMenuButton gameMenuButton) {
-//
-//        gameMenuButton.setSize(size.medium);
-//        return gameMenuButton;
-//    }
-//    public GameMenuButton getButtonLargeSize(GameMenuButton gameMenuButton) {
-//
-//        gameMenuButton.setFont(Font.font(size.getDefaultSize()));
-//        return gameMenuButton;
-//    }
+    }
+
+    public void getButtonMediumSize() {
+        if (size == null) {
+            size = new ButtonsSizes();
+        }
+        size.setDefaultSize(16);
+//        gameMenuButton.setFont(Font.font(new ButtonsSizes().getSmall()));
+    }
+
+    public void getButtonLargeSize() {
+        if (size == null) {
+            size = new ButtonsSizes();
+        }
+        size.setDefaultSize(24);
+//        gameMenuButton.setFont(Font.font(new ButtonsSizes().getSmall()));
+
+    }
 
 
 }

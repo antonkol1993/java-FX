@@ -16,8 +16,6 @@ import javafx.stage.Stage;
 
 public class SettingsView {
     private Stage stage;
-     private GameMenuButton screenSize;
-    private ButtonsSizes buttonsSizes;
     public SettingsView(Stage stage) {
         this.stage = stage;
     }
@@ -41,7 +39,7 @@ public class SettingsView {
         smallButton.setText("SMALL");
         smallButton.setPrefWidth(240);
         smallButton.setOnAction(e -> {
-            buttonsSizes.setDefaultSize(15);
+            buttonService.getButtonSmallSize();
 
                 stage.setMinWidth(320 / 1.5);
                 stage.setMinHeight(240/ 1.5);
@@ -56,10 +54,11 @@ public class SettingsView {
         vBox.getChildren().add(smallButton);
 
 
-        Button mediumButton = new GameMenuButton();
+        GameMenuButton mediumButton = new GameMenuButton();
         mediumButton.setText("MEDIUM");
         mediumButton.setPrefWidth(240);
         mediumButton.setOnAction(e -> {
+            buttonService.getButtonMediumSize();
 //            mediumButton.setFont(Font.font(buttonsSizes.getMedium()));
 //            new GameMenuButton().setFont(Font.font(ButtonSettings.size));
 //            new GameMenuButton().setFont(Font.font(16));
@@ -79,8 +78,8 @@ public class SettingsView {
         largeButton.setText("LARGE");
         largeButton.setPrefWidth(240);
         largeButton.setOnAction(e -> {
+            buttonService.getButtonLargeSize();
 //            largeButton.setFont(Font.font(buttonsSizes.getLarge()));
-            largeButton.setFont(Font.font(25));
 //            new GameMenuButton().setFont(Font.font(24));
             stage.setMinWidth(320 * 1.5);
             stage.setMinHeight(240 * 1.5);

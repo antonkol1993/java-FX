@@ -7,10 +7,13 @@ public class GameMenuButton extends Button {
 
 
     ButtonsSizes buttonsSizes;
-
+    private int size;
 
 
     public GameMenuButton() {
+        if (buttonsSizes == null) {
+            buttonsSizes = new ButtonsSizes();
+        }
             setFont(Font.font(buttonsSizes.getDefaultSize()));
     }
 
