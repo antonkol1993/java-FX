@@ -9,10 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -38,9 +35,15 @@ public class GameBoardView {
     }
 
 
+
+
     public void show() {
         HBox hBox = new HBox();
         VBox vBox = new VBox();
+        VBox vBoxToBottomLeft = new VBox();
+        vBoxToBottomLeft.setSpacing(45);
+        VBox vBoxToBottomRight = new VBox();
+
         GridPane pane = new GridPane();
         pane.setPadding(new Insets(10, 10, 10, 10));
         pane.setAlignment(Pos.CENTER);
@@ -56,8 +59,7 @@ public class GameBoardView {
                 if (buttonsSizes == null) {
                     buttonsSizes = new ButtonsSizes();
                 }
-                button.setMinWidth((double) (45 * buttonsSizes.getDefaultSize()) / 15);
-                button.setMinHeight((double) (45 * buttonsSizes.getDefaultSize()) / 15);
+                button.setPrefSize((double) (45 * buttonsSizes.getDefaultSize()) / 15, (double) (45 * buttonsSizes.getDefaultSize()) / 15);
 
                 if (value != 0) {
                     pane.add(button, j, i);
@@ -74,7 +76,6 @@ public class GameBoardView {
                 });
 
 
-
             }
         }
 
@@ -83,8 +84,8 @@ public class GameBoardView {
         Button loadButton = new GameMenuButton();
         loadButton.setText("load");
 //        backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-        hBox.setAlignment(Pos.BOTTOM_LEFT);
-        hBox.getChildren().add(loadButton);
+        vBoxToBottomLeft.setAlignment(Pos.BOTTOM_LEFT);
+        vBoxToBottomLeft.getChildren().add(loadButton);
         //todo uncorrected temporarily
         loadButton.setOnAction(e -> {
             Scene scene = new MainMenuView(stage).getScene();
@@ -98,8 +99,8 @@ public class GameBoardView {
         saveButton.setText("Save");
 //        saveButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
 
-        hBox.setAlignment(Pos.BOTTOM_LEFT);
-        hBox.getChildren().add(saveButton);
+        vBoxToBottomLeft.setAlignment(Pos.BOTTOM_LEFT);
+        vBoxToBottomLeft.getChildren().add(saveButton);
         //todo uncorrected temporarily
         saveButton.setOnAction(e -> {
             Scene scene = new MainMenuView(stage).getScene();
@@ -111,10 +112,9 @@ public class GameBoardView {
         //todo добавление кнопки 'back'
         Button backButton = new GameMenuButton();
         backButton.setText("Back");
-        backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
 
-        hBox.setAlignment(Pos.BOTTOM_CENTER);
-        hBox.getChildren().add(backButton);
+        vBoxToBottomRight.setAlignment(Pos.BOTTOM_RIGHT);
+        vBoxToBottomRight.getChildren().add(backButton);
 
         backButton.setOnAction(e -> {
             Scene scene = new MainMenuView(stage).getScene();
@@ -123,10 +123,13 @@ public class GameBoardView {
 
         });
 
+        hBox.getChildren().add(vBoxToBottomLeft);
+        hBox.getChildren().add(vBoxToBottomRight);
+        hBox.setSpacing(150 * ((double) buttonsSizes.getDefaultSize() / 10));
 
         vBox.getChildren().addFirst(pane);
         vBox.getChildren().add(hBox);
-
+        vBox.setSpacing(100);
 
 
         Scene scene = new Scene(vBox, Constants.WIDTH, Constants.HEIGHT);
