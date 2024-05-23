@@ -40,9 +40,9 @@ public class GameBoardView {
     }
 
     private void save(ActionEvent t) {
-        File saveFile = new File("D:\\fynjy\\save.txt");
+        File saveFile = new File("D:\\fynjy\\Saves Gameboard\\save.txt");
 
-        try (FileWriter writer = new FileWriter("D:\\fynjy\\save.txt")) {
+        try (FileWriter writer = new FileWriter("D:\\fynjy\\Saves Gameboard\\save.txt")) {
             StringBuilder array = new StringBuilder();
             for (int i = 0; i < gameBoard.getArrayLength(); i++) {
                 array.append(gameBoard.getBoard()[i]);

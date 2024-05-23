@@ -44,18 +44,25 @@ public class MainMenuView {
         newGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         newGameButton.setOnAction(actionEvent -> new GameBoardSettingsView(stage).show());
         vBox.getChildren().add(newGameButton);
+        //todo load button
+
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Game File");
+        fileChooser.setInitialDirectory( new File("D:\\fynjy\\Saves Gameboard"));
 
         Button loadGameButton = new GameMenuButton();
-        loadGameButton.setDisable(true);
+        loadGameButton.setDisable(false);
         loadGameButton.setText("Load Game");
         loadGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         loadGameButton.setOnAction(actionEvent -> {
             File file = fileChooser.showOpenDialog(stage);
-            System.out.println(file.getAbsolutePath());
-            System.exit(0);
+            if (file != null) {
+                System.out.println(file.getAbsolutePath());
+            }
+
+
+
         });
 
         vBox.getChildren().add(loadGameButton);
@@ -74,6 +81,6 @@ public class MainMenuView {
 
         Scene scene = new Scene(vBox, Constants.WIDTH, Constants.HEIGHT);
         scene.setFill(Color.GOLD);
-        return  scene;
+        return scene;
     }
 }
