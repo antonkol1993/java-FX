@@ -5,6 +5,7 @@ import com.anarut.gamefifteen.button.settings.ButtonsSizes;
 import com.anarut.gamefifteen.button.settings.GameMenuButton;
 import com.anarut.gamefifteen.gameboard.back.end.GameBoard;
 import com.anarut.gamefifteen.gameboard.back.end.GameBoardService;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,6 +13,10 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class GameBoardView {
 
@@ -34,6 +39,25 @@ public class GameBoardView {
         this.gameBoard = gameBoard;
     }
 
+    private void save(ActionEvent t) {
+        File saveFile = new File("D:\\fynjy\\save.txt");
+
+        try (FileWriter writer = new FileWriter("D:\\fynjy\\save.txt")) {
+            StringBuilder array = new StringBuilder();
+            for (int i = 0; i < gameBoard.getArrayLength(); i++) {
+                array.append(gameBoard.getBoard()[i]);
+                array.append(",");
+            }
+            System.out.println(array);
+
+            writer.write(array.toString());
+
+        } catch (IOException ex) {
+            System.out.println("An error occurred while writing to the file.");
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }
+    }
 
 
 
@@ -102,12 +126,8 @@ public class GameBoardView {
         vBoxToBottomLeft.setAlignment(Pos.BOTTOM_LEFT);
         vBoxToBottomLeft.getChildren().add(saveButton);
         //todo uncorrected temporarily
-        saveButton.setOnAction(e -> {
-            Scene scene = new MainMenuView(stage).getScene();
-            stage.setScene(scene);
-            stage.show();
+        saveButton.setOnAction(this::save);
 
-        });
 
         //todo добавление кнопки 'back'
         Button backButton = new GameMenuButton();
