@@ -16,21 +16,34 @@ import javafx.stage.Stage;
 
 public class SettingsView {
     private Stage stage;
+    private ButtonsSizes buttonsSizes;
+    private ButtonService buttonService;
     public SettingsView(Stage stage) {
         this.stage = stage;
     }
 
 
 
-    public void show() {
-        ButtonsSizes buttonsSizes = new ButtonsSizes();
-        ButtonService buttonService = new ButtonService();
 
+    private void stageSizes () {
+        stage.setMinWidth((double) (420 * (buttonsSizes.getDefaultSize()) / 10));
+        stage.setMinHeight(340* ((double) (buttonsSizes.getDefaultSize()) / 10));
+        stage.setMaxWidth(840* ((double) (buttonsSizes.getDefaultSize()) / 10));
+        stage.setMaxHeight(680 * ((double) (buttonsSizes.getDefaultSize()) / 10));
+        stage.setWidth(520 * ((double) (buttonsSizes.getDefaultSize()) / 10));
+        stage.setHeight(440 * ((double) (buttonsSizes.getDefaultSize()) / 10));
+    }
+    public void show() {
+        if ( buttonsSizes == null) {
+            buttonsSizes = new ButtonsSizes();
+        }
+        if (buttonService == null) {
+            buttonService = new ButtonService();
+        }
 
         VBox vBox = new VBox();
-
         vBox.setSpacing(20);
-        vBox.setPadding(new Insets(20.0, 20.0, 20.0, 20.0));
+        vBox.setPadding(new Insets(30.0, 30.0, 30.0, 30.0));
         vBox.setAlignment(Pos.CENTER);
         vBox.setBackground(Background.fill(Color.BROWN));
 
@@ -38,15 +51,10 @@ public class SettingsView {
         GameMenuButton smallButton = new GameMenuButton();
         smallButton.setFont(Font.font(buttonsSizes.getDefaultSize()));
         smallButton.setText("SMALL");
-        smallButton.setPrefWidth(240);
+
         smallButton.setOnAction(e -> {
             buttonService.getButtonSmallSize();
-            stage.setMinWidth((double) (420 * (buttonsSizes.getDefaultSize()) / 5));
-            stage.setMinHeight(340* ((double) (buttonsSizes.getDefaultSize()) / 5));
-            stage.setMaxWidth(840* ((double) (buttonsSizes.getDefaultSize()) / 5));
-            stage.setMaxHeight(680 * ((double) (buttonsSizes.getDefaultSize()) / 5));
-            stage.setWidth(520 * ((double) (buttonsSizes.getDefaultSize()) / 5));
-            stage.setHeight(440 * ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stageSizes();
                 new SettingsView(stage).show();
 
 
@@ -56,25 +64,10 @@ public class SettingsView {
 
         GameMenuButton mediumButton = new GameMenuButton();
         mediumButton.setText("MEDIUM");
-        mediumButton.setPrefWidth(240);
+
         mediumButton.setOnAction(e -> {
             buttonService.getButtonMediumSize();
-//            mediumButton.setFont(Font.font(buttonsSizes.getMedium()));
-//            new GameMenuButton().setFont(Font.font(ButtonSettings.size));
-//            new GameMenuButton().setFont(Font.font(16));
-//            stage.setMinWidth((double) (320 * (buttonsSizes.getDefaultSize()) / 5));
-//            stage.setMinHeight(240* ((double) (buttonsSizes.getDefaultSize()) / 5));
-//            stage.setMaxWidth(640* ((double) (buttonsSizes.getDefaultSize()) / 5));
-//            stage.setMaxHeight(480 * ((double) (buttonsSizes.getDefaultSize()) / 5));
-//            stage.setWidth(320 * ((double) (buttonsSizes.getDefaultSize()) / 5));
-//            stage.setHeight(240 * ((double) (buttonsSizes.getDefaultSize()) / 5));
-//            buttonService.stageSize();
-            stage.setMinWidth((double) (420 * (buttonsSizes.getDefaultSize()) / 5));
-            stage.setMinHeight(340* ((double) (buttonsSizes.getDefaultSize()) / 5));
-            stage.setMaxWidth(840* ((double) (buttonsSizes.getDefaultSize()) / 5));
-            stage.setMaxHeight(680 * ((double) (buttonsSizes.getDefaultSize()) / 5));
-            stage.setWidth(520 * ((double) (buttonsSizes.getDefaultSize()) / 5));
-            stage.setHeight(440 * ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stageSizes();
             new SettingsView(stage).show();
         });
         vBox.getChildren().add(mediumButton);
@@ -82,34 +75,18 @@ public class SettingsView {
 
         GameMenuButton largeButton = new GameMenuButton();
         largeButton.setText("LARGE");
-        largeButton.setPrefWidth(240);
+
         largeButton.setOnAction(e -> {
             buttonService.getButtonLargeSize();
-//            largeButton.setFont(Font.font(buttonsSizes.getLarge()));
-//            new GameMenuButton().setFont(Font.font(24));
-//            stage.setMinWidth(320 * 1.5);
-//            stage.setMinHeight(240 * 1.5);
-//            stage.setMaxWidth(640 * 1.5);
-//            stage.setMaxHeight(480 * 1.5);
-//            stage.setWidth(640 * 1.5);
-//            stage.setHeight(480 * 1.5);
-
-
-
-            stage.setMinWidth((double) (420 * (buttonsSizes.getDefaultSize()) / 5));
-            stage.setMinHeight(340* ((double) (buttonsSizes.getDefaultSize()) / 5));
-            stage.setMaxWidth(840* ((double) (buttonsSizes.getDefaultSize()) / 5));
-            stage.setMaxHeight(680 * ((double) (buttonsSizes.getDefaultSize()) / 5));
-            stage.setWidth(520 * ((double) (buttonsSizes.getDefaultSize()) / 5));
-            stage.setHeight(440 * ((double) (buttonsSizes.getDefaultSize()) / 5));
+            stageSizes();
             new SettingsView(stage).show();
-
         });
         vBox.getChildren().add(largeButton);
 
         Button backButton = new GameMenuButton();
         backButton.setText("BACK");
-        backButton.setPrefWidth(240);
+        backButton.setPrefWidth(backButton.getPrefWidth() / 1.5);
+
         backButton.setOnAction(e -> {
             Scene scene = new MainMenuView(stage).getScene();
             stage.setScene(scene);

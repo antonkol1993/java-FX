@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -37,7 +39,8 @@ public class GameBoardView {
 
 
     public void show() {
-
+        HBox hBox = new HBox();
+        VBox vBox = new VBox();
         GridPane pane = new GridPane();
         pane.setPadding(new Insets(10, 10, 10, 10));
         pane.setAlignment(Pos.CENTER);
@@ -70,28 +73,66 @@ public class GameBoardView {
                     show();
                 });
 
-                //todo добавление кнопки 'back'
-                Button backButton = new GameMenuButton();
-                backButton.setText("Back");
-                backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
 
-                pane.add(backButton,gameBoard.getArrayLength() + 20,gameBoard.getArrayLength() + 20);
-                backButton.setOnAction(e -> {
-                    Scene scene = new MainMenuView(stage).getScene();
-                    stage.setScene(scene);
-                    stage.show();
-
-                });
 
             }
         }
 
 
-        //todo check for victory
-        Scene scene = new Scene(pane, Constants.WIDTH, Constants.HEIGHT);
+        //todo добавление кнопки 'load'
+        Button loadButton = new GameMenuButton();
+        loadButton.setText("load");
+//        backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+        hBox.setAlignment(Pos.BOTTOM_LEFT);
+        hBox.getChildren().add(loadButton);
+        //todo uncorrected temporarily
+        loadButton.setOnAction(e -> {
+            Scene scene = new MainMenuView(stage).getScene();
+            stage.setScene(scene);
+            stage.show();
+
+        });
+
+        //todo добавление кнопки 'save'
+        Button saveButton = new GameMenuButton();
+        saveButton.setText("Save");
+//        saveButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+
+        hBox.setAlignment(Pos.BOTTOM_LEFT);
+        hBox.getChildren().add(saveButton);
+        //todo uncorrected temporarily
+        saveButton.setOnAction(e -> {
+            Scene scene = new MainMenuView(stage).getScene();
+            stage.setScene(scene);
+            stage.show();
+
+        });
+
+        //todo добавление кнопки 'back'
+        Button backButton = new GameMenuButton();
+        backButton.setText("Back");
+        backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+
+        hBox.setAlignment(Pos.BOTTOM_CENTER);
+        hBox.getChildren().add(backButton);
+
+        backButton.setOnAction(e -> {
+            Scene scene = new MainMenuView(stage).getScene();
+            stage.setScene(scene);
+            stage.show();
+
+        });
+
+
+        vBox.getChildren().addFirst(pane);
+        vBox.getChildren().add(hBox);
+
+
+
+        Scene scene = new Scene(vBox, Constants.WIDTH, Constants.HEIGHT);
         stage.setScene(scene);
 
-
+        //todo check for victory
         if (gameBoardService.win(gameBoard)) {
             scene = new WinReturnToMainMenuView(stage).getScene();
             stage.setScene(scene);
