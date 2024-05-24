@@ -48,7 +48,7 @@ public class GameBoardView {
                 array.append(gameBoard.getBoard()[i]);
                 array.append(",");
             }
-            System.out.println(array);
+//            System.out.println(array);
 
             writer.write(array.toString());
 
@@ -58,6 +58,12 @@ public class GameBoardView {
             throw new RuntimeException(ex);
         }
     }
+    private void load (ActionEvent t) {
+        File loadFile = new File("D:\\fynjy\\Saves Gameboard\\save.txt");
+        boolean exists = loadFile.exists();
+        System.out.println(exists);
+    }
+
 
 
 
@@ -111,12 +117,7 @@ public class GameBoardView {
         vBoxToBottomLeft.setAlignment(Pos.BOTTOM_LEFT);
         vBoxToBottomLeft.getChildren().add(loadButton);
         //todo uncorrected temporarily
-        loadButton.setOnAction(e -> {
-            Scene scene = new MainMenuView(stage).getScene();
-            stage.setScene(scene);
-            stage.show();
-
-        });
+        loadButton.setOnAction(this::load);
 
         //todo добавление кнопки 'save'
         Button saveButton = new GameMenuButton();
@@ -125,7 +126,7 @@ public class GameBoardView {
 
         vBoxToBottomLeft.setAlignment(Pos.BOTTOM_LEFT);
         vBoxToBottomLeft.getChildren().add(saveButton);
-        //todo uncorrected temporarily
+        //todo corrected
         saveButton.setOnAction(this::save);
 
 

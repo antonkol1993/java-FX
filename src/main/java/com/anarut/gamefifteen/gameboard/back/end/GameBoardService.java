@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class GameBoardService {
-
+    GameBoard gameBoard;
     public boolean win(GameBoard gameBoard) {
         GameBoard finalGameBoard = getFinalGameBoard(gameBoard.getSize());
         return finalGameBoard.equals(gameBoard);
@@ -19,6 +19,13 @@ public class GameBoardService {
 
                 gameBoard.getBoard()[i] = 0;
             }
+        }
+
+        return gameBoard;
+    }
+    public GameBoard loadGameBoard () {
+        if (gameBoard == null) {
+            gameBoard = new GameBoard(6);
         }
 
         return gameBoard;

@@ -1,6 +1,7 @@
 module com.anarut.gamefifteen {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
     opens com.anarut.gamefifteen to javafx.fxml;

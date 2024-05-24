@@ -4,6 +4,7 @@ import com.anarut.gamefifteen.Constants;
 import com.anarut.gamefifteen.button.settings.ButtonsSizes;
 import com.anarut.gamefifteen.button.settings.GameMenuButton;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,7 +16,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class MainMenuView {
 
@@ -24,6 +29,12 @@ public class MainMenuView {
 
     public MainMenuView(Stage stage) {
         this.stage = stage;
+    }
+
+    private void load(ActionEvent t) {
+        File loadFile = new File("D:\\fynjy\\Saves Gameboard");
+        boolean exists = loadFile.exists();
+        System.out.println(exists);
     }
 
     public Scene getScene() {
@@ -44,12 +55,18 @@ public class MainMenuView {
         newGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         newGameButton.setOnAction(actionEvent -> new GameBoardSettingsView(stage).show());
         vBox.getChildren().add(newGameButton);
+
+
         //todo load button
 
 
+//        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+//                "Text", "txt");
+
         FileChooser fileChooser = new FileChooser();
+//        fileChooser.setFileFilter(filter);
         fileChooser.setTitle("Open Game File");
-        fileChooser.setInitialDirectory( new File("D:\\fynjy\\Saves Gameboard"));
+        fileChooser.setInitialDirectory(new File("D:\\fynjy\\Saves Gameboard"));
 
         Button loadGameButton = new GameMenuButton();
         loadGameButton.setDisable(false);
@@ -61,9 +78,44 @@ public class MainMenuView {
                 System.out.println(file.getAbsolutePath());
             }
 
+//            boolean exists = file.exists();
+//            System.out.println(exists);
+            try {
+                assert file != null;
+                FileReader fileReader = null;
+                try {
+                    fileReader = new FileReader(file);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+//                    String arr[];
+                    String temp = "";
+                    int c;
+                    while ((c = fileReader.read()) != -1) {
+                        temp = String.valueOf(c);
+                        if (c == ',') {
+
+                        }
+                        System.out.print((char) c);
+
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } finally {
+                    try {
+                        fileReader.close();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            } catch (RuntimeException e) {
+                throw new RuntimeException(e);
+            }
 
 
         });
+
 
         vBox.getChildren().add(loadGameButton);
 
