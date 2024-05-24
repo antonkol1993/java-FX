@@ -23,10 +23,7 @@ public class GameBoardService {
 
         return gameBoard;
     }
-    public GameBoard loadGameBoard () {
-        if (gameBoard == null) {
-            gameBoard = new GameBoard(6);
-        }
+    public GameBoard loadGameBoard (GameBoard gameBoard) {
 
         return gameBoard;
     }

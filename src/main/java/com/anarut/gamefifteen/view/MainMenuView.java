@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class MainMenuView {
 
@@ -78,6 +79,7 @@ public class MainMenuView {
                 System.out.println(file.getAbsolutePath());
             }
 
+            Integer []arr;
 //            boolean exists = file.exists();
 //            System.out.println(exists);
             try {
@@ -89,15 +91,24 @@ public class MainMenuView {
                     throw new RuntimeException(e);
                 }
                 try {
-//                    String arr[];
-                    String temp = "";
-                    int c;
-                    while ((c = fileReader.read()) != -1) {
-                        temp = String.valueOf(c);
-                        if (c == ',') {
+                    StringBuilder temp = new StringBuilder();
 
+
+                    int c;
+                    int quantity = 0;
+
+                    while ((c = fileReader.read()) != -1) {
+                        quantity++;
+                    }
+                    arr = new Integer[quantity];
+                    while ((c = fileReader.read()) != -1) {
+                        int i = 0;
+                        temp.append(fileReader.read());
+                        if (fileReader.read() == ',') {
+                             arr[i] = Integer.parseInt(String.valueOf(temp));
+                             temp = new StringBuilder();
+                            System.out.println(Arrays.toString(arr));
                         }
-                        System.out.print((char) c);
 
                     }
                 } catch (IOException e) {
@@ -112,8 +123,7 @@ public class MainMenuView {
             } catch (RuntimeException e) {
                 throw new RuntimeException(e);
             }
-
-
+            System.out.println(Arrays.toString(arr));
         });
 
 
