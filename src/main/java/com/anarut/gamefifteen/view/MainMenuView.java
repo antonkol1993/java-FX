@@ -19,8 +19,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class MainMenuView {
 
@@ -30,12 +28,6 @@ public class MainMenuView {
 
     public MainMenuView(Stage stage) {
         this.stage = stage;
-    }
-
-    private void load(ActionEvent t) {
-        File loadFile = new File("D:\\fynjy\\Saves Gameboard");
-        boolean exists = loadFile.exists();
-        System.out.println(exists);
     }
 
     public Scene getScene() {
@@ -63,7 +55,6 @@ public class MainMenuView {
 
 //        FileNameExtensionFilter filter = new FileNameExtensionFilter(
 //                "Text", "txt");
-
 
 
         Button loadGameButton = new GameMenuButton();

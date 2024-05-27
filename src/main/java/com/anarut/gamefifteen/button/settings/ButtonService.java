@@ -13,13 +13,14 @@ public class ButtonService {
             stage = new Stage();
         }
         stage.setMinWidth((double) (420 * (size.getDefaultSize()) / 5));
-        stage.setMinHeight(340* ((double) (size.getDefaultSize()) / 5));
-        stage.setMaxWidth(840* ((double) (size.getDefaultSize()) / 5));
+        stage.setMinHeight(340 * ((double) (size.getDefaultSize()) / 5));
+        stage.setMaxWidth(840 * ((double) (size.getDefaultSize()) / 5));
         stage.setMaxHeight(680 * ((double) (size.getDefaultSize()) / 5));
         stage.setWidth(520 * ((double) (size.getDefaultSize()) / 5));
         stage.setHeight(440 * ((double) (size.getDefaultSize()) / 5));
         return stage;
     }
+
     public void getButtonSmallSize() {
         if (size == null) {
             size = new ButtonsSizes();

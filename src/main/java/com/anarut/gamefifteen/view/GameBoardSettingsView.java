@@ -16,7 +16,7 @@ import java.util.List;
 
 public class GameBoardSettingsView {
 
-//    private final GameBoardService gameBoardService;
+    //    private final GameBoardService gameBoardService;
     private Stage stage;
 
     public GameBoardSettingsView(Stage stage) {

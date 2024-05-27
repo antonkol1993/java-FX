@@ -59,7 +59,8 @@ public class GameBoardView {
             throw new RuntimeException(ex);
         }
     }
-    private void load (ActionEvent t) {
+
+    private void load(ActionEvent t) {
         FileChooser fileChooser = new FileChooser();
 //        fileChooser.setFileFilter(filter);
         fileChooser.setTitle("Open Game File");
@@ -69,10 +70,8 @@ public class GameBoardView {
             gameBoardService = new GameBoardService();
         }
         gameBoard = gameBoardService.loadGame(file);
-        new GameBoardView(stage,gameBoard.getSize(),gameBoardService,gameBoard).show();
+        new GameBoardView(stage, gameBoard.getSize(), gameBoardService, gameBoard).show();
     }
-
-
 
 
     public void show() {

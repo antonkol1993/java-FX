@@ -197,7 +197,7 @@ public class GameBoardService {
 
     public GameBoard loadGame(File file) {
         StringBuilder arrString = new StringBuilder();
-        ArrayList arrayList = new ArrayList();
+        List arrayList = new ArrayList();
         try (FileReader reader = new FileReader(file.getAbsolutePath())) {
             {
                 int c;

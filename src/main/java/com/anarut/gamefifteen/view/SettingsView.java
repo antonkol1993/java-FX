@@ -18,23 +18,23 @@ public class SettingsView {
     private Stage stage;
     private ButtonsSizes buttonsSizes;
     private ButtonService buttonService;
+
     public SettingsView(Stage stage) {
         this.stage = stage;
     }
 
 
-
-
-    private void stageSizes () {
+    private void stageSizes() {
         stage.setMinWidth((double) (420 * (buttonsSizes.getDefaultSize()) / 10));
-        stage.setMinHeight(340* ((double) (buttonsSizes.getDefaultSize()) / 10));
-        stage.setMaxWidth(840* ((double) (buttonsSizes.getDefaultSize()) / 10));
+        stage.setMinHeight(340 * ((double) (buttonsSizes.getDefaultSize()) / 10));
+        stage.setMaxWidth(840 * ((double) (buttonsSizes.getDefaultSize()) / 10));
         stage.setMaxHeight(680 * ((double) (buttonsSizes.getDefaultSize()) / 10));
         stage.setWidth(520 * ((double) (buttonsSizes.getDefaultSize()) / 10));
         stage.setHeight(440 * ((double) (buttonsSizes.getDefaultSize()) / 10));
     }
+
     public void show() {
-        if ( buttonsSizes == null) {
+        if (buttonsSizes == null) {
             buttonsSizes = new ButtonsSizes();
         }
         if (buttonService == null) {
@@ -55,7 +55,7 @@ public class SettingsView {
         smallButton.setOnAction(e -> {
             buttonService.getButtonSmallSize();
             stageSizes();
-                new SettingsView(stage).show();
+            new SettingsView(stage).show();
 
 
         });
@@ -98,8 +98,6 @@ public class SettingsView {
         stage.setScene(scene);
 
     }
-
-
 
 
 }
