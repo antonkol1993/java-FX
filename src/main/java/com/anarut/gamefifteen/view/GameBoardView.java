@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -59,9 +60,16 @@ public class GameBoardView {
         }
     }
     private void load (ActionEvent t) {
-        File loadFile = new File("D:\\fynjy\\Saves Gameboard\\save.txt");
-        boolean exists = loadFile.exists();
-        System.out.println(exists);
+        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setFileFilter(filter);
+        fileChooser.setTitle("Open Game File");
+        fileChooser.setInitialDirectory(new File("D:\\fynjy\\Saves Gameboard"));
+        File file = fileChooser.showOpenDialog(stage);
+        if (gameBoardService == null) {
+            gameBoardService = new GameBoardService();
+        }
+        gameBoard = gameBoardService.loadGame(file);
+        new GameBoardView(stage,gameBoard.getSize(),gameBoardService,gameBoard).show();
     }
 
 

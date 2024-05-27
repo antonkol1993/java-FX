@@ -64,10 +64,7 @@ public class MainMenuView {
 //        FileNameExtensionFilter filter = new FileNameExtensionFilter(
 //                "Text", "txt");
 
-        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setFileFilter(filter);
-        fileChooser.setTitle("Open Game File");
-        fileChooser.setInitialDirectory(new File("D:\\fynjy\\Saves Gameboard"));
+
 
         Button loadGameButton = new GameMenuButton();
         loadGameButton.setDisable(false);
@@ -75,6 +72,10 @@ public class MainMenuView {
         loadGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         loadGameButton.setOnAction(actionEvent -> {
 
+            FileChooser fileChooser = new FileChooser();
+//        fileChooser.setFileFilter(filter);
+            fileChooser.setTitle("Open Game File");
+            fileChooser.setInitialDirectory(new File("D:\\fynjy\\Saves Gameboard"));
             File file = fileChooser.showOpenDialog(stage);
             if (gameBoardService == null) {
                 gameBoardService = new GameBoardService();
