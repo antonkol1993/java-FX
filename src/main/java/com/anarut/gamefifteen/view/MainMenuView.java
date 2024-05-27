@@ -3,6 +3,8 @@ package com.anarut.gamefifteen.view;
 import com.anarut.gamefifteen.Constants;
 import com.anarut.gamefifteen.button.settings.ButtonsSizes;
 import com.anarut.gamefifteen.button.settings.GameMenuButton;
+import com.anarut.gamefifteen.gameboard.back.end.GameBoard;
+import com.anarut.gamefifteen.gameboard.back.end.GameBoardService;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -16,16 +18,14 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class MainMenuView {
 
     private Stage stage;
+    GameBoardService gameBoardService;
 
 
     public MainMenuView(Stage stage) {
@@ -74,56 +74,18 @@ public class MainMenuView {
         loadGameButton.setText("Load Game");
         loadGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         loadGameButton.setOnAction(actionEvent -> {
+
             File file = fileChooser.showOpenDialog(stage);
-            if (file != null) {
-                System.out.println(file.getAbsolutePath());
+            if (gameBoardService == null) {
+                gameBoardService = new GameBoardService();
+                GameBoard gameBoard = gameBoardService.loadGame(file);
+                //todo for check to "WIN" method
+//                GameBoard gameBoard = gameBoardService.newGameNotRandom(size);
+                new GameBoardView(stage, gameBoard.getSize(), gameBoardService, gameBoard).show();
+
+//                new GameBoardService().loadGame(file);
+//                new GameBoardView(stage, gameBoardService.loadGame(file).getSize(), gameBoardService, gameBoardService.loadGame(file)).show() ;
             }
-
-            Integer []arr;
-//            boolean exists = file.exists();
-//            System.out.println(exists);
-            try {
-                assert file != null;
-                FileReader fileReader = null;
-                try {
-                    fileReader = new FileReader(file);
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    StringBuilder temp = new StringBuilder();
-
-
-                    int c;
-                    int quantity = 0;
-
-                    while ((c = fileReader.read()) != -1) {
-                        quantity++;
-                    }
-                    arr = new Integer[quantity];
-                    while ((c = fileReader.read()) != -1) {
-                        int i = 0;
-                        temp.append(fileReader.read());
-                        if (fileReader.read() == ',') {
-                             arr[i] = Integer.parseInt(String.valueOf(temp));
-                             temp = new StringBuilder();
-                            System.out.println(Arrays.toString(arr));
-                        }
-
-                    }
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                } finally {
-                    try {
-                        fileReader.close();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            } catch (RuntimeException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println(Arrays.toString(arr));
         });
 
 

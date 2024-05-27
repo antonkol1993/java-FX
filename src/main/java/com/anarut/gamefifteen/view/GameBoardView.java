@@ -35,8 +35,8 @@ public class GameBoardView {
     public GameBoardView(Stage stage, int size, GameBoardService gameBoardService, GameBoard gameBoard) {
         this.stage = stage;
         this.size = size;
-        this.gameBoardService = gameBoardService;
         this.gameBoard = gameBoard;
+        this.gameBoardService = gameBoardService;
     }
 
     private void save(ActionEvent t) {

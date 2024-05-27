@@ -1,11 +1,15 @@
 package com.anarut.gamefifteen.gameboard.back.end;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class GameBoardService {
     GameBoard gameBoard;
+
     public boolean win(GameBoard gameBoard) {
         GameBoard finalGameBoard = getFinalGameBoard(gameBoard.getSize());
         return finalGameBoard.equals(gameBoard);
@@ -15,7 +19,7 @@ public class GameBoardService {
         GameBoard gameBoard = new GameBoard(size);
         for (int i = 0; i < gameBoard.getBoard().length; i++) {
             gameBoard.getBoard()[i] = i + 1;
-            if (i == gameBoard.getArrayLength()-1) {
+            if (i == gameBoard.getArrayLength() - 1) {
 
                 gameBoard.getBoard()[i] = 0;
             }
@@ -23,22 +27,19 @@ public class GameBoardService {
 
         return gameBoard;
     }
-    public GameBoard loadGameBoard (GameBoard gameBoard) {
 
-        return gameBoard;
-    }
 
     public GameBoard newGameNotRandom(int n) {
         GameBoard gameBoard = new GameBoard(n);
         List<Integer> allValues = new ArrayList<>();
         for (int i = 0; i < gameBoard.getArrayLength(); i++) {
-            allValues.add(i, i+1);
+            allValues.add(i, i + 1);
         }
         for (int i = 0; i < gameBoard.getBoard().length; i++) {
             gameBoard.getBoard()[i] = allValues.get(i);
-                if (i == gameBoard.getArrayLength()-1) {
-                    gameBoard.getBoard()[i] = 0;
-                }
+            if (i == gameBoard.getArrayLength() - 1) {
+                gameBoard.getBoard()[i] = 0;
+            }
         }
         return gameBoard;
     }
@@ -191,6 +192,36 @@ public class GameBoardService {
 
 
         }
+        return gameBoard;
+    }
+
+    public GameBoard loadGame(File file) {
+        StringBuilder arrString = new StringBuilder();
+        ArrayList arrayList = new ArrayList();
+        try (FileReader reader = new FileReader(file.getAbsolutePath())) {
+            {
+                int c;
+                while ((c = reader.read()) != -1) {
+                    if (c == ',') {
+                        arrayList.add(Integer.parseInt(String.valueOf(arrString)));
+                        arrString.delete(0, 5);
+
+                    } else {
+                        arrString.append((char) (c));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        GameBoard gameBoard = new GameBoard((int) Math.sqrt(arrayList.size()));
+        // todo some problems in this cycle;
+        for (int i = 0; i < arrayList.size(); i++) {
+            gameBoard.getBoard()[i] = (Integer) arrayList.get(i);
+        }
+        whereIsZero(gameBoard);
+        System.out.println(arrayList);
+
         return gameBoard;
     }
 }
