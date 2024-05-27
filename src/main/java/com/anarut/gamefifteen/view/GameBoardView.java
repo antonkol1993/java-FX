@@ -41,9 +41,11 @@ public class GameBoardView {
     }
 
     private void save(ActionEvent t) {
-        File saveFile = new File("D:\\fynjy\\Saves Gameboard\\save.txt");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save game");
+        File saveFile = fileChooser.showSaveDialog(stage);
 
-        try (FileWriter writer = new FileWriter("D:\\fynjy\\Saves Gameboard\\save.txt")) {
+        try (FileWriter writer = new FileWriter(saveFile)) {
             StringBuilder array = new StringBuilder();
             for (int i = 0; i < gameBoard.getArrayLength(); i++) {
                 array.append(gameBoard.getBoard()[i]);
@@ -64,11 +66,8 @@ public class GameBoardView {
         FileChooser fileChooser = new FileChooser();
 //        fileChooser.setFileFilter(filter);
         fileChooser.setTitle("Open Game File");
-        fileChooser.setInitialDirectory(new File("D:\\fynjy\\Saves Gameboard"));
+//        fileChooser.setInitialDirectory(new File("D:\\fynjy\\Saves Gameboard"));
         File file = fileChooser.showOpenDialog(stage);
-        if (gameBoardService == null) {
-            gameBoardService = new GameBoardService();
-        }
         gameBoard = gameBoardService.loadGame(file);
         new GameBoardView(stage, gameBoard.getSize(), gameBoardService, gameBoard).show();
     }

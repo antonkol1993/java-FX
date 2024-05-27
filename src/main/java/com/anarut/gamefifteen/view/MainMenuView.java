@@ -23,7 +23,7 @@ import java.io.File;
 public class MainMenuView {
 
     private Stage stage;
-    GameBoardService gameBoardService;
+    private GameBoardService gameBoardService = GameBoardService.getInstance();
 
 
     public MainMenuView(Stage stage) {
@@ -66,18 +66,17 @@ public class MainMenuView {
             FileChooser fileChooser = new FileChooser();
 //        fileChooser.setFileFilter(filter);
             fileChooser.setTitle("Open Game File");
-            fileChooser.setInitialDirectory(new File("D:\\fynjy\\Saves Gameboard"));
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
             File file = fileChooser.showOpenDialog(stage);
-            if (gameBoardService == null) {
-                gameBoardService = new GameBoardService();
-                GameBoard gameBoard = gameBoardService.loadGame(file);
+
+            GameBoard gameBoard = gameBoardService.loadGame(file);
                 //todo for check to "WIN" method
 //                GameBoard gameBoard = gameBoardService.newGameNotRandom(size);
-                new GameBoardView(stage, gameBoard.getSize(), gameBoardService, gameBoard).show();
+            new GameBoardView(stage, gameBoard.getSize(), gameBoardService, gameBoard).show();
 
 //                new GameBoardService().loadGame(file);
 //                new GameBoardView(stage, gameBoardService.loadGame(file).getSize(), gameBoardService, gameBoardService.loadGame(file)).show() ;
-            }
+
         });
 
 

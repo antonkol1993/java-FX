@@ -1,5 +1,6 @@
 package com.anarut.gamefifteen.gameboard.back.end;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,6 +9,19 @@ import java.util.List;
 import java.util.Random;
 
 public class GameBoardService {
+
+    private static GameBoardService instance;
+    private GameBoardService() {
+
+    }
+
+    public static GameBoardService getInstance() {
+        if (instance == null) {
+            instance = new GameBoardService();
+        }
+        return instance;
+    }
+
     GameBoard gameBoard;
 
     public boolean win(GameBoard gameBoard) {
@@ -198,10 +212,11 @@ public class GameBoardService {
     public GameBoard loadGame(File file) {
         StringBuilder arrString = new StringBuilder();
         List arrayList = new ArrayList();
-        try (FileReader reader = new FileReader(file.getAbsolutePath())) {
+        try (FileReader reader = new FileReader(file.getAbsolutePath());
+             BufferedReader bufferedReader = new BufferedReader(reader)) {
             {
                 int c;
-                while ((c = reader.read()) != -1) {
+                while ((c = bufferedReader.read()) != -1) {
                     if (c == ',') {
                         arrayList.add(Integer.parseInt(String.valueOf(arrString)));
                         arrString.delete(0, 5);
