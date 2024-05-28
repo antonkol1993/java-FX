@@ -11,8 +11,8 @@ import java.util.Random;
 public class GameBoardService {
 
     private static GameBoardService instance;
-    private GameBoardService() {
 
+    private GameBoardService() {
     }
 
     public static GameBoardService getInstance() {
@@ -22,60 +22,56 @@ public class GameBoardService {
         return instance;
     }
 
-    GameBoard gameBoard;
-
     public boolean win(GameBoard gameBoard) {
-        GameBoard finalGameBoard = getFinalGameBoard(gameBoard.getSize());
+        GameBoard finalGameBoard = (GameBoard) getFinalGameBoard(GameBoard.getInstance().getSize());
         return finalGameBoard.equals(gameBoard);
     }
 
-    private GameBoard getFinalGameBoard(int size) {
-        GameBoard gameBoard = new GameBoard(size);
-        for (int i = 0; i < gameBoard.getBoard().length; i++) {
-            gameBoard.getBoard()[i] = i + 1;
-            if (i == gameBoard.getArrayLength() - 1) {
+    private List<Integer> getFinalGameBoard(int size) {
+        GameBoard.getInstance().setSize(size);
+        List<Integer> board = new ArrayList<>();
+        for (int i = 0; i < GameBoard.getInstance().getBoard().length; i++) {
+            GameBoard.getInstance().getBoard()[i] = i + 1;
+            board.add(i, GameBoard.getInstance().getBoard()[i]) ;
+            if (i == GameBoard.getInstance().getArrayLength() - 1) {
 
-                gameBoard.getBoard()[i] = 0;
+                GameBoard.getInstance().getBoard()[i] = 0;
             }
         }
 
-        return gameBoard;
+        return board;
     }
-
 
     public GameBoard newGameNotRandom(int n) {
-        GameBoard gameBoard = new GameBoard(n);
+        GameBoard.getInstance().setSize(n);
         List<Integer> allValues = new ArrayList<>();
-        for (int i = 0; i < gameBoard.getArrayLength(); i++) {
+        for (int i = 0; i < GameBoard.getInstance().getArrayLength(); i++) {
             allValues.add(i, i + 1);
         }
-        for (int i = 0; i < gameBoard.getBoard().length; i++) {
-            gameBoard.getBoard()[i] = allValues.get(i);
-            if (i == gameBoard.getArrayLength() - 1) {
-                gameBoard.getBoard()[i] = 0;
+        for (int i = 0; i < GameBoard.getInstance().getBoard().length; i++) {
+            GameBoard.getInstance().getBoard()[i] = allValues.get(i);
+            if (i == GameBoard.getInstance().getArrayLength() - 1) {
+                GameBoard.getInstance().getBoard()[i] = 0;
             }
         }
-        return gameBoard;
+        return GameBoard.getInstance();
     }
 
-
     public GameBoard newGame(int n) {
-        GameBoard gameBoard = new GameBoard(n);
+        GameBoard.getInstance().setSize(n);
         List<Integer> allValues = new ArrayList<>();
-        for (int i = 0; i < gameBoard.getArrayLength(); i++) {
+        for (int i = 0; i < GameBoard.getInstance().getArrayLength(); i++) {
             allValues.add(i, i);
         }
-
-
-        for (int i = 0; i < gameBoard.getBoard().length; i++) {
+        for (int i = 0; i < GameBoard.getInstance().getBoard().length; i++) {
             int index = new Random().nextInt(allValues.size());
-            gameBoard.getBoard()[i] = allValues.get(index);
+            GameBoard.getInstance().getBoard()[i] = allValues.get(index);
             allValues.remove(index);
-
         }
-        whereIsZero(gameBoard);
 
-        return gameBoard;
+        whereIsZero(GameBoard.getInstance());
+
+        return GameBoard.getInstance();
     }
 
     public GameBoard moveToOneStep(GameBoard gameBoard, int numb) {
@@ -134,7 +130,7 @@ public class GameBoardService {
 
     }
 
-    public GameBoard superMove(GameBoard gameBoard, int numb) {
+    public void superMove(GameBoard gameBoard, int numb) {
         for (int i = 0; i < gameBoard.getSize(); i++) {
             for (int j = 0; j < gameBoard.getSize(); j++) {
 
@@ -165,7 +161,7 @@ public class GameBoardService {
                         }
                     }
 
-                    return gameBoard;
+                    return;
                 }
                 // todo if horizontal
                 else if (gameBoard.getBoard()[i * gameBoard.getSize() + j] == numb &&
@@ -175,7 +171,6 @@ public class GameBoardService {
                     int numberString = (i * gameBoard.getSize() + j) / gameBoard.getSize();
 
                     int gzCount = gameBoard.getZeroInBoard();
-                    int ijCount = (i * gameBoard.getSize() + j);
 
                     if (numberString < zeroString) {
                         //todo zero to up
@@ -197,16 +192,9 @@ public class GameBoardService {
                             gameBoard.setZeroInBoard(gzCount + (gameBoard.getSize() * (c + 1)));
                         }
                     }
-
-                    return gameBoard;
                 }
-
-
             }
-
-
         }
-        return gameBoard;
     }
 
     public GameBoard loadGame(File file) {
@@ -229,24 +217,16 @@ public class GameBoardService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        GameBoard gameBoard = new GameBoard((int) Math.sqrt(arrayList.size()));
-        // todo some problems in this cycle;
+        GameBoard.getInstance().setSize(arrayList.size());
         for (int i = 0; i < arrayList.size(); i++) {
-            gameBoard.getBoard()[i] = (Integer) arrayList.get(i);
+            GameBoard.getInstance().getBoard()[i] = (Integer) arrayList.get(i);
         }
-        whereIsZero(gameBoard);
+        whereIsZero(GameBoard.getInstance());
         System.out.println(arrayList);
 
-        return gameBoard;
+        return GameBoard.getInstance();
     }
+
+
 }
 
-//                System.out.print(gameBoard.getBoard()[i * gameBoard.getSize() + j]);
-//    }
-//            System.out.println();
-//            }
-
-
-//        return gameBoard;
-//                }
-//                }

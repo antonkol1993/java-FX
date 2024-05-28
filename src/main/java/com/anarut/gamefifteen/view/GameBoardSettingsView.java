@@ -7,7 +7,6 @@ import com.anarut.gamefifteen.gameboard.back.end.GameBoardService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -24,7 +23,7 @@ public class GameBoardSettingsView {
     }
 
     public void show() {
-        GameBoardService gameBoardService = new GameBoardService();
+
 
         VBox vBox1 = new VBox();
         vBox1.setSpacing(20);
@@ -40,17 +39,16 @@ public class GameBoardSettingsView {
 
         List<Integer> boardSizes = List.of(2, 3, 4, 5, 6, 7);
 
-
         for (int i = 0; i < boardSizes.size(); i++) {
             int size = boardSizes.get(i);
 
-            Button startGameButton = new GameMenuButton();
+            GameMenuButton startGameButton = new GameMenuButton();
             startGameButton.setText("%d x %d".formatted(size, size));
             startGameButton.setOnAction(e -> {
-                GameBoard gameBoard = gameBoardService.newGame(size);
+                GameBoard gameBoard = GameBoardService.getInstance().newGame(size);
                 //todo for check to "WIN" method
 //                GameBoard gameBoard = gameBoardService.newGameNotRandom(size);
-                new GameBoardView(stage, size, gameBoardService, gameBoard).show();
+                new GameBoardView(stage, size, GameBoardService.getInstance(), gameBoard).show();
             });
 
             VBox vBox = boardSizes.size() > i * 2 ? vBox1 : vBox2;
@@ -65,7 +63,7 @@ public class GameBoardSettingsView {
         hBox.setBackground(Background.fill(Color.ALICEBLUE));
 
 
-        Button backButton = new GameMenuButton();
+        GameMenuButton backButton = new GameMenuButton();
         backButton.setText("Back");
         backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         backButton.setOnAction(e -> {

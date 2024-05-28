@@ -3,15 +3,20 @@ package com.anarut.gamefifteen.gameboard.back.end;
 import java.util.Arrays;
 
 public class GameBoard {
-
     private final Integer[] board;
-    private final Integer size;
+    private Integer size;
     private Integer zeroInBoard;
+    private static GameBoard instance;
 
-
-    public GameBoard(Integer size) {
+    private GameBoard(Integer size) {
         this.size = size;
         board = new Integer[size * size];
+    }
+    public static GameBoard getInstance() {
+        if (instance == null) {
+            instance = new GameBoard(instance.size);
+        }
+        return instance;
     }
 
     public Integer getZeroInBoard() {
@@ -36,9 +41,9 @@ public class GameBoard {
         return size;
     }
 
-
-
-
+    public void setSize(Integer size) {
+        this.size = size;
+    }
 
     @Override
     public int hashCode() {
@@ -67,7 +72,6 @@ public class GameBoard {
 
         GameBoard gameBoard = (GameBoard) object;
 
-        // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        return Arrays.equals(board, gameBoard.board);
+        return Arrays.equals((gameBoard.getBoard()), this.getBoard());
     }
 }

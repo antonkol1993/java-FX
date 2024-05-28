@@ -31,7 +31,7 @@ public class MainMenuView {
     }
 
     public Scene getScene() {
-        new ButtonsSizes();
+
         VBox vBox = new VBox();
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20, 20, 20, 20));

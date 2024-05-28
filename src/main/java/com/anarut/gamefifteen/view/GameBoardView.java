@@ -10,7 +10,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -26,12 +29,6 @@ public class GameBoardView {
 
     private GameBoardService gameBoardService;
     private GameBoard gameBoard;
-    private ButtonsSizes buttonsSizes;
-
-    public GameBoardView(Stage stage, int size) {
-        this.stage = stage;
-        this.size = size;
-    }
 
     public GameBoardView(Stage stage, int size, GameBoardService gameBoardService, GameBoard gameBoard) {
         this.stage = stage;
@@ -64,9 +61,7 @@ public class GameBoardView {
 
     private void load(ActionEvent t) {
         FileChooser fileChooser = new FileChooser();
-//        fileChooser.setFileFilter(filter);
         fileChooser.setTitle("Open Game File");
-//        fileChooser.setInitialDirectory(new File("D:\\fynjy\\Saves Gameboard"));
         File file = fileChooser.showOpenDialog(stage);
         gameBoard = gameBoardService.loadGame(file);
         new GameBoardView(stage, gameBoard.getSize(), gameBoardService, gameBoard).show();
@@ -92,10 +87,8 @@ public class GameBoardView {
                 Button button = new GameMenuButton();
                 Integer value = gameBoard.getBoard()[i * size + j];
                 button.setText(String.valueOf(value));
-                if (buttonsSizes == null) {
-                    buttonsSizes = new ButtonsSizes();
-                }
-                button.setPrefSize((double) (45 * buttonsSizes.getDefaultSize()) / 15, (double) (45 * buttonsSizes.getDefaultSize()) / 15);
+                button.setPrefSize((double) (45 * ButtonsSizes.getInstance().getSizeButton()) /
+                        15, (double) (45 * ButtonsSizes.getInstance().getSizeButton()) / 15);
 
                 if (value != 0) {
                     pane.add(button, j, i);
@@ -152,7 +145,7 @@ public class GameBoardView {
 
         hBox.getChildren().add(vBoxToBottomLeft);
         hBox.getChildren().add(vBoxToBottomRight);
-        hBox.setSpacing(150 * ((double) buttonsSizes.getDefaultSize() / 10));
+        hBox.setSpacing(150 * ((double) ButtonsSizes.getInstance().getSizeButton() / 10));
 
         vBox.getChildren().addFirst(pane);
         vBox.getChildren().add(hBox);
