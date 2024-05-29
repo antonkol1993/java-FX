@@ -25,8 +25,8 @@ public class GameBoardService {
     public boolean win(GameBoard gameBoard) {
 
         List<Integer> currentBoard = new ArrayList<>();
-        for (int i = 0; i < GameBoard.getInstance().getArrayLength(); i++) {
-            currentBoard.add(i, GameBoard.getInstance().getBoard()[i]);
+        for (int i = 0; i < GameBoard.getInstance(gameBoard.getSize()).getArrayLength(); i++) {
+            currentBoard.add(i, GameBoard.getInstance(gameBoard.getSize()).getBoard()[i]);
 
         }
         return getFinalGameBoard().equals(currentBoard);
@@ -34,7 +34,7 @@ public class GameBoardService {
 
     private List<Integer> getFinalGameBoard() {
         List<Integer> finalBoard = new ArrayList<>();
-        for (int i = 0; i < GameBoard.getInstance().getBoard().length; i++) {
+        for (int i = 0; i < GameBoard.getInstance(GameBoard.getSize()).getBoard().length; i++) {
             finalBoard.add(i, i + 1);
             if (i == GameBoard.getInstance().getArrayLength() - 1) {
 
@@ -71,7 +71,7 @@ public class GameBoardService {
             allValues.remove(index);
         }
 
-        whereIsZero(GameBoard.getInstance());
+//        whereIsZero(GameBoard.getInstance());
 
         return GameBoard.getInstance();
     }

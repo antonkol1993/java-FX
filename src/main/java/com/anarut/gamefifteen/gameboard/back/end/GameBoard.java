@@ -4,16 +4,17 @@ import java.util.Arrays;
 
 public class GameBoard {
     private static Integer[] board;
-    private static Integer size = 3;
+    private static Integer size;
     private Integer zeroInBoard;
     private static GameBoard instance;
 
     private GameBoard() {
     }
-    public static GameBoard getInstance() {
+    public static GameBoard getInstance(int size) {
         if (instance == null) {
             instance = new GameBoard();
         }
+        GameBoard.size = size;
         board = new Integer[size * size];
         return instance;
     }
@@ -55,6 +56,7 @@ public class GameBoard {
 
     @Override
     public String toString() {
+        GameBoard.getInstance();
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
