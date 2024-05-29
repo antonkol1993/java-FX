@@ -4,17 +4,17 @@ import java.util.Arrays;
 
 public class GameBoard {
     private final Integer[] board;
-    private Integer size;
+    private static Integer size = 3;
     private Integer zeroInBoard;
     private static GameBoard instance;
 
     private GameBoard(Integer size) {
-        this.size = size;
+        GameBoard.size = size;
         board = new Integer[size * size];
     }
     public static GameBoard getInstance() {
         if (instance == null) {
-            instance = new GameBoard(instance.size);
+            instance = new GameBoard(size);
         }
         return instance;
     }
@@ -42,8 +42,10 @@ public class GameBoard {
     }
 
     public void setSize(Integer size) {
-        this.size = size;
+        GameBoard.size = size;
     }
+
+
 
     @Override
     public int hashCode() {

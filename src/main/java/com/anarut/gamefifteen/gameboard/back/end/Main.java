@@ -1,27 +1,19 @@
 package com.anarut.gamefifteen.gameboard.back.end;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        GameBoardService gameBoardService = GameBoardService.getInstance();
-        File file = new File("D:\\fynjy\\Saves Gameboard\\save.txt");
-        gameBoardService.loadGame(file);
+        GameBoardService.getInstance().newGame(5);
+        System.out.println(GameBoard.getInstance());
 
+        System.out.println(Arrays.toString(GameBoard.getInstance().getBoard()));
 
-        String string = new StringBuilder("ds")
-                .append("4343")
-                .append("sfdfdsf")
-                .append("sdfds")
-                .reverse()
-                .insert(2, "4545")
-                .toString()
-                .toLowerCase();
-
-
+        System.out.println(GameBoard.getInstance().getBoard().length);
     }
 
 
