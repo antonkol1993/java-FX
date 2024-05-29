@@ -3,19 +3,18 @@ package com.anarut.gamefifteen.gameboard.back.end;
 import java.util.Arrays;
 
 public class GameBoard {
-    private final Integer[] board;
+    private static Integer[] board;
     private static Integer size = 3;
     private Integer zeroInBoard;
     private static GameBoard instance;
 
-    private GameBoard(Integer size) {
-        GameBoard.size = size;
-        board = new Integer[size * size];
+    private GameBoard() {
     }
     public static GameBoard getInstance() {
         if (instance == null) {
-            instance = new GameBoard(size);
+            instance = new GameBoard();
         }
+        board = new Integer[size * size];
         return instance;
     }
 

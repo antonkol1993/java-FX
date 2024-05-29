@@ -14,6 +14,8 @@ public class Main {
         System.out.println(Arrays.toString(GameBoard.getInstance().getBoard()));
 
         System.out.println(GameBoard.getInstance().getBoard().length);
+        GameBoard.getInstance().setSize(8);
+        System.out.println(GameBoard.getInstance().getBoard().length);
     }
 
 
