@@ -25,55 +25,59 @@ public class GameBoardService {
     public boolean win(GameBoard gameBoard) {
 
         List<Integer> currentBoard = new ArrayList<>();
+        List<Integer> finalBoard = getFinalGameBoard(GameBoard.getInstance(gameBoard.getSize()));
         for (int i = 0; i < GameBoard.getInstance(gameBoard.getSize()).getArrayLength(); i++) {
             currentBoard.add(i, GameBoard.getInstance(gameBoard.getSize()).getBoard()[i]);
 
         }
-        return getFinalGameBoard().equals(currentBoard);
+        return finalBoard.equals(currentBoard);
     }
 
-    private List<Integer> getFinalGameBoard() {
+    private List<Integer> getFinalGameBoard(GameBoard gameBoard) {
         List<Integer> finalBoard = new ArrayList<>();
-        for (int i = 0; i < GameBoard.getInstance(GameBoard.getSize()).getBoard().length; i++) {
+        for (int i = 0; i < GameBoard.getInstance(gameBoard.getSize()).getArrayLength(); i++) {
             finalBoard.add(i, i + 1);
-            if (i == GameBoard.getInstance().getArrayLength() - 1) {
+            if (i == GameBoard.getInstance(gameBoard.getSize()).getArrayLength() - 1) {
 
-                GameBoard.getInstance().getBoard()[i] = 0;
+                GameBoard.getInstance(gameBoard.getSize()).getBoard()[i] = 0;
             }
         }
         return finalBoard;
     }
+    // todo uncorrect win method
+//    public boolean win(GameBoard gameBoard) {
+//        return true;
+//    }
 
-    public GameBoard newGameNotRandom(int n) {
-        GameBoard.getInstance().setSize(n);
-        List<Integer> allValues = new ArrayList<>();
-        for (int i = 0; i < GameBoard.getInstance().getArrayLength(); i++) {
-            allValues.add(i, i + 1);
-        }
-        for (int i = 0; i < GameBoard.getInstance().getBoard().length; i++) {
-            GameBoard.getInstance().getBoard()[i] = allValues.get(i);
-            if (i == GameBoard.getInstance().getArrayLength() - 1) {
-                GameBoard.getInstance().getBoard()[i] = 0;
-            }
-        }
-        return GameBoard.getInstance();
-    }
+//    public GameBoard newGameNotRandom(int n) {
+//        GameBoard.getInstance().setSize(n);
+//        List<Integer> allValues = new ArrayList<>();
+//        for (int i = 0; i < GameBoard.getInstance().getArrayLength(); i++) {
+//            allValues.add(i, i + 1);
+//        }
+//        for (int i = 0; i < GameBoard.getInstance().getBoard().length; i++) {
+//            GameBoard.getInstance().getBoard()[i] = allValues.get(i);
+//            if (i == GameBoard.getInstance().getArrayLength() - 1) {
+//                GameBoard.getInstance().getBoard()[i] = 0;
+//            }
+//        }
+//        return GameBoard.getInstance();
+//    }
 
     public GameBoard newGame(int n) {
-        GameBoard.getInstance().setSize(n);
+        GameBoard.getInstance(n);
         List<Integer> allValues = new ArrayList<>();
-        for (int i = 0; i < n*n; i++) {
+        for (int i = 0; i < n * n; i++) {
             allValues.add(i, i);
         }
-        for (int i = 0; i < n*n; i++) {
+        for (int i = 0; i < n * n; i++) {
             int index = new Random().nextInt(allValues.size());
-            GameBoard.getInstance().getBoard()[i] = allValues.get(index);
+            GameBoard.getInstance(n).getBoard()[i] = allValues.get(index);
             allValues.remove(index);
         }
+        whereIsZero(GameBoard.getInstance(n));
 
-//        whereIsZero(GameBoard.getInstance());
-
-        return GameBoard.getInstance();
+        return GameBoard.getInstance(n);
     }
 
     public GameBoard moveToOneStep(GameBoard gameBoard, int numb) {
@@ -122,84 +126,86 @@ public class GameBoardService {
     }
 
     private void whereIsZero(GameBoard gameBoard) {
-        for (int i = 0; i < GameBoard.getInstance().getSize(); i++) {
-            for (int j = 0; j < GameBoard.getInstance().getSize(); j++) {
-                if (GameBoard.getInstance().getBoard()[i * GameBoard.getInstance().getSize() + j] == 0) {
-                    GameBoard.getInstance().setZeroInBoard(i * GameBoard.getInstance().getSize() + j);
+        for (int i = 0; i < gameBoard.getSize(); i++) {
+            for (int j = 0; j < gameBoard.getSize(); j++) {
+                if (gameBoard.getBoard()[i * gameBoard.getSize() + j] == 0) {
+                    gameBoard.setZeroInBoard(i * gameBoard.getSize() + j);
                 }
             }
         }
 
     }
 
-    public void superMove(GameBoard gameBoard, int numb) {
-        for (int i = 0; i < GameBoard.getInstance().getSize(); i++) {
-            for (int j = 0; j < GameBoard.getInstance().getSize(); j++) {
-
+    public GameBoard superMove(GameBoard gameBoard, int numb) {
+        for (int i = 0; i < gameBoard.getSize(); i++) {
+            for (int j = 0; j < gameBoard.getSize(); j++) {
+                int ZeroCount = gameBoard.getZeroInBoard();
+                int ijCount = i * gameBoard.getSize() + j;
                 // todo if horizontal
-                if (GameBoard.getInstance().getBoard()[i * GameBoard.getInstance().getSize() + j] == numb &&
-                        GameBoard.getInstance().getZeroInBoard() / GameBoard.getInstance().getSize() == i) {
+                if (gameBoard.getBoard()[i * gameBoard.getSize() + j] == numb &&
+                        gameBoard.getZeroInBoard() / gameBoard.getSize() == i) {
 
-
-                    int gzCount = GameBoard.getInstance().getZeroInBoard();
-                    int ijCount = i * GameBoard.getInstance().getSize() + j;
-                    if (ijCount < gzCount) {
+                    if (ijCount < ZeroCount) {
                         //todo zeroToLeft
-                        for (int c = 0; c < gzCount - ijCount; c++) {
-                            int temp = GameBoard.getInstance().getBoard()[gzCount - c - 1];
-                            GameBoard.getInstance().getBoard()[gzCount - c - 1] = 0;
-                            GameBoard.getInstance().getBoard()[gzCount - c] = temp;
+                        for (int c = 0; c < ZeroCount - ijCount; c++) {
+                            int temp = gameBoard.getBoard()[ZeroCount - c - 1];
+                            gameBoard.getBoard()[ZeroCount - c - 1] = 0;
+                            gameBoard.getBoard()[ZeroCount - c] = temp;
 
-                            GameBoard.getInstance().setZeroInBoard(gzCount - c - 1);
-                        }
-                        //todo zeroToRight
-                    } else {
-                        for (int c = 0; c < ijCount - gzCount; c++) {
-                            int temp = GameBoard.getInstance().getBoard()[gzCount + c + 1];
-                            GameBoard.getInstance().getBoard()[gzCount + c + 1] = 0;
-                            GameBoard.getInstance().getBoard()[gzCount + c] = temp;
+                            gameBoard.setZeroInBoard(ZeroCount - c - 1);
+                        } return gameBoard;
 
-                            GameBoard.getInstance().setZeroInBoard(gzCount + c + 1);
+                    } else { //todo zeroToRight
+                        for (int c = 0; c < ijCount - ZeroCount; c++) {
+                            int temp = gameBoard.getBoard()[ZeroCount + c + 1];
+                            gameBoard.getBoard()[ZeroCount + c + 1] = 0;
+                            gameBoard.getBoard()[ZeroCount + c] = temp;
+
+                            gameBoard.setZeroInBoard(ZeroCount + c + 1);
                         }
+                        return gameBoard;
                     }
 
-                    return;
                 }
-                // todo if horizontal
+                // todo if vertical??
                 else if (gameBoard.getBoard()[i * gameBoard.getSize() + j] == numb &&
                         gameBoard.getZeroInBoard() % gameBoard.getSize() == j) {
 
                     int zeroString = gameBoard.getZeroInBoard() / gameBoard.getSize();
                     int numberString = (i * gameBoard.getSize() + j) / gameBoard.getSize();
 
-                    int gzCount = gameBoard.getZeroInBoard();
 
                     if (numberString < zeroString) {
                         //todo zero to up
                         for (int c = 0; c < zeroString - numberString; c++) {
-                            int temp = gameBoard.getBoard()[gzCount - (gameBoard.getSize() * (c + 1))];
-                            gameBoard.getBoard()[gzCount - (gameBoard.getSize() * (c + 1))] = 0;
-                            gameBoard.getBoard()[gzCount - (gameBoard.getSize() * c)] = temp;
+                            int temp = gameBoard.getBoard()[ZeroCount - (gameBoard.getSize() * (c + 1))];
+                            gameBoard.getBoard()[ZeroCount - (gameBoard.getSize() * (c + 1))] = 0;
+                            gameBoard.getBoard()[ZeroCount - (gameBoard.getSize() * c)] = temp;
 
-                            gameBoard.setZeroInBoard(gzCount - (gameBoard.getSize() * (c + 1)));
+                            gameBoard.setZeroInBoard(ZeroCount - (gameBoard.getSize() * (c + 1)));
                         }
 
-                        //todo zero to down
-                    } else {
+
+                        return gameBoard;
+                    } else {  //todo zero to down
                         for (int c = 0; c < numberString - zeroString; c++) {
-                            int temp = gameBoard.getBoard()[gzCount + (gameBoard.getSize() * (c + 1))];
-                            gameBoard.getBoard()[gzCount + (gameBoard.getSize() * (c + 1))] = 0;
-                            gameBoard.getBoard()[gzCount + (gameBoard.getSize() * c)] = temp;
+                            int temp = gameBoard.getBoard()[ZeroCount + (gameBoard.getSize() * (c + 1))];
+                            gameBoard.getBoard()[ZeroCount + (gameBoard.getSize() * (c + 1))] = 0;
+                            gameBoard.getBoard()[ZeroCount + (gameBoard.getSize() * c)] = temp;
 
-                            gameBoard.setZeroInBoard(gzCount + (gameBoard.getSize() * (c + 1)));
+                            gameBoard.setZeroInBoard(ZeroCount + (gameBoard.getSize() * (c + 1)));
+
                         }
+                        return gameBoard;
                     }
                 }
             }
         }
+        return gameBoard;
     }
 
     public GameBoard loadGame(File file) {
+
         StringBuilder arrString = new StringBuilder();
         List arrayList = new ArrayList();
         try (FileReader reader = new FileReader(file.getAbsolutePath());
@@ -219,14 +225,16 @@ public class GameBoardService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        GameBoard.getInstance().setSize(arrayList.size());
-        for (int i = 0; i < arrayList.size(); i++) {
-            GameBoard.getInstance().getBoard()[i] = (Integer) arrayList.get(i);
+        int size = arrayList.size();
+
+        GameBoard.getInstance(size).setSize(size);
+        for (int i = 0; i < size; i++) {
+            GameBoard.getInstance(size).getBoard()[i] = (Integer) arrayList.get(i);
         }
-        whereIsZero(GameBoard.getInstance());
+        whereIsZero(GameBoard.getInstance(size));
         System.out.println(arrayList);
 
-        return GameBoard.getInstance();
+        return GameBoard.getInstance(size);
     }
 
 

@@ -37,37 +37,6 @@ public class GameBoardView {
         this.gameBoardService = gameBoardService;
     }
 
-    private void save(ActionEvent t) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save game");
-        File saveFile = fileChooser.showSaveDialog(stage);
-
-        try (FileWriter writer = new FileWriter(saveFile)) {
-            StringBuilder array = new StringBuilder();
-            for (int i = 0; i < gameBoard.getArrayLength(); i++) {
-                array.append(gameBoard.getBoard()[i]);
-                array.append(",");
-            }
-//            System.out.println(array);
-
-            writer.write(array.toString());
-
-        } catch (IOException ex) {
-            System.out.println("An error occurred while writing to the file.");
-            ex.printStackTrace();
-            throw new RuntimeException(ex);
-        }
-    }
-
-    private void load(ActionEvent t) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Game File");
-        File file = fileChooser.showOpenDialog(stage);
-        gameBoard = gameBoardService.loadGame(file);
-        new GameBoardView(stage, gameBoard.getSize(), gameBoardService, gameBoard).show();
-    }
-
-
     public void show() {
         HBox hBox = new HBox();
         VBox vBox = new VBox();
@@ -99,7 +68,6 @@ public class GameBoardView {
                     pane.add(button, j, i);
                 }
                 button.setOnAction(e -> {
-
                     gameBoardService.superMove(gameBoard, value);
                     show();
                 });
@@ -112,7 +80,6 @@ public class GameBoardView {
         //todo добавление кнопки 'load'
         Button loadButton = new GameMenuButton();
         loadButton.setText("load");
-//        backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         vBoxToBottomLeft.setAlignment(Pos.BOTTOM_LEFT);
         vBoxToBottomLeft.getChildren().add(loadButton);
         //todo uncorrected temporarily
@@ -121,7 +88,7 @@ public class GameBoardView {
         //todo добавление кнопки 'save'
         Button saveButton = new GameMenuButton();
         saveButton.setText("Save");
-//        saveButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+
 
         vBoxToBottomLeft.setAlignment(Pos.BOTTOM_LEFT);
         vBoxToBottomLeft.getChildren().add(saveButton);
@@ -151,7 +118,6 @@ public class GameBoardView {
         vBox.getChildren().add(hBox);
         vBox.setSpacing(100);
 
-
         Scene scene = new Scene(vBox, Constants.WIDTH, Constants.HEIGHT);
         stage.setScene(scene);
 
@@ -161,6 +127,36 @@ public class GameBoardView {
             stage.setScene(scene);
             stage.show();
         }
+    }
+
+    private void save(ActionEvent t) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save game");
+        File saveFile = fileChooser.showSaveDialog(stage);
+
+        try (FileWriter writer = new FileWriter(saveFile)) {
+            StringBuilder array = new StringBuilder();
+            for (int i = 0; i < gameBoard.getArrayLength(); i++) {
+                array.append(gameBoard.getBoard()[i]);
+                array.append(",");
+            }
+//            System.out.println(array);
+
+            writer.write(array.toString());
+
+        } catch (IOException ex) {
+            System.out.println("An error occurred while writing to the file.");
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private void load(ActionEvent t) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Game File");
+        File file = fileChooser.showOpenDialog(stage);
+        gameBoard = gameBoardService.loadGame(file);
+        new GameBoardView(stage, gameBoard.getSize(), gameBoardService, gameBoard).show();
     }
 
 

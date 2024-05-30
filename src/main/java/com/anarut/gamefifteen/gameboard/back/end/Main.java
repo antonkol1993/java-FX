@@ -7,15 +7,24 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        int size = 7;
+        GameBoard gB = GameBoardService.getInstance().newGame(size);
+        GameBoardService gBService = GameBoardService.getInstance();
 
-        GameBoardService.getInstance().newGame(5);
-        System.out.println(GameBoard.getInstance());
 
-        System.out.println(Arrays.toString(GameBoard.getInstance().getBoard()));
+        System.out.print(gB);
+        System.out.println(gB.getZeroInBoard());
 
-        System.out.println(GameBoard.getInstance().getBoard().length);
-        GameBoard.getInstance().setSize(8);
-        System.out.println(GameBoard.getInstance().getBoard().length);
+        for (;;) {
+
+
+
+            Scanner scanner = new Scanner(System.in);
+            int numb = scanner.nextInt();
+            gBService.superMove(gB,numb);
+            System.out.println(gB);
+        }
+
     }
 
 

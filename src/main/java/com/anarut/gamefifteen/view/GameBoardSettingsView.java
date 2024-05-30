@@ -45,10 +45,10 @@ public class GameBoardSettingsView {
             GameMenuButton startGameButton = new GameMenuButton();
             startGameButton.setText("%d x %d".formatted(size, size));
             startGameButton.setOnAction(e -> {
-                GameBoard gameBoard = GameBoardService.getInstance().newGame(size);
+                GameBoardService.getInstance().newGame(size);
                 //todo for check to "WIN" method
 //                GameBoard gameBoard = gameBoardService.newGameNotRandom(size);
-                new GameBoardView(stage, size, GameBoardService.getInstance(), gameBoard).show();
+                new GameBoardView(stage, size, GameBoardService.getInstance(), GameBoard.getInstance(size)).show();
             });
 
             VBox vBox = boardSizes.size() > i * 2 ? vBox1 : vBox2;

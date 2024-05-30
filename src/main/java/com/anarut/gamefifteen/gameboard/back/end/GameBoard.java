@@ -8,14 +8,15 @@ public class GameBoard {
     private Integer zeroInBoard;
     private static GameBoard instance;
 
-    private GameBoard() {
+    private GameBoard(int size) {
+        GameBoard.size = size;
+        board = new Integer[size * size];
     }
     public static GameBoard getInstance(int size) {
         if (instance == null) {
-            instance = new GameBoard();
+            instance = new GameBoard(size);
         }
-        GameBoard.size = size;
-        board = new Integer[size * size];
+
         return instance;
     }
 
@@ -23,9 +24,7 @@ public class GameBoard {
         return zeroInBoard;
     }
 
-    public void setZeroInBoard(Integer zeroInBoard) {
-        this.zeroInBoard = zeroInBoard;
-    }
+
 
     public Integer[] getBoard() {
         return board;
@@ -41,10 +40,13 @@ public class GameBoard {
         return size;
     }
 
+
     public void setSize(Integer size) {
         GameBoard.size = size;
     }
-
+    public void setZeroInBoard(Integer zeroInBoard) {
+        this.zeroInBoard = zeroInBoard;
+    }
 
 
     @Override
@@ -56,7 +58,6 @@ public class GameBoard {
 
     @Override
     public String toString() {
-        GameBoard.getInstance();
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
