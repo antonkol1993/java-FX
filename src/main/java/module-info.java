@@ -14,5 +14,7 @@ module com.anarut.gamefifteen {
 //    opens com.anarut.gamefifteen.button to javafx.fxml;
     exports com.anarut.gamefifteen.button.settings;
     opens com.anarut.gamefifteen.button.settings to javafx.fxml;
+    exports com.anarut.gamefifteen.x;
+    opens com.anarut.gamefifteen.x to javafx.fxml;
 
 }

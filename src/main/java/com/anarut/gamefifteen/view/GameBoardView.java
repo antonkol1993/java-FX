@@ -6,6 +6,7 @@ import com.anarut.gamefifteen.button.settings.GameMenuButton;
 import com.anarut.gamefifteen.gameboard.back.end.GameBoard;
 import com.anarut.gamefifteen.gameboard.back.end.GameBoardService;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -29,6 +30,8 @@ public class GameBoardView {
 
     private GameBoardService gameBoardService;
     private GameBoard gameBoard;
+
+    EventHandler<ActionEvent> handler;
 
     public GameBoardView(Stage stage, int size, GameBoardService gameBoardService, GameBoard gameBoard) {
         this.stage = stage;
@@ -61,16 +64,16 @@ public class GameBoardView {
 
                 if (value != 0) {
                     pane.add(button, j, i);
-
                 } else {
                     button.setText("");
                     button.setStyle("-fx-border-color: #ff0000; -fx-border-width: 3px;");
                     pane.add(button, j, i);
                 }
-                button.setOnAction(e -> {
-                    gameBoardService.superMove(gameBoard, value);
-                    show();
-                });
+                button.setOnAction(handler);
+//                button.setOnAction(e -> {
+//                    gameBoardService.superMove(gameBoard, value);
+//                    show();
+//                });
 
 
             }
@@ -155,8 +158,10 @@ public class GameBoardView {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Game File");
         File file = fileChooser.showOpenDialog(stage);
-        gameBoard = gameBoardService.loadGame(file);
-        new GameBoardView(stage, gameBoard.getSize(), gameBoardService, gameBoard).show();
+        if (file != null) {
+            gameBoard = gameBoardService.loadGame(file);
+            new GameBoardView(stage, gameBoard.getSize(), gameBoardService, gameBoard).show();
+        }
     }
 
 
