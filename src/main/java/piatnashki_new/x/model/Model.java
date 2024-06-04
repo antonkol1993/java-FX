@@ -1,4 +1,4 @@
-package com.anarut.gamefifteen.x;
+package piatnashki_new.x.model;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

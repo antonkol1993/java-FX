@@ -1,12 +1,7 @@
-package com.anarut.gamefifteen.x;
+package piatnashki_new.x.view;
 
 import com.anarut.gamefifteen.Constants;
 import com.anarut.gamefifteen.button.settings.GameMenuButton;
-import com.anarut.gamefifteen.gameboard.back.end.GameBoard;
-import com.anarut.gamefifteen.view.GameBoardSettingsView;
-import com.anarut.gamefifteen.view.GameBoardView;
-import com.anarut.gamefifteen.view.SettingsView;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,9 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
-
-import java.io.File;
+import piatnashki_new.x.model.Model;
 
 public class View {
 

@@ -1,8 +1,9 @@
-package com.anarut.gamefifteen.x;
+package piatnashki_new.x.controller;
 
 import javafx.application.Platform;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import piatnashki_new.x.model.Model;
+import piatnashki_new.x.view.View;
 
 public class Controller {
 
@@ -22,6 +23,7 @@ public class Controller {
 
     private Model prepareModel() {
         Model model = new Model();
+        model.setNewGameText(NEW_GAME_TEXT);
         model.setOnNewGameAction(event -> {
 //            new Controller(stage).show(); // открытие новой вью
 
@@ -35,7 +37,7 @@ public class Controller {
 //            model.setModel();
 //            view.refresh();
 //        });
-        model.setNewGameText(NEW_GAME_TEXT);
+
         return model;
     }
 

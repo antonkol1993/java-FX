@@ -14,7 +14,13 @@ module com.anarut.gamefifteen {
 //    opens com.anarut.gamefifteen.button to javafx.fxml;
     exports com.anarut.gamefifteen.button.settings;
     opens com.anarut.gamefifteen.button.settings to javafx.fxml;
-    exports com.anarut.gamefifteen.x;
-    opens com.anarut.gamefifteen.x to javafx.fxml;
+    exports piatnashki_new.x;
+    opens piatnashki_new.x to javafx.fxml;
+    exports piatnashki_new.x.controller;
+    opens piatnashki_new.x.controller to javafx.fxml;
+    exports piatnashki_new.x.model;
+    opens piatnashki_new.x.model to javafx.fxml;
+    exports piatnashki_new.x.view;
+    opens piatnashki_new.x.view to javafx.fxml;
 
 }
