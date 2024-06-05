@@ -1,11 +1,11 @@
-package piatnashki_new.x.controller;
+package piatnashki_new.controller;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import piatnashki_new.x.controller.Service.GameBoardService;
-import piatnashki_new.x.model.Model;
-import piatnashki_new.x.view.View;
+import piatnashki_new.controller.Service.GameBoardService;
+import piatnashki_new.model.Model;
+import piatnashki_new.view.MainMenuView;
 
 public class Controller {
 
@@ -15,16 +15,13 @@ public class Controller {
     private static final String REFRESH = "GAME 15 ||Refresh: ";
     private final Stage stage;
     private Model model;
-    private View view;
+    private MainMenuView view;
     private int count = 1;
-
-
-    private GameBoardService gameBoardService;
 
     public Controller(Stage stage) {
         this.stage = stage;
         this.model = prepareModel();
-        this.view = new View(model);
+        this.view = new MainMenuView(model);
 
     }
 
@@ -35,14 +32,15 @@ public class Controller {
         label.setText(REFRESH);
 
         model.setOnRefreshAction(event -> {
-//            new Controller(stage).show(); // открытие новой вью
             model.setLabelText(REFRESH + count++);
             view.refresh();
-        });// new game controller
-
-
+        });
         model.setOnExitAction(event -> Platform.exit());
-//        model.setOnNewGameAction(event -> );
+
+        model.setOnNewGameAction(event -> {
+        GameBoardService.getInstance().newGame(5,5);
+        // view.
+        });
 
 
 //        model.setOnMoveAction(event ->
@@ -56,7 +54,7 @@ public class Controller {
     }
 
     public void show(){
-        stage.setScene(view.getScene());
+        stage.setScene(view.getMainMenu());
         stage.show();
     }
 }

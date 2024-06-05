@@ -1,6 +1,6 @@
-package piatnashki_new.x.controller.Service;
+package piatnashki_new.controller.Service;
 
-import piatnashki_new.x.model.GameBoard.GameBoard;
+import piatnashki_new.model.GameBoard.GameBoard;
 
 import java.util.ArrayList;
 import java.util.List;

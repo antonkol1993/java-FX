@@ -1,22 +1,14 @@
-package piatnashki_new.x.model;
+package piatnashki_new.model;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Label;
-import piatnashki_new.x.controller.Service.GameBoardService;
-import piatnashki_new.x.model.GameBoard.GameBoard;
 
 public class Model {
 
     private EventHandler<ActionEvent> onNewGameAction;
     private EventHandler<ActionEvent> onExitAction;
     private EventHandler<ActionEvent> onRefreshAction;
-
-    Label label;
     private String labelText = "Game 15";
-    private GameBoardService gameBoardService;
-    private GameBoard gameBoard;
-
     public Model() {
     }
 

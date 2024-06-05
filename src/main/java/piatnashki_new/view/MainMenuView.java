@@ -1,7 +1,6 @@
-package piatnashki_new.x.view;
+package piatnashki_new.view;
 
 import com.anarut.gamefifteen.Constants;
-import com.anarut.gamefifteen.button.settings.GameMenuButton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,21 +9,20 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import piatnashki_new.x.model.Model;
+import piatnashki_new.model.Model;
 
-public class View {
+public class MainMenuView {
 
 
     private final Model model;
-    private Button refreshButton = new Button();
-    private int count = 0;
-    Label label = new Label();
+    private final Button refreshButton = new Button();
+    private final Label label = new Label();
 
-    public View(Model model) {
+    public MainMenuView(Model model) {
         this.model = model;
     }
 
-    public Scene getScene() {
+    public Scene getMainMenu() {
         VBox vBox = new VBox();
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20, 20, 20, 20));
