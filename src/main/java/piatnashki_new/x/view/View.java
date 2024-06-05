@@ -17,7 +17,9 @@ public class View {
 
     private final Model model;
     private Button refreshButton = new Button();
-    private Label label = new Label();
+    private int count = 0;
+    Label label = new Label();
+
     public View(Model model) {
         this.model = model;
     }
@@ -29,9 +31,10 @@ public class View {
         vBox.setAlignment(Pos.CENTER);
         vBox.setBackground(Background.fill(Color.BEIGE));
 
-        Label titleLabel = label;
-        titleLabel.setText("Game 15");
-        vBox.getChildren().add(titleLabel);
+
+        label.setText(model.getLabelText());
+//        titleLabel.setText("Game 15");
+        vBox.getChildren().add(label);
 
         Button newGameButton = new Button();
         newGameButton.setText("New game");
@@ -57,7 +60,7 @@ public class View {
     }
 
     public void refresh() {
-        label.setText(label.getText() + " 32" );
+        label.setText(model.getLabelText());
         refreshButton.setOnAction(model.getOnRefreshAction());
     }
 

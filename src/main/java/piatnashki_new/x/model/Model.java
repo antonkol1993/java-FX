@@ -2,6 +2,7 @@ package piatnashki_new.x.model;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import piatnashki_new.x.controller.Service.GameBoardService;
 import piatnashki_new.x.model.GameBoard.GameBoard;
 
@@ -11,8 +12,8 @@ public class Model {
     private EventHandler<ActionEvent> onExitAction;
     private EventHandler<ActionEvent> onRefreshAction;
 
-    private String refreshText;
-    private String newGameText;
+    Label label;
+    private String labelText = "Game 15";
     private GameBoardService gameBoardService;
     private GameBoard gameBoard;
 
@@ -43,19 +44,13 @@ public class Model {
         this.onRefreshAction = onRefreshAction;
     }
 
-    public String getRefreshText() {
-        return refreshText;
+    public String getLabelText() {
+        return labelText;
     }
 
-    public void setRefreshText(String refreshText) {
-        this.refreshText = refreshText;
+    public void setLabelText(String labelText) {
+        this.labelText = labelText;
     }
 
-    public String getNewGameText() {
-        return newGameText;
-    }
 
-    public void setNewGameText(String newGameText) {
-        this.newGameText = newGameText;
-    }
 }

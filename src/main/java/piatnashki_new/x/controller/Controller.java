@@ -12,11 +12,13 @@ public class Controller {
     // private Service singletonService;
 
 
-    private static final String REFRESH = "Refresh";
+    private static final String REFRESH = "GAME 15 ||Refresh: ";
     private final Stage stage;
     private Model model;
     private View view;
     private int count = 0;
+    private int refreshCount = 0;
+
     private GameBoardService gameBoardService;
 
     public Controller(Stage stage) {
@@ -28,12 +30,21 @@ public class Controller {
 
     private Model prepareModel() {
         Model model = new Model();
+
+        Label label = new Label();
+        label.setText(model.getLabelText());
+
         model.setOnRefreshAction(event -> {
 //            new Controller(stage).show(); // открытие новой вью
-
-            new Label().setText("GAME 15" + " " + count++);
+            while (refreshCount < 1) {
+                model.setLabelText(model.getLabelText() + REFRESH);
+                refreshCount++;
+            }
+            model.setLabelText(model.getLabelText() + count++);
             view.refresh();
         });// new game controller
+
+
         model.setOnExitAction(event -> Platform.exit());
 //        model.setOnNewGameAction(event -> );
 
