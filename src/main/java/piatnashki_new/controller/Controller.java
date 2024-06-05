@@ -14,14 +14,13 @@ public class Controller {
 
     private static final String REFRESH = "GAME 15 ||Refresh: ";
     private final Stage stage;
-    private Model model;
-    private MainMenuView view;
+    private final MainMenuView mainMenuView;
     private int count = 1;
 
     public Controller(Stage stage) {
         this.stage = stage;
-        this.model = prepareModel();
-        this.view = new MainMenuView(model);
+        Model model = prepareModel();
+        this.mainMenuView = new MainMenuView(model);
 
     }
 
@@ -33,7 +32,7 @@ public class Controller {
 
         model.setOnRefreshAction(event -> {
             model.setLabelText(REFRESH + count++);
-            view.refresh();
+            mainMenuView.refresh();
         });
         model.setOnExitAction(event -> Platform.exit());
 
@@ -54,7 +53,7 @@ public class Controller {
     }
 
     public void show(){
-        stage.setScene(view.getMainMenu());
+        stage.setScene(mainMenuView.getMainMenu());
         stage.show();
     }
 }

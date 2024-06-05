@@ -38,7 +38,7 @@ public class GameBoard {
 
     @Override
     public int hashCode() {
-        int result = Arrays.hashCode(board);
+        int result = Arrays.deepHashCode(board);
         result = 31 * result + sizeWidth.hashCode() + sizeHeight.hashCode();
         return result;
     }
