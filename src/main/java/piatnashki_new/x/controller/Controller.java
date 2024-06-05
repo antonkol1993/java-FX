@@ -16,8 +16,8 @@ public class Controller {
     private final Stage stage;
     private Model model;
     private View view;
-    private int count = 0;
-    private int refreshCount = 0;
+    private int count = 1;
+
 
     private GameBoardService gameBoardService;
 
@@ -32,15 +32,11 @@ public class Controller {
         Model model = new Model();
 
         Label label = new Label();
-        label.setText(model.getLabelText());
+        label.setText(REFRESH);
 
         model.setOnRefreshAction(event -> {
 //            new Controller(stage).show(); // открытие новой вью
-            while (refreshCount < 1) {
-                model.setLabelText(model.getLabelText() + REFRESH);
-                refreshCount++;
-            }
-            model.setLabelText(model.getLabelText() + count++);
+            model.setLabelText(REFRESH + count++);
             view.refresh();
         });// new game controller
 
