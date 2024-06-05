@@ -14,9 +14,10 @@ import piatnashki_new.x.model.Model;
 
 public class View {
 
-    public Button newGameButton = new GameMenuButton();
-    private final Model model;
 
+    private final Model model;
+    private Button refreshButton = new Button();
+    private Label label = new Label();
     public View(Model model) {
         this.model = model;
     }
@@ -28,16 +29,23 @@ public class View {
         vBox.setAlignment(Pos.CENTER);
         vBox.setBackground(Background.fill(Color.BEIGE));
 
-        Label titleLabel = new Label();
+        Label titleLabel = label;
         titleLabel.setText("Game 15");
         vBox.getChildren().add(titleLabel);
 
-        newGameButton.setText(model.getNewGameText());
+        Button newGameButton = new Button();
+        newGameButton.setText("New game");
         newGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         newGameButton.setOnAction(model.getOnNewGameAction());
         vBox.getChildren().add(newGameButton);
 
-        Button exitGameButton = new GameMenuButton();
+
+        refreshButton.setText("Refresh");
+        refreshButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+        refreshButton.setOnAction(model.getOnRefreshAction());
+        vBox.getChildren().add(refreshButton);
+
+        Button exitGameButton = new Button();
         exitGameButton.setText("Exit Game");
         exitGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         exitGameButton.setOnAction(model.getOnExitAction());
@@ -49,8 +57,8 @@ public class View {
     }
 
     public void refresh() {
-        newGameButton.setText(model.getNewGameText());
-        newGameButton.setOnAction(model.getOnNewGameAction());
+        label.setText(label.getText() + " 32" );
+        refreshButton.setOnAction(model.getOnRefreshAction());
     }
 
 }

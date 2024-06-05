@@ -136,73 +136,7 @@ public class GameBoardService {
 
     }
 
-    public GameBoard superMove(GameBoard gameBoard, int numb) {
-        for (int i = 0; i < gameBoard.getSize(); i++) {
-            for (int j = 0; j < gameBoard.getSize(); j++) {
-                int ZeroCount = gameBoard.getZeroInBoard();
-                int ijCount = i * gameBoard.getSize() + j;
-                // todo if horizontal
-                if (gameBoard.getBoard()[i * gameBoard.getSize() + j] == numb &&
-                        gameBoard.getZeroInBoard() / gameBoard.getSize() == i) {
 
-                    if (ijCount < ZeroCount) {
-                        //todo zeroToLeft
-                        for (int c = 0; c < ZeroCount - ijCount; c++) {
-                            int temp = gameBoard.getBoard()[ZeroCount - c - 1];
-                            gameBoard.getBoard()[ZeroCount - c - 1] = 0;
-                            gameBoard.getBoard()[ZeroCount - c] = temp;
-
-                            gameBoard.setZeroInBoard(ZeroCount - c - 1);
-                        } return gameBoard;
-
-                    } else { //todo zeroToRight
-                        for (int c = 0; c < ijCount - ZeroCount; c++) {
-                            int temp = gameBoard.getBoard()[ZeroCount + c + 1];
-                            gameBoard.getBoard()[ZeroCount + c + 1] = 0;
-                            gameBoard.getBoard()[ZeroCount + c] = temp;
-
-                            gameBoard.setZeroInBoard(ZeroCount + c + 1);
-                        }
-                        return gameBoard;
-                    }
-
-                }
-                // todo if vertical??
-                else if (gameBoard.getBoard()[i * gameBoard.getSize() + j] == numb &&
-                        gameBoard.getZeroInBoard() % gameBoard.getSize() == j) {
-
-                    int zeroString = gameBoard.getZeroInBoard() / gameBoard.getSize();
-                    int numberString = (i * gameBoard.getSize() + j) / gameBoard.getSize();
-
-
-                    if (numberString < zeroString) {
-                        //todo zero to up
-                        for (int c = 0; c < zeroString - numberString; c++) {
-                            int temp = gameBoard.getBoard()[ZeroCount - (gameBoard.getSize() * (c + 1))];
-                            gameBoard.getBoard()[ZeroCount - (gameBoard.getSize() * (c + 1))] = 0;
-                            gameBoard.getBoard()[ZeroCount - (gameBoard.getSize() * c)] = temp;
-
-                            gameBoard.setZeroInBoard(ZeroCount - (gameBoard.getSize() * (c + 1)));
-                        }
-
-
-                        return gameBoard;
-                    } else {  //todo zero to down
-                        for (int c = 0; c < numberString - zeroString; c++) {
-                            int temp = gameBoard.getBoard()[ZeroCount + (gameBoard.getSize() * (c + 1))];
-                            gameBoard.getBoard()[ZeroCount + (gameBoard.getSize() * (c + 1))] = 0;
-                            gameBoard.getBoard()[ZeroCount + (gameBoard.getSize() * c)] = temp;
-
-                            gameBoard.setZeroInBoard(ZeroCount + (gameBoard.getSize() * (c + 1)));
-
-                        }
-                        return gameBoard;
-                    }
-                }
-            }
-        }
-        return gameBoard;
-    }
 
     public GameBoard loadGame(File file) {
 

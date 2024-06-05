@@ -6,12 +6,14 @@ import java.util.Objects;
 public class GameBoard {
 
     private final Integer[][] board;
-    private Integer sizeWidth;
-    private Integer sizeHeight;
+    private final Integer sizeWidth;
+    private final Integer sizeHeight;
     private Integer zeroInBoard;
 
-    public GameBoard(Integer sizeWidth, Integer sizeHeight) {
-        board = new Integer[sizeWidth][sizeHeight];
+    public GameBoard(Integer i, Integer j) {
+        board = new Integer[i][j];
+        this.sizeHeight = i;
+        this.sizeWidth = j;
     }
 
     public Integer[][] getBoard() {
@@ -49,5 +51,18 @@ public class GameBoard {
                 Objects.equals(sizeWidth, gameBoard.sizeWidth) &&
                 Objects.equals(sizeHeight, gameBoard.sizeHeight) &&
                 Objects.equals(zeroInBoard, gameBoard.zeroInBoard);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < sizeHeight; i++) {
+            for (int j = 0; j < sizeWidth; j++) {
+                String val = board[i][j] == 0 ? "[]" : board[i][j].toString();
+                builder.append(String.format("%3s", val));
+            }
+            builder.append("\n");
+        }
+        return builder.toString();
     }
 }

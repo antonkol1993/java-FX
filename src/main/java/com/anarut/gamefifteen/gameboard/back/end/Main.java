@@ -19,10 +19,10 @@ public class Main {
 
 
 
-            Scanner scanner = new Scanner(System.in);
-            int numb = scanner.nextInt();
-            gBService.superMove(gB,numb);
-            System.out.println(gB);
+//            Scanner scanner = new Scanner(System.in);
+//            int numb = scanner.nextInt();
+//            gBService.superMove(gB,numb);
+//            System.out.println(gB);
         }
 
     }

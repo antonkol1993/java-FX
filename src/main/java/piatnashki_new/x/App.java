@@ -9,4 +9,9 @@ public class App extends Application {
     public void start(Stage stage) {
         new Controller(stage).show();
     }
+
+    @Override
+    public void stop() throws Exception {
+        System.out.println("game piatnashki is over");
+    }
 }
