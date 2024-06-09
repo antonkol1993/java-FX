@@ -1,13 +1,13 @@
 package piatnashki_new.controller;
 
 import javafx.application.Platform;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import piatnashki_new.controller.service.GameBoardService;
+import piatnashki_new.model.GameBoard.GameBoard;
 import piatnashki_new.model.Model;
-import piatnashki_new.view.NewGameBoardView;
 import piatnashki_new.view.MainMenuView;
+import piatnashki_new.view.NewGameBoardView;
 
 public class Controller {
 
@@ -39,9 +39,12 @@ public class Controller {
             mainMenuView.refresh();
         });
         model.setOnExitAction(event -> Platform.exit());
-
         model.setOnNewGameAction(event -> {
-         showGameBoard();
+            showNewGame();
+        });
+        model.setOnMoveAction(e -> {
+            GameBoardService gameBoardService  = GameBoardService.getInstance();
+            GameBoardService.getInstance().move(gameBoardService.getCurrentBoard(), gameBoardService.getNumbForMove());
         });
 
 
@@ -54,15 +57,24 @@ public class Controller {
 
         return model;
     }
-    private Scene setScene (Scene newScene) {
-        return newScene;
+    private void gameBoardsSettings () {
+        stage.setHeight(600);
+        stage.setWidth(600);
     }
-    public void showMainMenu(){
+    public void showMainMenu() {
         stage.setScene(mainMenuView.getMainMenu());
         stage.show();
     }
-    public void showGameBoard(){
-        stage.setScene(gameBoardView.getNewGameBoard(GameBoardService.getInstance().newGame(5,5)));
+
+    public void showNewGame() {
+        gameBoardsSettings();
+        stage.setScene(gameBoardView.getScene(GameBoardService.getInstance().newGame(5, 5)));
+        stage.show();
+    }
+
+    public void showGameboard() {
+       gameBoardsSettings();
+        stage.setScene(gameBoardView.getScene(GameBoardService.getInstance().getCurrentBoard()));
         stage.show();
     }
 

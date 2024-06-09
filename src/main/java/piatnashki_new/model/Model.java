@@ -8,6 +8,7 @@ public class Model {
     private EventHandler<ActionEvent> onNewGameAction;
     private EventHandler<ActionEvent> onExitAction;
     private EventHandler<ActionEvent> onRefreshAction;
+    private EventHandler<ActionEvent> onMoveAction;
     private String labelText = "Game 15";
     public Model() {
     }
@@ -34,6 +35,14 @@ public class Model {
 
     public void setOnRefreshAction(EventHandler<ActionEvent> onRefreshAction) {
         this.onRefreshAction = onRefreshAction;
+    }
+
+    public EventHandler<ActionEvent> getOnMoveAction() {
+        return onMoveAction;
+    }
+
+    public void setOnMoveAction(EventHandler<ActionEvent> onMoveAction) {
+        this.onMoveAction = onMoveAction;
     }
 
     public String getLabelText() {
