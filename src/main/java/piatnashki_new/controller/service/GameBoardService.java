@@ -1,4 +1,4 @@
-package piatnashki_new.controller.Service;
+package piatnashki_new.controller.service;
 
 import piatnashki_new.model.GameBoard.GameBoard;
 
@@ -38,6 +38,10 @@ public class GameBoardService {
         }
 
 
+        return gameBoard;
+    }
+
+    public GameBoard move(GameBoard gameBoard, int numb) {
         return gameBoard;
     }
 

@@ -7,7 +7,7 @@ import piatnashki_new.controller.Controller;
 public class App extends Application {
     @Override
     public void start(Stage stage) {
-        new Controller(stage).show();
+        new Controller(stage).showMainMenu();
     }
 
     @Override

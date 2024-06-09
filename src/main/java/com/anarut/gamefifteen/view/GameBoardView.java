@@ -61,7 +61,6 @@ public class GameBoardView {
                 button.setText(String.valueOf(value));
                 button.setPrefSize((double) (45 * ButtonsSizes.getInstance().getSizeButton()) /
                         15, (double) (45 * ButtonsSizes.getInstance().getSizeButton()) / 15);
-
                 if (value != 0) {
                     pane.add(button, j, i);
                 } else {

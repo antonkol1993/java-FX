@@ -1,6 +1,6 @@
 package piatnashki_new.model.GameBoard;
 
-import piatnashki_new.controller.Service.GameBoardService;
+import piatnashki_new.controller.service.GameBoardService;
 
 public class Main {
     public static void main(String[] args) {

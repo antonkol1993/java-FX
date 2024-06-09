@@ -1,10 +1,12 @@
 package piatnashki_new.controller;
 
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import piatnashki_new.controller.Service.GameBoardService;
+import piatnashki_new.controller.service.GameBoardService;
 import piatnashki_new.model.Model;
+import piatnashki_new.view.NewGameBoardView;
 import piatnashki_new.view.MainMenuView;
 
 public class Controller {
@@ -15,12 +17,14 @@ public class Controller {
     private static final String REFRESH = "GAME 15 ||Refresh: ";
     private final Stage stage;
     private final MainMenuView mainMenuView;
+    private final NewGameBoardView gameBoardView;
     private int count = 1;
 
     public Controller(Stage stage) {
         this.stage = stage;
         Model model = prepareModel();
         this.mainMenuView = new MainMenuView(model);
+        this.gameBoardView = new NewGameBoardView(model);
 
     }
 
@@ -37,8 +41,7 @@ public class Controller {
         model.setOnExitAction(event -> Platform.exit());
 
         model.setOnNewGameAction(event -> {
-        GameBoardService.getInstance().newGame(5,5);
-        // view.
+         showGameBoard();
         });
 
 
@@ -51,9 +54,16 @@ public class Controller {
 
         return model;
     }
-
-    public void show(){
+    private Scene setScene (Scene newScene) {
+        return newScene;
+    }
+    public void showMainMenu(){
         stage.setScene(mainMenuView.getMainMenu());
         stage.show();
     }
+    public void showGameBoard(){
+        stage.setScene(gameBoardView.getNewGameBoard(GameBoardService.getInstance().newGame(5,5)));
+        stage.show();
+    }
+
 }
