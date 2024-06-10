@@ -9,9 +9,8 @@ import java.util.Random;
 public class GameBoardService {
     private static GameBoardService instance;
     private GameBoard gameBoard;
-    private Integer numbForMove;
 
-
+    private Integer moveNumber;
 
     private GameBoardService() {
     }
@@ -82,8 +81,8 @@ public class GameBoardService {
                 else if (gameBoard.getBoard()[i][j] == numb &&
                         gameBoard.getZeroInBoard() % gameBoard.getSizeWidth() == j) {
 
-                    int zeroString = gameBoard.getZeroInBoard() / gameBoard.getSizeWidth();
-                    int numberString = (i * gameBoard.getSizeHeight() + j) / gameBoard.getSizeWidth();
+                    int zeroString = gameBoard.getZeroInBoard();
+                    int numberString = (i * gameBoard.getSizeHeight() + j);
 
 
                     if (numberString < zeroString) {
@@ -120,11 +119,11 @@ public class GameBoardService {
         return gameBoard;
     }
 
-    public Integer getNumbForMove() {
-        return numbForMove;
+    public Integer getMoveNumber() {
+        return moveNumber;
     }
 
-    public void setNumbForMove(Integer numbForMove) {
-        this.numbForMove = numbForMove;
+    public void setMoveNumber(Integer moveNumber) {
+        this.moveNumber = moveNumber;
     }
 }

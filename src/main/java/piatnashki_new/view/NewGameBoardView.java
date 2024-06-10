@@ -19,7 +19,6 @@ import piatnashki_new.model.Model;
 
 public class NewGameBoardView {
     private final Model model;
-    private Stage stage;
 
 
     public NewGameBoardView(Model model) {
@@ -40,7 +39,7 @@ public class NewGameBoardView {
         vBox.getChildren().add(label);
         vBox.getChildren().add(gridPane);
 
-        gridPane.setPrefSize(50,50);
+        gridPane.setPrefSize(50, 50);
         gridPane.setPadding(new Insets(Paddings, Paddings, Paddings, Paddings));
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setBackground(Background.fill(Color.GOLD));
@@ -50,7 +49,7 @@ public class NewGameBoardView {
                 Button button = new Button();
                 Integer value = gameBoard.getBoard()[i][j];
                 button.setText(String.valueOf(value));
-                button.setPrefSize(50,50);
+                button.setPrefSize(50, 50);
                 if (value != 0) {
                     gridPane.add(button, j, i);
                 } else {
@@ -58,11 +57,8 @@ public class NewGameBoardView {
                     button.setStyle("-fx-border-color: #ff0000; -fx-border-width: 3px;");
                     gridPane.add(button, j, i);
                 }
-                button.setOnAction(e -> {
-                    GameBoardService gbs = GameBoardService.getInstance();
-                    gbs.move(gbs.getCurrentBoard(),value);
-//                    new Controller(stage).showGameboard();
-                });
+
+                button.setOnAction(model.getOnMoveAction(value));
 
             }
 

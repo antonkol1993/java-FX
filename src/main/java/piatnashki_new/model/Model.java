@@ -2,6 +2,7 @@ package piatnashki_new.model;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import piatnashki_new.controller.service.GameBoardService;
 
 public class Model {
 
@@ -37,7 +38,8 @@ public class Model {
         this.onRefreshAction = onRefreshAction;
     }
 
-    public EventHandler<ActionEvent> getOnMoveAction() {
+    public EventHandler<ActionEvent> getOnMoveAction(int value) {
+        GameBoardService.getInstance().setMoveNumber(value);
         return onMoveAction;
     }
 

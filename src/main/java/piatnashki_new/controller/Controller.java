@@ -43,8 +43,9 @@ public class Controller {
             showNewGame();
         });
         model.setOnMoveAction(e -> {
-            GameBoardService gameBoardService  = GameBoardService.getInstance();
-            GameBoardService.getInstance().move(gameBoardService.getCurrentBoard(), gameBoardService.getNumbForMove());
+            GameBoardService instance = GameBoardService.getInstance();
+            instance.move(instance.getCurrentBoard(), instance.getMoveNumber());
+            showGameboard();
         });
 
 
@@ -57,11 +58,14 @@ public class Controller {
 
         return model;
     }
-    private void gameBoardsSettings () {
+
+    private void gameBoardsSettings() {
         stage.setHeight(600);
         stage.setWidth(600);
     }
+
     public void showMainMenu() {
+        gameBoardsSettings();
         stage.setScene(mainMenuView.getMainMenu());
         stage.show();
     }
@@ -73,7 +77,7 @@ public class Controller {
     }
 
     public void showGameboard() {
-       gameBoardsSettings();
+        gameBoardsSettings();
         stage.setScene(gameBoardView.getScene(GameBoardService.getInstance().getCurrentBoard()));
         stage.show();
     }
