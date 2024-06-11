@@ -48,30 +48,29 @@ public class GameBoardService {
     public GameBoard move(GameBoard gameBoard, int numb) {
         for (int i = 0; i < gameBoard.getSizeHeight(); i++) {
             for (int j = 0; j < gameBoard.getSizeWidth(); j++) {
-                int ZeroCount = gameBoard.getZeroInBoard() / gameBoard.getSizeHeight();
-                int ijCount = (i * gameBoard.getSizeHeight() + j) / gameBoard.getSizeHeight() ;
+                int zeroOnJ = gameBoard.getZeroInBoard() % gameBoard.getSizeHeight();
                 // todo if horizontal
                 if (gameBoard.getBoard()[i][j] == numb &&
                         gameBoard.getZeroInBoard() / gameBoard.getSizeHeight() == i) {
 
-                    if (ijCount < ZeroCount ) {
+                    if (j < zeroOnJ ) {
                         //todo zeroToLeft
-                        for (int c = 0; c < ZeroCount - ijCount; c++) {
-                            int temp = gameBoard.getBoard()[i][j - c - 1];
-                            gameBoard.getBoard()[i][j - c - 1] = 0;
-                            gameBoard.getBoard()[i][j - c] = temp;
+                        for (int c = 0; c < zeroOnJ - j ; c++) {
+                            int temp = gameBoard.getBoard()[i][zeroOnJ - c - 1];
+                            gameBoard.getBoard()[i][zeroOnJ - c - 1] = 0;
+                            gameBoard.getBoard()[i][zeroOnJ - c] = temp;
 
-                            gameBoard.setZeroInBoard(gameBoard.getBoard()[i][j - c - 1]);
+                            gameBoard.setZeroInBoard(gameBoard.getBoard()[i][zeroOnJ - c - 1]);
                         }
                         return gameBoard;
 
                     } else { //todo zeroToRight
-                        for (int c = 0; c < ijCount - ZeroCount; c++) {
-                            int temp = gameBoard.getBoard()[i][j + c + 1];
-                            gameBoard.getBoard()[i][j + c + 1] = 0;
-                            gameBoard.getBoard()[i][j + c] = temp;
+                        for (int c = 0; c < j - zeroOnJ; c++) {
+                            int temp = gameBoard.getBoard()[i][zeroOnJ + c + 1];
+                            gameBoard.getBoard()[i][zeroOnJ + c + 1] = 0;
+                            gameBoard.getBoard()[i][zeroOnJ + c] = temp;
 
-                            gameBoard.setZeroInBoard(gameBoard.getBoard()[i][j + c + 1]);
+                            gameBoard.setZeroInBoard(gameBoard.getBoard()[i][zeroOnJ + c + 1]);
                         }
                         return gameBoard;
                     }

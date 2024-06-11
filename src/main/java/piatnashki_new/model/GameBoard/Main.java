@@ -2,6 +2,8 @@ package piatnashki_new.model.GameBoard;
 
 import piatnashki_new.controller.service.GameBoardService;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -10,6 +12,11 @@ public class Main {
         GameBoard gameBoard = gameBoardService.newGame(5,5);
 
         System.out.println(gameBoard);
-        System.out.println(gameBoard.getZeroInBoard());
+        for (;;) {
+            Scanner scanner = new Scanner(System.in);
+            int ght = scanner.nextInt();
+            gameBoardService.move(gameBoardService.getCurrentBoard(),ght);
+            System.out.println(gameBoard);
+        }
     }
 }
