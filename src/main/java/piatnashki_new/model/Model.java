@@ -4,12 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import piatnashki_new.controller.service.GameBoardService;
 
+import java.util.function.Function;
+
 public class Model {
 
     private EventHandler<ActionEvent> onNewGameAction;
     private EventHandler<ActionEvent> onExitAction;
     private EventHandler<ActionEvent> onRefreshAction;
-    private EventHandler<ActionEvent> onMoveAction;
+    private Function<Integer, EventHandler<ActionEvent>> onMoveActionProvider;
     private String labelText = "Game 15";
     public Model() {
     }
@@ -38,13 +40,12 @@ public class Model {
         this.onRefreshAction = onRefreshAction;
     }
 
-    public EventHandler<ActionEvent> getOnMoveAction(int value) {
-        GameBoardService.getInstance().setMoveNumber(value);
-        return onMoveAction;
+    public Function<Integer, EventHandler<ActionEvent>> getOnMoveActionProvider() {
+        return onMoveActionProvider;
     }
 
-    public void setOnMoveAction(EventHandler<ActionEvent> onMoveAction) {
-        this.onMoveAction = onMoveAction;
+    public void setOnMoveActionProvider(Function<Integer, EventHandler<ActionEvent>> onMoveActionProvider) {
+        this.onMoveActionProvider = onMoveActionProvider;
     }
 
     public String getLabelText() {

@@ -1,6 +1,6 @@
 package piatnashki_new.controller.service;
 
-import piatnashki_new.model.GameBoard.GameBoard;
+import piatnashki_new.model.gameBoard.GameBoard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.Random;
 
 public class GameBoardService {
     private static GameBoardService instance;
-    private GameBoard gameBoard;
-
-    private Integer moveNumber;
+//    private GameBoard gameBoard;
+//
+//    private Integer moveNumber;
 
     private GameBoardService() {
     }
@@ -40,12 +40,12 @@ public class GameBoardService {
             }
 
         }
-        this.gameBoard = gameBoard;
         return gameBoard;
     }
 
 
     public GameBoard move(GameBoard gameBoard, int numb) {
+
         for (int i = 0; i < gameBoard.getSizeHeight(); i++) {
             for (int j = 0; j < gameBoard.getSizeWidth(); j++) {
                 int zeroOnJ = gameBoard.getZeroInBoard() % gameBoard.getSizeHeight();
@@ -110,19 +110,6 @@ public class GameBoardService {
                 }
             }
         }
-        this.gameBoard = gameBoard;
         return gameBoard;
-    }
-
-    public GameBoard getCurrentBoard() {
-        return gameBoard;
-    }
-
-    public Integer getMoveNumber() {
-        return moveNumber;
-    }
-
-    public void setMoveNumber(Integer moveNumber) {
-        this.moveNumber = moveNumber;
     }
 }

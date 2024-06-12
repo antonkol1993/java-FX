@@ -1,7 +1,5 @@
 package piatnashki_new.view;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,10 +9,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import piatnashki_new.controller.Controller;
-import piatnashki_new.controller.service.GameBoardService;
-import piatnashki_new.model.GameBoard.GameBoard;
+import piatnashki_new.model.gameBoard.GameBoard;
 import piatnashki_new.model.Model;
 
 public class NewGameBoardView {
@@ -58,7 +53,7 @@ public class NewGameBoardView {
                     gridPane.add(button, j, i);
                 }
 
-                button.setOnAction(model.getOnMoveAction(value));
+                button.setOnAction(model.getOnMoveActionProvider().apply(value));
 
             }
 

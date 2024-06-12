@@ -1,30 +1,37 @@
 package piatnashki_new.controller;
 
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import piatnashki_new.controller.service.GameBoardService;
-import piatnashki_new.model.GameBoard.GameBoard;
+import piatnashki_new.model.MainMenuModel;
 import piatnashki_new.model.Model;
+import piatnashki_new.model.gameBoard.GameBoard;
 import piatnashki_new.view.MainMenuView;
 import piatnashki_new.view.NewGameBoardView;
 
 public class Controller {
 
     // private Service singletonService;
-
+    private final GameBoardService gameBoardService = GameBoardService.getInstance();
 
     private static final String REFRESH = "GAME 15 ||Refresh: ";
     private final Stage stage;
+
+    private MainMenuModel mainMenuModel;
     private final MainMenuView mainMenuView;
     private final NewGameBoardView gameBoardView;
     private int count = 1;
 
+    private GameBoard currentBoard;
+
     public Controller(Stage stage) {
         this.stage = stage;
         Model model = prepareModel();
-        this.mainMenuView = new MainMenuView(model);
+        this.mainMenuView = new MainMenuView(mainMenuModel);
         this.gameBoardView = new NewGameBoardView(model);
+        currentBoard = gameBoardService.newGame(5, 5);
 
     }
 
@@ -34,27 +41,24 @@ public class Controller {
         Label label = new Label();
         label.setText(REFRESH);
 
-        model.setOnRefreshAction(event -> {
-            model.setLabelText(REFRESH + count++);
-            mainMenuView.refresh();
-        });
+        mainMenuModel = MainMenuModel.builder()
+                .withOnNewGameAction(event -> show(gameBoardView.getScene(currentBoard)))
+                .withOnExitAction(event -> Platform.exit())
+                .build();
+
+//        model.setOnRefreshAction(event -> {
+//            model.setLabelText(REFRESH + count++);
+//            mainMenuView.refresh();
+//        });
         model.setOnExitAction(event -> Platform.exit());
         model.setOnNewGameAction(event -> {
-            showNewGame();
-        });
-        model.setOnMoveAction(e -> {
-            GameBoardService instance = GameBoardService.getInstance();
-            instance.move(instance.getCurrentBoard(), instance.getMoveNumber());
-            showGameboard();
+            show(gameBoardView.getScene(currentBoard));
         });
 
-
-//        model.setOnMoveAction(event ->
-//            service.move(model.getBoard(), value);
-//            service.move(model.getBoard(), i, j);
-//            model.setModel();
-//            view.refresh();
-//        });
+        model.setOnMoveActionProvider(value -> e -> {
+            gameBoardService.move(currentBoard, value);
+            show(gameBoardView.getScene(currentBoard));
+        });
 
         return model;
     }
@@ -70,16 +74,11 @@ public class Controller {
         stage.show();
     }
 
-    public void showNewGame() {
-        gameBoardsSettings();
-        stage.setScene(gameBoardView.getScene(GameBoardService.getInstance().newGame(5, 5)));
+
+    private void show(Scene scene) {
+        stage.setHeight(600);
+        stage.setWidth(600);
+        stage.setScene(scene);
         stage.show();
     }
-
-    public void showGameboard() {
-        gameBoardsSettings();
-        stage.setScene(gameBoardView.getScene(GameBoardService.getInstance().getCurrentBoard()));
-        stage.show();
-    }
-
 }

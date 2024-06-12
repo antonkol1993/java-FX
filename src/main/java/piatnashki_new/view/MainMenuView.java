@@ -9,16 +9,17 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import piatnashki_new.model.MainMenuModel;
 import piatnashki_new.model.Model;
 
 public class MainMenuView {
 
 
-    private final Model model;
+    private final MainMenuModel model;
     private final Button refreshButton = new Button();
     private final Label label = new Label();
 
-    public MainMenuView(Model model) {
+    public MainMenuView(MainMenuModel model) {
         this.model = model;
     }
 
@@ -30,8 +31,7 @@ public class MainMenuView {
         vBox.setBackground(Background.fill(Color.BEIGE));
 
 
-        label.setText(model.getLabelText());
-//        titleLabel.setText("Game 15");
+        label.setText("Game 15");
         vBox.getChildren().add(label);
 
         Button newGameButton = new Button();
@@ -41,10 +41,10 @@ public class MainMenuView {
         vBox.getChildren().add(newGameButton);
 
 
-        refreshButton.setText("Refresh");
-        refreshButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-        refreshButton.setOnAction(model.getOnRefreshAction());
-        vBox.getChildren().add(refreshButton);
+//        refreshButton.setText("Refresh");
+//        refreshButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+//        refreshButton.setOnAction(model.getOnRefreshAction());
+//        vBox.getChildren().add(refreshButton);
 
         Button exitGameButton = new Button();
         exitGameButton.setText("Exit Game");
@@ -57,9 +57,9 @@ public class MainMenuView {
         return scene;
     }
 
-    public void refresh() {
-        label.setText(model.getLabelText());
-        refreshButton.setOnAction(model.getOnRefreshAction());
-    }
+//    public void refresh() {
+//        label.setText(model.getLabelText());
+//        refreshButton.setOnAction(model.getOnRefreshAction());
+//    }
 
 }
