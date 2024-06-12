@@ -4,9 +4,9 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import piatnashki_new.controller.service.GameBoardService;
+import piatnashki_new.service.GameBoardService;
 import piatnashki_new.model.MainMenuModel;
-import piatnashki_new.model.Model;
+import piatnashki_new.model.OldModel;
 import piatnashki_new.model.gameBoard.GameBoard;
 import piatnashki_new.view.MainMenuView;
 import piatnashki_new.view.NewGameBoardView;
@@ -28,21 +28,21 @@ public class Controller {
 
     public Controller(Stage stage) {
         this.stage = stage;
-        Model model = prepareModel();
+        OldModel oldModel = prepareModel();
         this.mainMenuView = new MainMenuView(mainMenuModel);
-        this.gameBoardView = new NewGameBoardView(model);
+        this.gameBoardView = new NewGameBoardView(oldModel);
         currentBoard = gameBoardService.newGame(5, 5);
 
     }
 
-    private Model prepareModel() {
-        Model model = new Model();
+    private OldModel prepareModel() {
+        OldModel oldModel = new OldModel();
 
         Label label = new Label();
         label.setText(REFRESH);
 
         mainMenuModel = MainMenuModel.builder()
-                .withOnNewGameAction(event -> show(gameBoardView.getScene(currentBoard)))
+                .withOnNewGameAction(event -> new GameController(stage).show())
                 .withOnExitAction(event -> Platform.exit())
                 .build();
 
@@ -50,17 +50,17 @@ public class Controller {
 //            model.setLabelText(REFRESH + count++);
 //            mainMenuView.refresh();
 //        });
-        model.setOnExitAction(event -> Platform.exit());
-        model.setOnNewGameAction(event -> {
+        oldModel.setOnExitAction(event -> Platform.exit());
+        oldModel.setOnNewGameAction(event -> {
             show(gameBoardView.getScene(currentBoard));
         });
 
-        model.setOnMoveActionProvider(value -> e -> {
+        oldModel.setOnMoveActionProvider(value -> e -> {
             gameBoardService.move(currentBoard, value);
             show(gameBoardView.getScene(currentBoard));
         });
 
-        return model;
+        return oldModel;
     }
 
     private void gameBoardsSettings() {

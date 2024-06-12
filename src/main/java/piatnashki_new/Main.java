@@ -1,11 +1,6 @@
 package piatnashki_new;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import piatnashki_new.controller.service.GameBoardService;
 import piatnashki_new.model.MainMenuModel;
-
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {

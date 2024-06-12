@@ -10,7 +10,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import piatnashki_new.model.MainMenuModel;
-import piatnashki_new.model.Model;
 
 public class MainMenuView {
 

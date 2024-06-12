@@ -2,26 +2,28 @@ package piatnashki_new.view;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import piatnashki_new.model.GameModel;
 import piatnashki_new.model.gameBoard.GameBoard;
-import piatnashki_new.model.OldModel;
 
-public class NewGameBoardView {
-    private final OldModel oldModel;
+public class GameView implements View {
 
+    private GameModel model;
+    private final GridPane gridPane = new GridPane();
 
-    public NewGameBoardView(OldModel oldModel) {
-        this.oldModel = oldModel;
+    public GameView(GameModel model) {
+        this.model = model;
     }
 
-
-    private VBox paintGameBoard(GameBoard gameBoard) {
+    @Override
+    public Parent getView() {
+        GameBoard gameBoard = model.getGameBoard();
 
         String labelName = "GameBoard " + gameBoard.getSizeHeight() + "x" + gameBoard.getSizeWidth();
         int Paddings = 20;
@@ -29,7 +31,6 @@ public class NewGameBoardView {
         label.setText(labelName);
 
         VBox vBox = new VBox();
-        GridPane gridPane = new GridPane();
 
         vBox.getChildren().add(label);
         vBox.getChildren().add(gridPane);
@@ -39,6 +40,18 @@ public class NewGameBoardView {
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setBackground(Background.fill(Color.GOLD));
 
+        buildGameField();
+        return vBox;
+    }
+
+    @Override
+    public void refresh() {
+        buildGameField();
+    }
+
+
+    private void buildGameField() {
+        GameBoard gameBoard = model.getGameBoard();
         for (int i = 0; i < gameBoard.getSizeHeight(); i++) {
             for (int j = 0; j < gameBoard.getSizeWidth(); j++) {
                 Button button = new Button();
@@ -52,20 +65,8 @@ public class NewGameBoardView {
                     button.setStyle("-fx-border-color: #ff0000; -fx-border-width: 3px;");
                     gridPane.add(button, j, i);
                 }
-
-                button.setOnAction(oldModel.getOnMoveActionProvider().apply(value));
-
+                button.setOnAction(model.getOnMoveActionProvider().apply(value));
             }
-
-
         }
-        return vBox;
     }
-
-    public Scene getScene(GameBoard gameBoard) {
-        Scene scene = new Scene(paintGameBoard(gameBoard));
-        return scene;
-    }
-
-
 }
