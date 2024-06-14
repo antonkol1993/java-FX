@@ -46,14 +46,14 @@ public class GameBoardService {
 
     public GameBoard move(GameBoard gameBoard, int numb) {
 
-
-
-        for (int i = 0; i < gameBoard.getSizeHeight(); i++) {
-            for (int j = 0; j < gameBoard.getSizeWidth(); j++) {
-                int zeroOnJ = gameBoard.getZeroInBoard() % gameBoard.getSizeHeight();
+        int height = gameBoard.getSizeHeight();
+        int width = gameBoard.getSizeWidth();
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                int zeroOnJ = gameBoard.getZeroInBoard() % height;
                 // todo if horizontal
                 if (gameBoard.getBoard()[i][j] == numb &&
-                        gameBoard.getZeroInBoard() / gameBoard.getSizeHeight() == i) {
+                        gameBoard.getZeroInBoard() / height == i) {
 
                     if (j < zeroOnJ ) {
                         //todo zeroToLeft
@@ -82,29 +82,28 @@ public class GameBoardService {
                 else if (gameBoard.getBoard()[i][j] == numb &&
                         gameBoard.getZeroInBoard() % gameBoard.getSizeWidth() == j) {
 
-                    int zeroString = gameBoard.getZeroInBoard();
-                    int numberString = (i * gameBoard.getSizeHeight() + j);
+                    int zeroString = gameBoard.getZeroInBoard() / height;
+                    int numberString = (i * gameBoard.getSizeHeight() + j) / height;
 
 
                     if (numberString < zeroString) {
                         //todo zero to up
                         for (int c = 0; c < zeroString - numberString; c++) {
-                            int temp = gameBoard.getBoard()[i - c - 1][j];
-                            gameBoard.getBoard()[i - c - 1][j] = 0;
-                            gameBoard.getBoard()[i - c][j] = temp;
+                            int temp = gameBoard.getBoard()[zeroString - c - 1][j];
+                            gameBoard.getBoard()[zeroString - c - 1][j] = 0;
+                            gameBoard.getBoard()[zeroString - c][j] = temp;
 
-                            gameBoard.setZeroInBoard(gameBoard.getBoard()[i - c - 1][j]);
+                            gameBoard.setZeroInBoard(gameBoard.getBoard()[zeroString - c - 1][j]);
                         }
-
-
                         return gameBoard;
-                    } else {  //todo zero to down
+
+                    } else if (zeroString < numberString ){  //todo zero to down
                         for (int c = 0; c < numberString - zeroString; c++) {
                             int temp = gameBoard.getBoard()[i + c + 1][j];
-                            gameBoard.getBoard()[i + c + 1][j] = 0;
-                            gameBoard.getBoard()[i + c ][j] = temp;
+                            gameBoard.getBoard()[zeroString + c + 1][j] = 0;
+                            gameBoard.getBoard()[zeroString + c ][j] = temp;
 
-                            gameBoard.setZeroInBoard(gameBoard.getBoard()[i + c + 1][j]);
+                            gameBoard.setZeroInBoard(gameBoard.getBoard()[zeroString + c + 1][j]);
 
                         }
                         return gameBoard;
