@@ -8,9 +8,7 @@ import java.util.Random;
 
 public class GameBoardService {
     private static GameBoardService instance;
-//    private GameBoard gameBoard;
-//
-//    private Integer moveNumber;
+
 
     private GameBoardService() {
     }
@@ -66,7 +64,7 @@ public class GameBoardService {
                         }
                         return;
 
-                    } else {
+                    } else if (j > zeroOnJ){
                         //todo zeroToRight
                         for (int c = 0; c < j - zeroOnJ; c++) {
                             int temp = gameBoard.getBoard()[i][zeroOnJ + c + 1];
