@@ -64,9 +64,30 @@ public class GameBoardService {
     }
 
 
+    public boolean reviewToWin(GameBoard currentGameBoard) {
+        return currentGameBoard.equals(finalGameboard(currentGameBoard));
+    }
 
 
 
+
+    private GameBoard finalGameboard(GameBoard currentGameBoard) {
+        int height = currentGameBoard.getSizeHeight();
+        int width = currentGameBoard.getSizeWidth();
+
+        GameBoard winGameBoard = new GameBoard(height, width);
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                winGameBoard.getBoard()[i][j] = i * height + j + 1;
+                if (i * height + j == height * width - 1) {
+                    winGameBoard.getBoard()[i][j] = 0;
+                    winGameBoard.setZeroInBoard(i * height + j);
+                }
+            }
+
+        }
+        return winGameBoard;
+    }
 
     private void zeroAcross(GameBoard gameBoard, int i, int j) {
         int height = gameBoard.getSizeHeight();
@@ -79,7 +100,7 @@ public class GameBoardService {
                 int temp = gameBoard.getBoard()[i][zeroOnJ - c - 1];
                 gameBoard.getBoard()[i][zeroOnJ - c - 1] = 0;
                 gameBoard.getBoard()[i][zeroOnJ - c] = temp;
-                gameBoard.setZeroInBoard(i * width + (zeroOnJ - c - 1));
+                gameBoard.setZeroInBoard(i * height + (zeroOnJ - c - 1));
             }
         } else if (j > zeroOnJ) {
             //todo zeroToRight
@@ -88,7 +109,7 @@ public class GameBoardService {
                 gameBoard.getBoard()[i][zeroOnJ + c + 1] = 0;
                 gameBoard.getBoard()[i][zeroOnJ + c] = temp;
 
-                gameBoard.setZeroInBoard(i * width + (zeroOnJ + c + 1));
+                gameBoard.setZeroInBoard(i * height + (zeroOnJ + c + 1));
             }
         }
     }
@@ -123,9 +144,6 @@ public class GameBoardService {
         }
 
     }
-
-
-
 
 
 }
