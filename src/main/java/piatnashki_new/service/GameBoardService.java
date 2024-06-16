@@ -44,43 +44,44 @@ public class GameBoardService {
     }
 
 
-    public GameBoard move(GameBoard gameBoard, int numb) {
+    public void move(GameBoard gameBoard, int numb) {
 
         int height = gameBoard.getSizeHeight();
         int width = gameBoard.getSizeWidth();
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                int zeroOnJ = gameBoard.getZeroInBoard() % height;
+
                 // todo if horizontal
                 if (gameBoard.getBoard()[i][j] == numb &&
                         gameBoard.getZeroInBoard() / height == i) {
-
-                    if (j < zeroOnJ ) {
+                    int zeroOnJ = gameBoard.getZeroInBoard() % height;
+                    if (j < zeroOnJ) {
                         //todo zeroToLeft
-                        for (int c = 0; c < zeroOnJ - j ; c++) {
+                        for (int c = 0; c < zeroOnJ - j; c++) {
                             int temp = gameBoard.getBoard()[i][zeroOnJ - c - 1];
                             gameBoard.getBoard()[i][zeroOnJ - c - 1] = 0;
                             gameBoard.getBoard()[i][zeroOnJ - c] = temp;
 
-                            gameBoard.setZeroInBoard(gameBoard.getBoard()[i][zeroOnJ - c - 1]);
+                            gameBoard.setZeroInBoard(i * width + (zeroOnJ - c - 1));
                         }
-                        return gameBoard;
+                        return;
 
-                    } else { //todo zeroToRight
+                    } else {
+                        //todo zeroToRight
                         for (int c = 0; c < j - zeroOnJ; c++) {
                             int temp = gameBoard.getBoard()[i][zeroOnJ + c + 1];
                             gameBoard.getBoard()[i][zeroOnJ + c + 1] = 0;
                             gameBoard.getBoard()[i][zeroOnJ + c] = temp;
 
-                            gameBoard.setZeroInBoard(gameBoard.getBoard()[i][zeroOnJ + c + 1]);
+                            gameBoard.setZeroInBoard(i * width + (zeroOnJ + c + 1));
                         }
-                        return gameBoard;
+                        return;
                     }
 
                 }
-                // todo if vertical??
+//                 todo if vertical??
                 else if (gameBoard.getBoard()[i][j] == numb &&
-                        gameBoard.getZeroInBoard() % gameBoard.getSizeWidth() == j) {
+                        gameBoard.getZeroInBoard() % height == j) {
 
                     int zeroString = gameBoard.getZeroInBoard() / height;
                     int numberString = (i * gameBoard.getSizeHeight() + j) / height;
@@ -93,24 +94,24 @@ public class GameBoardService {
                             gameBoard.getBoard()[zeroString - c - 1][j] = 0;
                             gameBoard.getBoard()[zeroString - c][j] = temp;
 
-                            gameBoard.setZeroInBoard(gameBoard.getBoard()[zeroString - c - 1][j]);
+                            gameBoard.setZeroInBoard((zeroString - c - 1) * width + j);
                         }
-                        return gameBoard;
+                        return;
 
-                    } else if (zeroString < numberString ){  //todo zero to down
+                    } else if (zeroString < numberString) {
+                        //todo zero to down
                         for (int c = 0; c < numberString - zeroString; c++) {
-                            int temp = gameBoard.getBoard()[i + c + 1][j];
+                            int temp = gameBoard.getBoard()[zeroString + c + 1][j];
                             gameBoard.getBoard()[zeroString + c + 1][j] = 0;
-                            gameBoard.getBoard()[zeroString + c ][j] = temp;
+                            gameBoard.getBoard()[zeroString + c][j] = temp;
 
-                            gameBoard.setZeroInBoard(gameBoard.getBoard()[zeroString + c + 1][j]);
+                            gameBoard.setZeroInBoard((zeroString + c + 1) * width + j);
 
                         }
-                        return gameBoard;
+                        return;
                     }
                 }
             }
         }
-        return gameBoard;
     }
 }
