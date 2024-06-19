@@ -2,12 +2,12 @@ package piatnashki_new;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import piatnashki_new.controller.Controller;
+import piatnashki_new.controller.MainMenuController;
 
 public class App extends Application {
     @Override
     public void start(Stage stage) {
-        new Controller(stage).showMainMenu();
+        new MainMenuController(stage).showMainMenu();
     }
 
     @Override

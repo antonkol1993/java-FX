@@ -15,7 +15,6 @@ public class MainMenuView {
 
 
     private final MainMenuModel model;
-    private final Button refreshButton = new Button();
     private final Label label = new Label();
 
     public MainMenuView(MainMenuModel model) {
@@ -40,11 +39,6 @@ public class MainMenuView {
         vBox.getChildren().add(newGameButton);
 
 
-//        refreshButton.setText("Refresh");
-//        refreshButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-//        refreshButton.setOnAction(model.getOnRefreshAction());
-//        vBox.getChildren().add(refreshButton);
-
         Button exitGameButton = new Button();
         exitGameButton.setText("Exit Game");
         exitGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
@@ -56,9 +50,5 @@ public class MainMenuView {
         return scene;
     }
 
-//    public void refresh() {
-//        label.setText(model.getLabelText());
-//        refreshButton.setOnAction(model.getOnRefreshAction());
-//    }
 
 }

@@ -11,7 +11,7 @@ import piatnashki_new.model.gameBoard.GameBoard;
 import piatnashki_new.view.MainMenuView;
 import piatnashki_new.view.NewGameBoardView;
 
-public class Controller {
+/*public class Controller {
 
     // private Service singletonService;
     private final GameBoardService gameBoardService = GameBoardService.getInstance();
@@ -82,3 +82,4 @@ public class Controller {
         stage.show();
     }
 }
+*/
