@@ -8,7 +8,7 @@ import piatnashki_new.view.GameView;
 
 public class GameController extends AbstractController<GameModel, GameView> {
     private final GameBoardService gameBoardService = GameBoardService.getInstance();
-    private GameBoard gameBoard;
+    private final GameBoard gameBoard;
     public GameController(Stage stage) {
         super(stage);
         this.gameBoard = gameBoardService.newGame(5, 5);

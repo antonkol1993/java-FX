@@ -11,7 +11,7 @@ public class App extends Application {
     }
 
     @Override
-    public void stop() throws Exception {
+    public void stop() {
         System.out.println("game piatnashki is over");
     }
 }
