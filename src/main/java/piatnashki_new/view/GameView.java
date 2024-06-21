@@ -26,7 +26,7 @@ public class GameView implements View {
         GameBoard gameBoard = model.getGameBoard();
 
         String labelName = "GameBoard " + gameBoard.getSizeHeight() + "x" + gameBoard.getSizeWidth();
-        int Paddings = 20;
+        int paddings = 20;
         Label label = new Label();
         label.setText(labelName);
 
@@ -36,7 +36,7 @@ public class GameView implements View {
         vBox.getChildren().add(gridPane);
 
         gridPane.setPrefSize(50, 50);
-        gridPane.setPadding(new Insets(Paddings, Paddings, Paddings, Paddings));
+        gridPane.setPadding(new Insets(paddings, paddings, paddings, paddings));
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setBackground(Background.fill(Color.GOLD));
 

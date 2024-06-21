@@ -23,7 +23,9 @@ public class MainMenuController extends AbstractController {
         mainMenuModel = MainMenuModel.builder()
                 .withOnNewGameAction(event -> new GameController(stage).show())
                 .withOnExitAction(event -> Platform.exit())
+                .withOnSettingsAction(event -> new SettingsController(stage).show())
                 .build();
+
         return mainMenuModel;
     }
     public void showMainMenu() {

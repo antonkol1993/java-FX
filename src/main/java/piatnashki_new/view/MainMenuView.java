@@ -38,6 +38,11 @@ public class MainMenuView {
         newGameButton.setOnAction(model.getOnNewGameAction());
         vBox.getChildren().add(newGameButton);
 
+        Button settingsButton = new Button();
+        settingsButton.setText("Settings");
+        settingsButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+        settingsButton.setOnAction(model.getOnNewGameAction());
+        vBox.getChildren().add(settingsButton);
 
         Button exitGameButton = new Button();
         exitGameButton.setText("Exit Game");

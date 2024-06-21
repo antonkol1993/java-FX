@@ -1,16 +1,5 @@
 package piatnashki_new.controller;
 
-import javafx.application.Platform;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
-import piatnashki_new.service.GameBoardService;
-import piatnashki_new.model.MainMenuModel;
-import piatnashki_new.model.OldModel;
-import piatnashki_new.model.gameBoard.GameBoard;
-import piatnashki_new.view.MainMenuView;
-import piatnashki_new.view.NewGameBoardView;
-
 /*public class Controller {
 
     // private Service singletonService;

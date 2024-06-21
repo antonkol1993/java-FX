@@ -8,9 +8,11 @@ import java.util.Objects;
 public class MainMenuModel {
     private EventHandler<ActionEvent> onNewGameAction;
     private EventHandler<ActionEvent> onExitAction;
+    private EventHandler<ActionEvent> onSettingsAction;
 
     private MainMenuModel(EventHandler<ActionEvent> onNewGameAction,
-                          EventHandler<ActionEvent> onExitAction) {
+                          EventHandler<ActionEvent> onExitAction,
+                          EventHandler<ActionEvent> onSettingsAction) {
         Objects.requireNonNull(onNewGameAction, "onNewGameAction can't be null");
         Objects.requireNonNull(onExitAction, "onExitAction can't be null");
 
@@ -25,6 +27,9 @@ public class MainMenuModel {
     public EventHandler<ActionEvent> getOnExitAction() {
         return onExitAction;
     }
+    public EventHandler<ActionEvent> getOnSettingsAction() {
+        return onSettingsAction;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -32,7 +37,7 @@ public class MainMenuModel {
     public static class Builder {
         private EventHandler<ActionEvent> onNewGameAction;
         private EventHandler<ActionEvent> onExitAction;
-
+        private EventHandler<ActionEvent> onSettingsAction;
         private Builder() {
         }
 
@@ -45,9 +50,13 @@ public class MainMenuModel {
             this.onExitAction = onExitAction;
             return this;
         }
+        public Builder withOnSettingsAction(EventHandler<ActionEvent> onSettingsAction) {
+            this.onSettingsAction = onSettingsAction;
+            return this;
+        }
 
         public MainMenuModel build() {
-            return new MainMenuModel(onNewGameAction, onExitAction);
+            return new MainMenuModel(onNewGameAction, onExitAction, onSettingsAction);
         }
     }
 }
