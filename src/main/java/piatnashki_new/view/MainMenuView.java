@@ -10,6 +10,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import piatnashki_new.model.MainMenuModel;
+import piatnashki_new.model.SettingsModel;
 
 public class MainMenuView {
 
@@ -41,7 +42,7 @@ public class MainMenuView {
         Button settingsButton = new Button();
         settingsButton.setText("Settings");
         settingsButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-        settingsButton.setOnAction(model.getOnNewGameAction());
+        settingsButton.setOnAction(model.getOnSettingsAction());
         vBox.getChildren().add(settingsButton);
 
         Button exitGameButton = new Button();

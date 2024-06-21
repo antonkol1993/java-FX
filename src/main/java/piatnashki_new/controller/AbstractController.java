@@ -23,4 +23,5 @@ public abstract class AbstractController<M extends Model, V extends View> {
         stage.setScene(scene);
         stage.show();
     }
+
 }

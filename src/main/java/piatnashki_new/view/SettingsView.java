@@ -39,23 +39,28 @@ public class SettingsView implements View {
         vBox.getChildren().add(label);
 
 
-//        Button smallButton = new Button();
-//        smallButton.setText("Small");
-//        smallButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+        Button smallButton = new Button();
+        smallButton.setText("Small");
+        smallButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
 //        smallButton.setOnAction(model.getOnNewGameAction());
-//        vBox.getChildren().add(smallButton);
+        vBox.getChildren().add(smallButton);
 
 
-//        Button medium = new Button();
-//        medium.setText("Medium");
-//        medium.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+        Button medium = new Button();
+        medium.setText("Medium");
+        medium.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
 //        medium.setOnAction(model.getOnExitAction());
-//        vBox.getChildren().add(medium);
+        vBox.getChildren().add(medium);
+
+        Button large = new Button();
+        large.setText("Large");
+        large.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+//        medium.setOnAction(model.getOnExitAction());
+        vBox.getChildren().add(large);
 
         Scene scene = new Scene(vBox, Constants.WIDTH, Constants.HEIGHT);
         scene.setFill(Color.GOLD);
         return vBox;
-
     }
 
     @Override
