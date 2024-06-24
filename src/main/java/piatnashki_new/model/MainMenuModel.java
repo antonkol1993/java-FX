@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 
 import java.util.Objects;
 
-public class MainMenuModel {
+public class MainMenuModel implements Model {
     private EventHandler<ActionEvent> onNewGameAction;
     private EventHandler<ActionEvent> onExitAction;
     private EventHandler<ActionEvent> onSettingsAction;
@@ -18,6 +18,7 @@ public class MainMenuModel {
 
         this.onNewGameAction = onNewGameAction;
         this.onExitAction = onExitAction;
+        this.onSettingsAction = onSettingsAction;
     }
 
     public EventHandler<ActionEvent> getOnNewGameAction() {

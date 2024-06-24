@@ -3,11 +3,13 @@ package piatnashki_new.view;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import piatnashki_new.model.GameModel;
 import piatnashki_new.model.gameBoard.GameBoard;
 import piatnashki_new.service.PiatnashkiButtons;
@@ -65,7 +67,8 @@ public class GameView implements View {
                     button.setStyle("-fx-border-color: #ff0000; -fx-border-width: 3px;");
                     gridPane.add(button, j, i);
                 }
-                button.setOnAction(model.getOnMoveActionProvider().apply(value));
+                button.setOnAction(model.getOnMoveAction());
+//                button.setOnAction(model.getOnMoveActionProvider().apply(value));
             }
         }
     }

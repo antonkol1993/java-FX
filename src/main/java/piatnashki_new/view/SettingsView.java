@@ -5,22 +5,27 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import piatnashki_new.model.SettingsModel;
 import piatnashki_new.service.PiatnashkiButtons;
 
 public class SettingsView implements View {
 
-    SettingsModel settingsModel;
+    private SettingsModel model;
 
-    public SettingsView(SettingsModel settingsModel) {
-        this.settingsModel = settingsModel;
+    private Button smallButton;
+    private Button mediumButton;
+    private Button largeButton;
+
+    public SettingsView(SettingsModel model) {
+        this.model = model;
     }
-
-
 
     @Override
     public Parent getView() {
@@ -35,39 +40,40 @@ public class SettingsView implements View {
         label.setText("Settings");
         vBox.getChildren().add(label);
 
-
-        PiatnashkiButtons smallButton = new PiatnashkiButtons();
-        smallButton.setText("Small");
-        smallButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-//        smallButton.setOnAction(model.getOnNewGameAction());
+        smallButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("Small")
+                .withOnAction(model.getOnSmallAction())
+                .build();
         vBox.getChildren().add(smallButton);
 
-
-        PiatnashkiButtons mediumButton = new PiatnashkiButtons();
-        mediumButton.setText("Medium");
-        mediumButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-//        mediumButton.setOnAction(model.getOnExitAction());
+        mediumButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("Medium")
+                .withOnAction(model.getOnMediumAction())
+                .build();
         vBox.getChildren().add(mediumButton);
 
-        PiatnashkiButtons largeButton = new PiatnashkiButtons();
-        largeButton.setText("Large");
-        largeButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-//        largeButton.setOnAction(model.getOnExitAction());
+        largeButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("Large")
+                .withOnAction(model.getOnLargeAction())
+                .build();
         vBox.getChildren().add(largeButton);
 
-        PiatnashkiButtons backButton = new PiatnashkiButtons();
-        backButton.setText("Large");
-        backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-//        backButton.setOnAction(model.getOnExitAction());
-        vBox.getChildren().add(backButton);
-
-        Scene scene = new Scene(vBox, Constants.WIDTH, Constants.HEIGHT);
-        scene.setFill(Color.GOLD);
         return vBox;
     }
 
     @Override
     public void refresh() {
+        int newSize = model.getSettings().getButtonType().getSize();
+        FontWeight fontWeight = model.getSettings().getFontWeight();
 
+        smallButton.setFont(Font.font(null, fontWeight, newSize));
+        mediumButton.setFont(Font.font(null, fontWeight, newSize));
+        largeButton.setFont(Font.font(null, fontWeight, newSize));
     }
 }

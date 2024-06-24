@@ -7,5 +7,5 @@ import java.util.function.Function;
 
 public interface Model {
 
-    Function<Integer, EventHandler<ActionEvent>> move (int a);
+//    Function<Integer, EventHandler<ActionEvent>> move (int a);
 }

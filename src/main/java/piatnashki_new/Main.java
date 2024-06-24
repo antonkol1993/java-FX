@@ -1,14 +1,16 @@
 package piatnashki_new;
 
+import javafx.application.Application;
+import javafx.application.Platform;
 import piatnashki_new.model.MainMenuModel;
 import piatnashki_new.model.gameBoard.GameBoard;
 import piatnashki_new.service.GameBoardService;
 
+import java.awt.*;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
 //        MainMenuModel.Builder builder = MainMenuModel.builder();
 //        builder.setOnNewGameAction(e -> System.out.println());
 //        builder.setOnExitAction(event -> System.out.println());
@@ -50,7 +52,6 @@ public class Main {
 //            System.out.println(gameBoardasddsa);
 //            System.out.println(gameBoardService.reviewToWin(gameBoardasddsa));
 //        }
-
 
 
 

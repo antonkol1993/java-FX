@@ -8,22 +8,32 @@ import java.util.function.Function;
 
 public class SettingsModel implements Model {
 
+    private Settings settings;
+    private final EventHandler<ActionEvent> onSmallAction;
+    private final EventHandler<ActionEvent> onMediumAction;
+    private final EventHandler<ActionEvent> onLargeAction;
 
-
-    private EventHandler<ActionEvent> onSmallAction;
-    private EventHandler<ActionEvent> onMediumAction;
-    private EventHandler<ActionEvent> onLargeAction;
-
-    private SettingsModel(EventHandler<ActionEvent> onSmallAction,
+    private SettingsModel(Settings settings,
+                          EventHandler<ActionEvent> onSmallAction,
                           EventHandler<ActionEvent> onMediumAction,
                           EventHandler<ActionEvent> onLargeAction) {
+        Objects.requireNonNull(settings, "settings can't be null");
         Objects.requireNonNull(onSmallAction, "onSmallAction can't be null");
         Objects.requireNonNull(onMediumAction, "onMediumAction can't be null");
         Objects.requireNonNull(onLargeAction, "onLargeAction can't be null");
 
+        this.settings = settings;
         this.onSmallAction = onSmallAction;
         this.onMediumAction = onMediumAction;
         this.onLargeAction = onLargeAction;
+    }
+
+    public Settings getSettings() {
+        return settings;
+    }
+
+    public void setSettings(Settings settings) {
+        this.settings = settings;
     }
 
     public EventHandler<ActionEvent> getOnSmallAction() {
@@ -38,14 +48,22 @@ public class SettingsModel implements Model {
         return onLargeAction;
     }
 
+
+
     public static Builder builder() {
         return new SettingsModel.Builder();
     }
     public static class Builder {
+        private Settings settings;
         private EventHandler<ActionEvent> onSmallAction;
         private EventHandler<ActionEvent> onMediumAction;
         private EventHandler<ActionEvent> onLargeAction;
         private Builder() {
+        }
+
+        public Builder withSettings(Settings settings) {
+            this.settings = settings;
+            return this;
         }
 
         public Builder withOnSmallAction(EventHandler<ActionEvent> onSmallAction) {
@@ -53,7 +71,7 @@ public class SettingsModel implements Model {
             return this;
         }
 
-        public Builder WithOnMediumAction(EventHandler<ActionEvent> onMediumAction) {
+        public Builder withOnMediumAction(EventHandler<ActionEvent> onMediumAction) {
             this.onMediumAction = onMediumAction;
             return this;
         }
@@ -63,17 +81,8 @@ public class SettingsModel implements Model {
         }
 
         public SettingsModel build() {
-            return new SettingsModel(onSmallAction, onMediumAction, onLargeAction);
+            return new SettingsModel(settings, onSmallAction, onMediumAction, onLargeAction);
         }
     }
-
-    @Override
-    public Function<Integer, EventHandler<ActionEvent>> move(int a) {
-        return null;
-    }
-
-
-
-
 
 }

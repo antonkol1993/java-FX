@@ -9,11 +9,13 @@ import java.util.function.Function;
 public class GameModel implements Model {
 
     private Function<Integer, EventHandler<ActionEvent>> onMoveActionProvider;
+    private EventHandler<ActionEvent> onMoveAction;
     private final GameBoard gameBoard;
 
 
-    public GameModel(Function<Integer, EventHandler<ActionEvent>> onMoveActionProvider, GameBoard gameBoard) {
+    public GameModel(Function<Integer, EventHandler<ActionEvent>> onMoveActionProvider, EventHandler<ActionEvent> onMoveAction, GameBoard gameBoard) {
         this.onMoveActionProvider = onMoveActionProvider;
+        this.onMoveAction = onMoveAction;
         this.gameBoard = gameBoard;
     }
 
@@ -21,9 +23,8 @@ public class GameModel implements Model {
         return onMoveActionProvider;
     }
 
-    @Override
-    public Function<Integer, EventHandler<ActionEvent>> move(int a) {
-        return null;
+    public EventHandler<ActionEvent> getOnMoveAction() {
+        return onMoveAction;
     }
 
     public GameBoard getGameBoard() {

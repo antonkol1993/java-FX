@@ -1,32 +1,42 @@
 package piatnashki_new.controller;
 
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import piatnashki_new.model.MainMenuModel;
-import piatnashki_new.model.Model;
 import piatnashki_new.model.SettingsModel;
-import piatnashki_new.service.ButtonsSizes;
-import piatnashki_new.view.MainMenuView;
+import piatnashki_new.service.ButtonType;
+import piatnashki_new.service.SettingsService;
 import piatnashki_new.view.SettingsView;
 
 public class SettingsController extends AbstractController<SettingsModel, SettingsView> {
 
-    private final Stage stage;
-    private SettingsModel settingsModel;
-    private SettingsView settingsView;
-
+    private SettingsService settingsService = SettingsService.getInstance();
 
     public SettingsController(Stage stage) {
         super(stage);
-        this.stage = stage;
-        settingsModel = prepareModel();
-        settingsView = new SettingsView(settingsModel);
-    }
 
-    private SettingsModel prepareModel() {
-//        settingsModel = SettingsModel.builder().withOnSmallAction(e -> (ButtonsSizes.getInstance().getSmallButton() ))
-//                .SettingsModel.builder().wit
+        model = SettingsModel.builder()
+                .withSettings(settingsService.getSettings())
+                .withOnSmallAction(e -> {
+                    settingsService.updateButtonType(ButtonType.SMALL);
+                    settingsService.updateFontWeight(FontWeight.THIN);
+                    model.setSettings(settingsService.getSettings());
+                    view.refresh();
+                })
+                .withOnMediumAction(e -> {
+                    settingsService.updateButtonType(ButtonType.MEDIUM);
+                    settingsService.updateFontWeight(FontWeight.NORMAL);
+                    model.setSettings(settingsService.getSettings());
+                    view.refresh();
+                })
+                .withOnLargeAction(e -> {
+                    settingsService.updateButtonType(ButtonType.LARGE);
+                    settingsService.updateFontWeight(FontWeight.BOLD);
+                    model.setSettings(settingsService.getSettings());
+                    view.refresh();
+                })
+                .build();
 
-        return settingsModel;
+        view = new SettingsView(model);
     }
 
 }
