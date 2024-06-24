@@ -4,13 +4,12 @@ import com.anarut.gamefifteen.Constants;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import piatnashki_new.model.MainMenuModel;
-import piatnashki_new.model.SettingsModel;
+import piatnashki_new.service.PiatnashkiButtons;
 
 public class MainMenuView {
 
@@ -33,19 +32,19 @@ public class MainMenuView {
         label.setText("Game 15");
         vBox.getChildren().add(label);
 
-        Button newGameButton = new Button();
+        PiatnashkiButtons newGameButton = new PiatnashkiButtons();
         newGameButton.setText("New game");
         newGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         newGameButton.setOnAction(model.getOnNewGameAction());
         vBox.getChildren().add(newGameButton);
 
-        Button settingsButton = new Button();
+        PiatnashkiButtons settingsButton = new PiatnashkiButtons();
         settingsButton.setText("Settings");
         settingsButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         settingsButton.setOnAction(model.getOnSettingsAction());
         vBox.getChildren().add(settingsButton);
 
-        Button exitGameButton = new Button();
+        PiatnashkiButtons exitGameButton = new PiatnashkiButtons();
         exitGameButton.setText("Exit Game");
         exitGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         exitGameButton.setOnAction(model.getOnExitAction());

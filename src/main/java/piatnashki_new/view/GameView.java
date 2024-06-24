@@ -3,7 +3,6 @@ package piatnashki_new.view;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
@@ -11,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import piatnashki_new.model.GameModel;
 import piatnashki_new.model.gameBoard.GameBoard;
+import piatnashki_new.service.PiatnashkiButtons;
 
 public class GameView implements View {
 
@@ -54,7 +54,7 @@ public class GameView implements View {
         GameBoard gameBoard = model.getGameBoard();
         for (int i = 0; i < gameBoard.getSizeHeight(); i++) {
             for (int j = 0; j < gameBoard.getSizeWidth(); j++) {
-                Button button = new Button();
+                PiatnashkiButtons button = new PiatnashkiButtons();
                 Integer value = gameBoard.getBoard()[i][j];
                 button.setText(String.valueOf(value));
                 button.setPrefSize(50, 50);

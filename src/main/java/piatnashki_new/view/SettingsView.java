@@ -5,12 +5,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import piatnashki_new.model.SettingsModel;
+import piatnashki_new.service.PiatnashkiButtons;
 
 public class SettingsView implements View {
 
@@ -19,9 +19,6 @@ public class SettingsView implements View {
     public SettingsView(SettingsModel settingsModel) {
         this.settingsModel = settingsModel;
     }
-
-
-
 
 
 
@@ -39,24 +36,30 @@ public class SettingsView implements View {
         vBox.getChildren().add(label);
 
 
-        Button smallButton = new Button();
+        PiatnashkiButtons smallButton = new PiatnashkiButtons();
         smallButton.setText("Small");
         smallButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
 //        smallButton.setOnAction(model.getOnNewGameAction());
         vBox.getChildren().add(smallButton);
 
 
-        Button medium = new Button();
-        medium.setText("Medium");
-        medium.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-//        medium.setOnAction(model.getOnExitAction());
-        vBox.getChildren().add(medium);
+        PiatnashkiButtons mediumButton = new PiatnashkiButtons();
+        mediumButton.setText("Medium");
+        mediumButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+//        mediumButton.setOnAction(model.getOnExitAction());
+        vBox.getChildren().add(mediumButton);
 
-        Button large = new Button();
-        large.setText("Large");
-        large.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-//        medium.setOnAction(model.getOnExitAction());
-        vBox.getChildren().add(large);
+        PiatnashkiButtons largeButton = new PiatnashkiButtons();
+        largeButton.setText("Large");
+        largeButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+//        largeButton.setOnAction(model.getOnExitAction());
+        vBox.getChildren().add(largeButton);
+
+        PiatnashkiButtons backButton = new PiatnashkiButtons();
+        backButton.setText("Large");
+        backButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+//        backButton.setOnAction(model.getOnExitAction());
+        vBox.getChildren().add(backButton);
 
         Scene scene = new Scene(vBox, Constants.WIDTH, Constants.HEIGHT);
         scene.setFill(Color.GOLD);
