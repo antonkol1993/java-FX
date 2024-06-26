@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
@@ -57,6 +58,10 @@ public class MainMenuView implements View {
 //    }
 
 
+    Button newGameButton;
+    Button settingsButton;
+    Button exitGameButton;
+
     @Override
     public Parent getView() {
         VBox vBox = new VBox();
@@ -69,11 +74,8 @@ public class MainMenuView implements View {
         label.setText("Game 15");
         vBox.getChildren().add(label);
 
-        PiatnashkiButtons newGameButton = new PiatnashkiButtons();
-        newGameButton.setText("New game");
-        newGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-        newGameButton.setOnAction(model.getOnNewGameAction());
-        vBox.getChildren().add(newGameButton);
+        newGameButton = ButtonBuilder.get().
+                withFontSize()
 
         PiatnashkiButtons settingsButton = new PiatnashkiButtons();
         settingsButton.setText("Settings");
