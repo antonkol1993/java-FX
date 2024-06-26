@@ -2,9 +2,12 @@ package piatnashki_new.controller;
 
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import piatnashki_new.model.MainMenuModel;
+import piatnashki_new.model.Model;
 import piatnashki_new.model.SettingsModel;
 import piatnashki_new.service.ButtonType;
 import piatnashki_new.service.SettingsService;
+import piatnashki_new.view.MainMenuView;
 import piatnashki_new.view.SettingsView;
 
 public class SettingsController extends AbstractController<SettingsModel, SettingsView> {
@@ -33,6 +36,9 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
                     settingsService.updateFontWeight(FontWeight.BOLD);
                     model.setSettings(settingsService.getSettings());
                     view.refresh();
+                })
+                .withOnBackAction(e -> {
+                    new MainMenuController(stage).show();
                 })
                 .build();
 

@@ -22,6 +22,7 @@ public class SettingsView implements View {
     private Button smallButton;
     private Button mediumButton;
     private Button largeButton;
+    private Button backButton;
 
     public SettingsView(SettingsModel model) {
         this.model = model;
@@ -64,6 +65,16 @@ public class SettingsView implements View {
                 .build();
         vBox.getChildren().add(largeButton);
 
+        backButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("Back")
+                .withOnAction(model.getOnBackAction())
+                .build();
+        vBox.getChildren().add(backButton);
+
+
+
         return vBox;
     }
 
@@ -75,5 +86,8 @@ public class SettingsView implements View {
         smallButton.setFont(Font.font(null, fontWeight, newSize));
         mediumButton.setFont(Font.font(null, fontWeight, newSize));
         largeButton.setFont(Font.font(null, fontWeight, newSize));
+        backButton.setFont(Font.font(null, fontWeight, newSize));
+
+
     }
 }
