@@ -44,7 +44,6 @@ public class ButtonBuilder {
         button.setText(text);
         button.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         button.setOnAction(onAction);
-        button.setOnAction(e -> System.out.println());
 //        button.setStyle(button.getStyle() + "; -fx-font-weight: %s".formatted(fontWeight));
         return button;
     }
