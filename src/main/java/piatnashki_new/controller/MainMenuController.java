@@ -7,7 +7,7 @@ import piatnashki_new.service.SettingsService;
 import piatnashki_new.view.MainMenuView;
 
 public class MainMenuController extends AbstractController<MainMenuModel, MainMenuView> {
-    private  SettingsService instance = new SettingsService();
+    private  SettingsService instance = SettingsService.getInstance();
     public MainMenuController(Stage stage) {
         super(stage);
         model = MainMenuModel.builder()
