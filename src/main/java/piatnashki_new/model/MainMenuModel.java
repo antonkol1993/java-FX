@@ -6,19 +6,22 @@ import javafx.event.EventHandler;
 import java.util.Objects;
 
 public class MainMenuModel implements Model {
-    private EventHandler<ActionEvent> onNewGameAction;
-    private EventHandler<ActionEvent> onExitAction;
-    private EventHandler<ActionEvent> onSettingsAction;
+    private final EventHandler<ActionEvent> onNewGameAction;
+    private final EventHandler<ActionEvent> onExitAction;
+    private final EventHandler<ActionEvent> onSettingsAction;
+    private Settings settings;
 
     private MainMenuModel(EventHandler<ActionEvent> onNewGameAction,
                           EventHandler<ActionEvent> onExitAction,
-                          EventHandler<ActionEvent> onSettingsAction) {
+                          EventHandler<ActionEvent> onSettingsAction,
+                          Settings settings) {
         Objects.requireNonNull(onNewGameAction, "onNewGameAction can't be null");
         Objects.requireNonNull(onExitAction, "onExitAction can't be null");
 
         this.onNewGameAction = onNewGameAction;
         this.onExitAction = onExitAction;
         this.onSettingsAction = onSettingsAction;
+        this.settings = settings;
     }
 
     public EventHandler<ActionEvent> getOnNewGameAction() {
@@ -32,6 +35,14 @@ public class MainMenuModel implements Model {
         return onSettingsAction;
     }
 
+    public Settings getSettings() {
+        return settings;
+    }
+
+    public void setSettings(Settings settings) {
+        this.settings = settings;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -39,6 +50,7 @@ public class MainMenuModel implements Model {
         private EventHandler<ActionEvent> onNewGameAction;
         private EventHandler<ActionEvent> onExitAction;
         private EventHandler<ActionEvent> onSettingsAction;
+        private Settings settings;
         private Builder() {
         }
 
@@ -56,8 +68,13 @@ public class MainMenuModel implements Model {
             return this;
         }
 
+        public Builder withSettings(Settings settings) {
+            this.settings = settings;
+            return this;
+        }
+
         public MainMenuModel build() {
-            return new MainMenuModel(onNewGameAction, onExitAction, onSettingsAction);
+            return new MainMenuModel(onNewGameAction, onExitAction, onSettingsAction, settings);
         }
     }
 }

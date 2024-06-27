@@ -12,7 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import piatnashki_new.model.GameModel;
 import piatnashki_new.model.gameBoard.GameBoard;
-import piatnashki_new.service.PiatnashkiButtons;
 
 public class GameView implements View {
 
@@ -56,7 +55,8 @@ public class GameView implements View {
         GameBoard gameBoard = model.getGameBoard();
         for (int i = 0; i < gameBoard.getSizeHeight(); i++) {
             for (int j = 0; j < gameBoard.getSizeWidth(); j++) {
-                PiatnashkiButtons button = new PiatnashkiButtons();
+                //todo uncorrect born instance
+                Button button = new Button();
                 Integer value = gameBoard.getBoard()[i][j];
                 button.setText(String.valueOf(value));
                 button.setPrefSize(50, 50);

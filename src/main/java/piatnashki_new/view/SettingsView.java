@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import piatnashki_new.model.SettingsModel;
-import piatnashki_new.service.PiatnashkiButtons;
 
 public class SettingsView implements View {
 
