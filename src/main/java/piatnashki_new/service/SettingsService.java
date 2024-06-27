@@ -16,8 +16,8 @@ public class SettingsService {
         return settings;
     }
 
-    public void updateButtonType(ButtonSize buttonType) {
-        settings.setButtonType(buttonType);
+    public void updateButtonType(ButtonSize buttonSize) {
+        settings.setButtonType(buttonSize);
     }
 
     public void updateFontWeight(FontWeight fontWeight) {
