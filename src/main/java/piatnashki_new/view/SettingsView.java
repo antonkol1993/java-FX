@@ -1,12 +1,10 @@
 package piatnashki_new.view;
 
-import com.anarut.gamefifteen.Constants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -35,20 +33,36 @@ public class SettingsView implements View {
     public Parent getView() {
         VBox vBox = new VBox();
 
-        ObservableList<String> sections = FXCollections.observableArrayList("Size", "Colours", "Labels", "Other");
+        ObservableList<String> sections = FXCollections.observableArrayList( "","Size", "Colours", "Labels");
 
         ComboBox<String> langsComboBox = new ComboBox<String>(sections);
-        langsComboBox.setValue("Size"); // устанавливаем выбранный элемент по умолчанию
+        langsComboBox.setValue(""); // устанавливаем выбранный элемент по умолчанию
 
         Label lbl = new Label();
+        FlowPane root = new FlowPane(10, 10, langsComboBox, lbl);
+
 
         // получаем выбранный элемент
-        langsComboBox.setOnAction(event -> lbl.setText(langsComboBox.getValue()));
+        langsComboBox.setOnAction(event -> {
+
+                   if ((langsComboBox.getValue().equals(langsComboBox.getItems().get(1)))) {
+
+                System.out.println("222222222");
+                       vBox.getChildren().add(root);
+                       vBox.getChildren().add(getSizeView());
+            } else {
+
+                   }
+                }
+
+        );
+
+        vBox.getChildren().add(root);
+        vBox.getChildren().add(getColours());
 
 
-        System.out.println(langsComboBox.getValue());
 
-        FlowPane root = new FlowPane(10, 10, langsComboBox, lbl);
+
         
 //        ComboBox<String> langsComboBox = new ComboBox<String>(sections);
 //        ComboBox<String> langsComboBox = new ComboBox<String>(sections);
@@ -57,14 +71,14 @@ public class SettingsView implements View {
 
 
 
-        vBox.getChildren().add(root);
+
 
 
 
         return vBox;
     }
 
-    private Parent sizeView () {
+    private Parent getSizeView() {
         VBox vBox = new VBox();
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20, 20, 20, 20));
@@ -99,6 +113,54 @@ public class SettingsView implements View {
                 .build();
         vBox.getChildren().add(largeButton);
 
+        backButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("Back")
+                .withOnAction(model.getOnBackAction())
+                .build();
+        vBox.getChildren().add(backButton);
+        return vBox;
+    }
+    private Parent getColours() {
+        VBox vBox = new VBox();
+        vBox.setSpacing(20);
+        vBox.setPadding(new Insets(20, 20, 20, 20));
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setBackground(Background.fill(Color.OLDLACE));
+
+        Label label = new Label();
+        label.setText("Settings");
+        vBox.getChildren().add(label);
+
+        Button blackButton = new Button();
+        blackButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("Black")
+                .withOnAction(model.getOnSmallAction())
+                .build();
+        vBox.getChildren().add(blackButton);
+
+        Button redButton = new Button();
+        redButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("Red")
+                .withOnAction(model.getOnMediumAction())
+                .build();
+        vBox.getChildren().add(redButton);
+
+        Button whiteButton = new Button();
+        whiteButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("White")
+                .withOnAction(model.getOnLargeAction())
+                .build();
+        vBox.getChildren().add(whiteButton);
+
+        Button backButton = new Button();
         backButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
