@@ -1,13 +1,17 @@
 package piatnashki_new.view;
 
 import com.anarut.gamefifteen.Constants;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -29,7 +33,38 @@ public class SettingsView implements View {
 
     @Override
     public Parent getView() {
+        VBox vBox = new VBox();
 
+        ObservableList<String> sections = FXCollections.observableArrayList("Size", "Colours", "Labels", "Other");
+
+        ComboBox<String> langsComboBox = new ComboBox<String>(sections);
+        langsComboBox.setValue("Size"); // устанавливаем выбранный элемент по умолчанию
+
+        Label lbl = new Label();
+
+        // получаем выбранный элемент
+        langsComboBox.setOnAction(event -> lbl.setText(langsComboBox.getValue()));
+
+
+        System.out.println(langsComboBox.getValue());
+
+        FlowPane root = new FlowPane(10, 10, langsComboBox, lbl);
+        
+//        ComboBox<String> langsComboBox = new ComboBox<String>(sections);
+//        ComboBox<String> langsComboBox = new ComboBox<String>(sections);
+//        ComboBox<String> langsComboBox = new ComboBox<String>(sections);
+//        langsComboBox.setValue("Java"); // устанавливаем выбранный элемент по умолчанию
+
+
+
+        vBox.getChildren().add(root);
+
+
+
+        return vBox;
+    }
+
+    private Parent sizeView () {
         VBox vBox = new VBox();
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20, 20, 20, 20));
@@ -71,9 +106,6 @@ public class SettingsView implements View {
                 .withOnAction(model.getOnBackAction())
                 .build();
         vBox.getChildren().add(backButton);
-
-
-
         return vBox;
     }
 

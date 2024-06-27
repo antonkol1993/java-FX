@@ -20,12 +20,15 @@ public class MainMenuView implements View {
         this.model = model;
     }
 
-    Button newGameButton;
-    Button settingsButton;
-    Button exitGameButton;
+
 
     @Override
     public Parent getView() {
+        Button newGameButton;
+        Button settingsButton;
+        Button exitGameButton;
+
+
         VBox vBox = new VBox();
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20, 20, 20, 20));
