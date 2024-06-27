@@ -1,17 +1,14 @@
 package piatnashki_new.view;
 
-import com.anarut.gamefifteen.Constants;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import piatnashki_new.model.MainMenuModel;
-import piatnashki_new.service.ButtonType;
 
 public class MainMenuView implements View {
 
@@ -44,20 +41,24 @@ public class MainMenuView implements View {
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("New game").
                 withOnAction(model.getOnNewGameAction()).
-                build()
-        ;
+                build();
+        vBox.getChildren().add(newGameButton);
 
-//        PiatnashkiButtons settingsButton = new PiatnashkiButtons();
-//        settingsButton.setText("Settings");
-//        settingsButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-//        settingsButton.setOnAction(model.getOnSettingsAction());
-//        vBox.getChildren().add(settingsButton);
-//
-//        PiatnashkiButtons exitGameButton = new PiatnashkiButtons();
-//        exitGameButton.setText("Exit Game");
-//        exitGameButton.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
-//        exitGameButton.setOnAction(model.getOnExitAction());
-//        vBox.getChildren().add(exitGameButton);
+        settingsButton = ButtonBuilder.get().
+                withFontSize(model.getSettings().getButtonType().getSize()).
+                withFontWeight(model.getSettings().getFontWeight()).
+                withText("Settings").
+                withOnAction(model.getOnSettingsAction()).
+                build();
+        vBox.getChildren().add(settingsButton);
+
+        exitGameButton = ButtonBuilder.get().
+                withFontSize(model.getSettings().getButtonType().getSize()).
+                withFontWeight(model.getSettings().getFontWeight()).
+                withText("Settings").
+                withOnAction(model.getOnExitAction()).
+                build();
+        vBox.getChildren().add(exitGameButton);
 
         return vBox;
     }

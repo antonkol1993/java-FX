@@ -2,12 +2,9 @@ package piatnashki_new.controller;
 
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import piatnashki_new.model.MainMenuModel;
-import piatnashki_new.model.Model;
 import piatnashki_new.model.SettingsModel;
-import piatnashki_new.service.ButtonType;
+import piatnashki_new.service.ButtonSize;
 import piatnashki_new.service.SettingsService;
-import piatnashki_new.view.MainMenuView;
 import piatnashki_new.view.SettingsView;
 
 public class SettingsController extends AbstractController<SettingsModel, SettingsView> {
@@ -20,19 +17,19 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
         model = SettingsModel.builder()
                 .withSettings(settingsService.getSettings())
                 .withOnSmallAction(e -> {
-                    settingsService.updateButtonType(ButtonType.SMALL);
+                    settingsService.updateButtonType(ButtonSize.SMALL);
                     settingsService.updateFontWeight(FontWeight.THIN);
                     model.setSettings(settingsService.getSettings());
                     view.refresh();
                 })
                 .withOnMediumAction(e -> {
-                    settingsService.updateButtonType(ButtonType.MEDIUM);
+                    settingsService.updateButtonType(ButtonSize.MEDIUM);
                     settingsService.updateFontWeight(FontWeight.NORMAL);
                     model.setSettings(settingsService.getSettings());
                     view.refresh();
                 })
                 .withOnLargeAction(e -> {
-                    settingsService.updateButtonType(ButtonType.LARGE);
+                    settingsService.updateButtonType(ButtonSize.LARGE);
                     settingsService.updateFontWeight(FontWeight.BOLD);
                     model.setSettings(settingsService.getSettings());
                     view.refresh();

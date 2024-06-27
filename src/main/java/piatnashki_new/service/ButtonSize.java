@@ -1,6 +1,6 @@
 package piatnashki_new.service;
 
-public enum ButtonType {
+public enum ButtonSize {
 
     SMALL(8),
     MEDIUM(12),
@@ -8,7 +8,7 @@ public enum ButtonType {
 
     private int size;
 
-    ButtonType(int size) {
+    ButtonSize(int size) {
         this.size = size;
     }
 

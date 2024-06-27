@@ -16,7 +16,7 @@ public class SettingsService {
         return settings;
     }
 
-    public void updateButtonType(ButtonType buttonType) {
+    public void updateButtonType(ButtonSize buttonType) {
         settings.setButtonType(buttonType);
     }
 

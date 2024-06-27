@@ -1,21 +1,21 @@
 package piatnashki_new.model;
 
 import javafx.scene.text.FontWeight;
-import piatnashki_new.service.ButtonType;
+import piatnashki_new.service.ButtonSize;
 
 public class Settings {
 
-    private ButtonType buttonType = ButtonType.MEDIUM;
+    private ButtonSize buttonType = ButtonSize.MEDIUM;
     private FontWeight fontWeight = FontWeight.NORMAL;
 
     public Settings() {
     }
 
-    public ButtonType getButtonType() {
+    public ButtonSize getButtonType() {
         return buttonType;
     }
 
-    public void setButtonType(ButtonType buttonType) {
+    public void setButtonType(ButtonSize buttonType) {
         this.buttonType = buttonType;
     }
 
