@@ -41,7 +41,28 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
                 .withOnSizeAction(e -> {
 
 
-//                    view.getView();
+                    Scene scene = new Scene(view.getSizeView(), V, V);
+
+                    getStage().setHeight(V);
+                    getStage().setWidth(V);
+
+                    getStage().setScene(scene);
+                    getStage().show();
+
+                }).
+                withOnColourAction(e -> {
+
+
+                    Scene scene = new Scene(view.getColourView(), V, V);
+                    getStage().setHeight(V);
+                    getStage().setWidth(V);
+
+                    getStage().setScene(scene);
+                    getStage().show();
+                }).
+                withOnSyncLabelAction(e -> {
+
+
 
                 })
                 .build();
@@ -49,12 +70,5 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
         view = new SettingsView(model);
     }
 
-    @Override
-    public void show() {
-        Scene scene = new Scene(view.getView(), V, V);
-        getStage().setHeight(V);
-        getStage().setWidth(V);
-        getStage().setScene(scene);
-        getStage().show();
-    }
+
 }

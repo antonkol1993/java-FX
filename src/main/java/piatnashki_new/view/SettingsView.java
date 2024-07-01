@@ -29,12 +29,25 @@ public class SettingsView implements View {
     @Override
     public Parent getView() {
         VBox vBox = new VBox();
-        vBox.getChildren().add(getHead());
         vBox.getChildren().add(getSizeView());
         return vBox;
     }
 
-    private GridPane getHead() {
+    public Parent getSizeView() {
+        VBox vBox = new VBox();
+        vBox.getChildren().add(settingsHead());
+        vBox.getChildren().add(sizeButtons());
+        return vBox;
+    }
+
+    public Parent getColourView() {
+        VBox vBox = new VBox();
+        vBox.getChildren().add(settingsHead());
+        vBox.getChildren().add(coloursButtons());
+        return vBox;
+    }
+
+    private GridPane settingsHead() {
         GridPane headButtons = new GridPane();
         headButtons.setAlignment(Pos.CENTER_LEFT);
         Button sizeButton;
@@ -68,7 +81,7 @@ public class SettingsView implements View {
         return headButtons;
     }
 
-    private Parent getSizeView() {
+    private Parent sizeButtons() {
         VBox vBox = new VBox();
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20, 20, 20, 20));
@@ -113,7 +126,7 @@ public class SettingsView implements View {
         return vBox;
     }
 
-    private Parent getColours() {
+    private Parent coloursButtons() {
         VBox vBox = new VBox();
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20, 20, 20, 20));
