@@ -52,7 +52,7 @@ public class SettingsView implements View {
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Colour").
-                withOnAction(model.getOnSizeAction()).
+                withOnAction(model.getOnColourAction()).
                 build();
         headButtons.add(colourButton, 1, 0);
 
@@ -60,7 +60,7 @@ public class SettingsView implements View {
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("SyncWithLabel").
-                withOnAction(model.getOnSizeAction()).
+                withOnAction(model.getOnSyncLabelAction()).
                 build();
         headButtons.add(syncWithLabel, 2, 0);
 
