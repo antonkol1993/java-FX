@@ -63,6 +63,17 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
                 withOnSyncLabelAction(e -> {
 
 
+                }).
+                withOnBlackAction(e -> {
+
+
+                }).
+                withOnRedAction(e -> {
+
+
+                }).
+                withOnWhiteAction(e -> {
+
 
                 })
                 .build();

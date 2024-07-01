@@ -21,6 +21,12 @@ public class SettingsView implements View {
     private Button mediumButton;
     private Button largeButton;
     private Button backButton;
+    private Button blackButton;
+    private Button redButton;
+    private Button whiteButton;
+    private Button sizeButton;
+    private Button colourButton;
+    private Button syncWithLabel;
 
     public SettingsView(SettingsModel model) {
         this.model = model;
@@ -28,6 +34,9 @@ public class SettingsView implements View {
 
     @Override
     public Parent getView() {
+        getSizeView();
+        getColourView();
+        getSyncLabelView();
         VBox vBox = new VBox();
         vBox.getChildren().add(getSizeView());
         return vBox;
@@ -47,12 +56,21 @@ public class SettingsView implements View {
         return vBox;
     }
 
+    public Parent getSyncLabelView() {
+        VBox vBox = new VBox();
+        vBox.getChildren().add(settingsHead());
+        vBox.getChildren().add(coloursButtons());
+        return vBox;
+    }
+
+    private Parent labelSettings() {
+        return new VBox();
+    }
+
     private GridPane settingsHead() {
         GridPane headButtons = new GridPane();
         headButtons.setAlignment(Pos.CENTER_LEFT);
-        Button sizeButton;
-        Button colourButton;
-        Button syncWithLabel;
+
         sizeButton = ButtonBuilder.get().
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
@@ -137,34 +155,34 @@ public class SettingsView implements View {
         label.setText("Settings");
         vBox.getChildren().add(label);
 
-        Button blackButton = new Button();
+
         blackButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Black")
-                .withOnAction(model.getOnSmallAction())
+                .withOnAction(model.getOnBlackAction())
                 .build();
         vBox.getChildren().add(blackButton);
 
-        Button redButton = new Button();
+
         redButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Red")
-                .withOnAction(model.getOnMediumAction())
+                .withOnAction(model.getOnRedAction())
                 .build();
         vBox.getChildren().add(redButton);
 
-        Button whiteButton = new Button();
+
         whiteButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("White")
-                .withOnAction(model.getOnLargeAction())
+                .withOnAction(model.getOnWhiteAction())
                 .build();
         vBox.getChildren().add(whiteButton);
 
-        Button backButton = new Button();
+
         backButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
@@ -184,6 +202,14 @@ public class SettingsView implements View {
         mediumButton.setFont(Font.font(null, fontWeight, newSize));
         largeButton.setFont(Font.font(null, fontWeight, newSize));
         backButton.setFont(Font.font(null, fontWeight, newSize));
+
+        blackButton.setFont(Font.font(null, fontWeight, newSize));
+        redButton.setFont(Font.font(null, fontWeight, newSize));
+        whiteButton.setFont(Font.font(null, fontWeight, newSize));
+
+        sizeButton.setFont(Font.font(null, fontWeight, newSize));
+        colourButton.setFont(Font.font(null, fontWeight, newSize));
+        syncWithLabel.setFont(Font.font(null, fontWeight, newSize));
 
 
     }
