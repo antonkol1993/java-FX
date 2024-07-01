@@ -58,7 +58,7 @@ public class MainMenuView implements View {
         exitGameButton = ButtonBuilder.get().
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
-                withText("Settings").
+                withText("Exit").
                 withOnAction(model.getOnExitAction()).
                 build();
         vBox.getChildren().add(exitGameButton);

@@ -13,22 +13,29 @@ public class SettingsModel implements Model {
     private final EventHandler<ActionEvent> onMediumAction;
     private final EventHandler<ActionEvent> onLargeAction;
     private final EventHandler<ActionEvent> onBackAction;
+    private final EventHandler<ActionEvent> onSizeAction;
+//    private final EventHandler<ActionEvent> onColourAction;
+//    private final EventHandler<ActionEvent> onSyncLabelAction;
     private SettingsModel(Settings settings,
                           EventHandler<ActionEvent> onSmallAction,
                           EventHandler<ActionEvent> onMediumAction,
                           EventHandler<ActionEvent> onLargeAction,
-                          EventHandler<ActionEvent> onBackAction) {
+                          EventHandler<ActionEvent> onBackAction,
+                          EventHandler<ActionEvent> onSizeAction
+                          ) {
         Objects.requireNonNull(settings, "settings can't be null");
         Objects.requireNonNull(onSmallAction, "onSmallAction can't be null");
         Objects.requireNonNull(onMediumAction, "onMediumAction can't be null");
         Objects.requireNonNull(onLargeAction, "onLargeAction can't be null");
         Objects.requireNonNull(onBackAction, "onBackAction can't be null");
+        Objects.requireNonNull(onSizeAction, "onSizeAction can't be null");
 
         this.settings = settings;
         this.onSmallAction = onSmallAction;
         this.onMediumAction = onMediumAction;
         this.onLargeAction = onLargeAction;
         this.onBackAction = onBackAction;
+        this.onSizeAction = onSizeAction;
     }
 
     public Settings getSettings() {
@@ -54,6 +61,9 @@ public class SettingsModel implements Model {
     public EventHandler<ActionEvent> getOnBackAction() {
         return onBackAction;
     }
+    public EventHandler<ActionEvent> getOnSizeAction() {
+        return onSizeAction;
+    }
 
     public static Builder builder() {
         return new SettingsModel.Builder();
@@ -64,6 +74,7 @@ public class SettingsModel implements Model {
         private EventHandler<ActionEvent> onMediumAction;
         private EventHandler<ActionEvent> onLargeAction;
         private EventHandler<ActionEvent> onBackAction;
+        private EventHandler<ActionEvent> onSizeAction;
         private Builder() {
         }
 
@@ -89,9 +100,13 @@ public class SettingsModel implements Model {
             this.onBackAction = onBackAction;
             return this;
         }
+        public Builder withOnSizeAction(EventHandler<ActionEvent> onSizeAction) {
+            this.onSizeAction = onSizeAction;
+            return this;
+        }
 
         public SettingsModel build() {
-            return new SettingsModel(settings, onSmallAction, onMediumAction, onLargeAction,onBackAction);
+            return new SettingsModel(settings, onSmallAction, onMediumAction, onLargeAction,onBackAction, onSizeAction);
         }
     }
 

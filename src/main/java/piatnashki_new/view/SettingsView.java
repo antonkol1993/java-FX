@@ -1,15 +1,12 @@
 package piatnashki_new.view;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -32,50 +29,31 @@ public class SettingsView implements View {
     @Override
     public Parent getView() {
         VBox vBox = new VBox();
-
-        ObservableList<String> sections = FXCollections.observableArrayList( "","Size", "Colours", "Labels");
-
-        ComboBox<String> langsComboBox = new ComboBox<String>(sections);
-        langsComboBox.setValue(""); // устанавливаем выбранный элемент по умолчанию
-
-        Label lbl = new Label();
-        FlowPane root = new FlowPane(10, 10, langsComboBox, lbl);
-
-
-        // получаем выбранный элемент
-        langsComboBox.setOnAction(event -> {
-
-                   if ((langsComboBox.getValue().equals(langsComboBox.getItems().get(1)))) {
-
-                System.out.println("222222222");
-                       vBox.getChildren().add(root);
-                       vBox.getChildren().add(getSizeView());
-            } else {
-
-                   }
-                }
-
-        );
-
-        vBox.getChildren().add(root);
-        vBox.getChildren().add(getColours());
-
-
-
-
-        
-//        ComboBox<String> langsComboBox = new ComboBox<String>(sections);
-//        ComboBox<String> langsComboBox = new ComboBox<String>(sections);
-//        ComboBox<String> langsComboBox = new ComboBox<String>(sections);
-//        langsComboBox.setValue("Java"); // устанавливаем выбранный элемент по умолчанию
-
-
-
-
-
-
-
+        vBox.getChildren().add(getHead());
+        vBox.getChildren().add(getSizeView());
         return vBox;
+    }
+
+    private GridPane getHead() {
+        GridPane headButtons = new GridPane();
+
+        Button sizeButton;
+        Button colourButton = new Button();
+        Button syncWithLabel = new Button();
+        sizeButton = ButtonBuilder.get().
+                withFontSize(model.getSettings().getButtonType().getSize()).
+                withFontWeight(model.getSettings().getFontWeight()).
+                withText("Size").
+                withOnAction(model.getOnSizeAction()).
+                build();
+        headButtons.add(sizeButton, 0, 0);
+
+
+        headButtons.add(colourButton, 1, 0);
+        headButtons.add(syncWithLabel, 2, 0);
+
+
+        return headButtons;
     }
 
     private Parent getSizeView() {
@@ -122,6 +100,7 @@ public class SettingsView implements View {
         vBox.getChildren().add(backButton);
         return vBox;
     }
+
     private Parent getColours() {
         VBox vBox = new VBox();
         vBox.setSpacing(20);

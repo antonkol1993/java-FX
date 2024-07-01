@@ -37,6 +37,11 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
                 .withOnBackAction(e -> {
                     new MainMenuController(stage).show();
                 })
+                .withOnSizeAction(e -> {
+
+                    new MainMenuController(stage).show();
+//                    view.getView();
+                })
                 .build();
 
         view = new SettingsView(model);
