@@ -1,5 +1,6 @@
 package piatnashki_new.controller;
 
+import javafx.scene.Scene;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import piatnashki_new.model.SettingsModel;
@@ -39,12 +40,21 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
                 })
                 .withOnSizeAction(e -> {
 
-                    new MainMenuController(stage).show();
+
 //                    view.getView();
+
                 })
                 .build();
 
         view = new SettingsView(model);
     }
 
+    @Override
+    public void show() {
+        Scene scene = new Scene(view.getView(), V, V);
+        getStage().setHeight(V);
+        getStage().setWidth(V);
+        getStage().setScene(scene);
+        getStage().show();
+    }
 }

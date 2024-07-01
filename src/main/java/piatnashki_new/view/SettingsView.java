@@ -36,10 +36,10 @@ public class SettingsView implements View {
 
     private GridPane getHead() {
         GridPane headButtons = new GridPane();
-
+        headButtons.setAlignment(Pos.CENTER_LEFT);
         Button sizeButton;
-        Button colourButton = new Button();
-        Button syncWithLabel = new Button();
+        Button colourButton;
+        Button syncWithLabel;
         sizeButton = ButtonBuilder.get().
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
@@ -48,8 +48,20 @@ public class SettingsView implements View {
                 build();
         headButtons.add(sizeButton, 0, 0);
 
-
+        colourButton = ButtonBuilder.get().
+                withFontSize(model.getSettings().getButtonType().getSize()).
+                withFontWeight(model.getSettings().getFontWeight()).
+                withText("Colour").
+                withOnAction(model.getOnSizeAction()).
+                build();
         headButtons.add(colourButton, 1, 0);
+
+        syncWithLabel = ButtonBuilder.get().
+                withFontSize(model.getSettings().getButtonType().getSize()).
+                withFontWeight(model.getSettings().getFontWeight()).
+                withText("SyncWithLabel").
+                withOnAction(model.getOnSizeAction()).
+                build();
         headButtons.add(syncWithLabel, 2, 0);
 
 
