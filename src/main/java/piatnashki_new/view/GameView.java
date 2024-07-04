@@ -59,7 +59,18 @@ public class GameView implements View {
                 Button button = new Button();
                 Integer value = gameBoard.getBoard()[i][j];
                 button.setText(String.valueOf(value));
-                button.setPrefSize(50, 50);
+                String nameButton = button.getText();
+
+                button = ButtonBuilder.get().
+                        withFontSize(model.getSettings().getButtonType().getSize()).
+                        withFontWeight(model.getSettings().getFontWeight()).
+                        withText(nameButton).
+                        withOnAction(model.getOnMoveAction())
+
+
+                        .build();
+
+
                 if (value != 0) {
                     gridPane.add(button, j, i);
                 } else {

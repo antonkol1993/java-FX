@@ -8,14 +8,15 @@ import java.util.function.Function;
 
 public class GameModel implements Model {
 
-    private Function<Integer, EventHandler<ActionEvent>> onMoveActionProvider;
     private EventHandler<ActionEvent> onMoveAction;
     private final GameBoard gameBoard;
+    private Settings settings;
 
+    public GameModel(EventHandler<ActionEvent> onMoveAction, GameBoard gameBoard, Settings settings) {
 
-    public GameModel( EventHandler<ActionEvent> onMoveAction, GameBoard gameBoard) {
         this.onMoveAction = onMoveAction;
         this.gameBoard = gameBoard;
+        this.settings = settings;
     }
 
     public EventHandler<ActionEvent> getOnMoveAction() {
@@ -26,6 +27,47 @@ public class GameModel implements Model {
         return gameBoard;
     }
 
+    public Settings getSettings() {
+        return settings;
+    }
+
+    public static Builder builder() {
+        return new GameModel.Builder();
+    }
+
+    public static class Builder {
+
+
+        EventHandler<ActionEvent> onMoveAction;
+        GameBoard gameBoard;
+        Settings settings;
+
+        private Builder() {
+        }
+
+        public Builder withGameboard (GameBoard gameBoard) {
+            this.gameBoard = gameBoard;
+            return this;
+        }
+
+        public Builder withOnMoveAction(EventHandler<ActionEvent> onMoveAction) {
+            this.onMoveAction = onMoveAction;
+            return this;
+        }
+
+        public Builder withSettings(Settings settings) {
+            this.settings = settings;
+            return this;
+        }
+
+
+
+
+        public GameModel build () {
+            return new GameModel(onMoveAction, gameBoard, settings);
+        }
+
+    }
 
 
 //    public static Builder builder() {
