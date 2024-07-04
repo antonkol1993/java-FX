@@ -13,14 +13,9 @@ public class GameModel implements Model {
     private final GameBoard gameBoard;
 
 
-    public GameModel(Function<Integer, EventHandler<ActionEvent>> onMoveActionProvider, EventHandler<ActionEvent> onMoveAction, GameBoard gameBoard) {
-        this.onMoveActionProvider = onMoveActionProvider;
+    public GameModel( EventHandler<ActionEvent> onMoveAction, GameBoard gameBoard) {
         this.onMoveAction = onMoveAction;
         this.gameBoard = gameBoard;
-    }
-
-    public Function<Integer, EventHandler<ActionEvent>> getOnMoveActionProvider() {
-        return onMoveActionProvider;
     }
 
     public EventHandler<ActionEvent> getOnMoveAction() {

@@ -14,10 +14,7 @@ public class GameController extends AbstractController<GameModel, GameView> {
         super(stage);
         this.gameBoard = gameBoardService.newGame(5, 5);
 
-        model = new GameModel(value -> e -> {
-            gameBoardService.move(gameBoard, value);
-            view.refresh();
-        }, e -> {
+        model = new GameModel(e -> {
 
             Button source = (Button)e.getSource();
             String text = source.getText();
@@ -25,7 +22,8 @@ public class GameController extends AbstractController<GameModel, GameView> {
             int value = text.equals("") ? 0 : Integer.valueOf(text);
             gameBoardService.move(gameBoard, value);
             view.refresh();
-        }, gameBoard);
+        }
+        , gameBoard);
 
         view = new GameView(model);
     }
