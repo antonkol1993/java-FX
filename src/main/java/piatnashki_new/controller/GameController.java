@@ -27,6 +27,9 @@ public class GameController extends AbstractController<GameModel, GameView> {
                 })
                 .withGameboard(gameBoard)
                 .withSettings(settingsService.getSettings())
+                .withOnBackAction(e -> {
+                    new MainMenuController(stage).show();
+                })
                 .build();
 
 

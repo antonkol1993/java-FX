@@ -47,7 +47,7 @@ public class GameView implements View {
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Back").
-                withOnAction(model.getOnMoveAction())
+                withOnAction(model.getOnBackAction())
                 .build();
         button.setStyle("-fx-font: 22 arial; -fx-base: green");
         vBox.getChildren().add(button);

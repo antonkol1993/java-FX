@@ -4,19 +4,19 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import piatnashki_new.model.gameBoard.GameBoard;
 
-import java.util.function.Function;
-
 public class GameModel implements Model {
 
     private EventHandler<ActionEvent> onMoveAction;
     private final GameBoard gameBoard;
     private Settings settings;
+    private EventHandler<ActionEvent> onBackAction;
 
-    public GameModel(EventHandler<ActionEvent> onMoveAction, GameBoard gameBoard, Settings settings) {
+    public GameModel(EventHandler<ActionEvent> onMoveAction, GameBoard gameBoard, Settings settings, EventHandler<ActionEvent> onBackAction) {
 
         this.onMoveAction = onMoveAction;
         this.gameBoard = gameBoard;
         this.settings = settings;
+        this.onBackAction = onBackAction;
     }
 
     public EventHandler<ActionEvent> getOnMoveAction() {
@@ -31,6 +31,10 @@ public class GameModel implements Model {
         return settings;
     }
 
+    public EventHandler<ActionEvent> getOnBackAction() {
+        return onBackAction;
+    }
+
     public static Builder builder() {
         return new GameModel.Builder();
     }
@@ -41,6 +45,7 @@ public class GameModel implements Model {
         EventHandler<ActionEvent> onMoveAction;
         GameBoard gameBoard;
         Settings settings;
+        EventHandler<ActionEvent> onBackAction;
 
         private Builder() {
         }
@@ -59,12 +64,16 @@ public class GameModel implements Model {
             this.settings = settings;
             return this;
         }
+        public Builder withOnBackAction(EventHandler<ActionEvent> onBackAction) {
+            this.onBackAction = onBackAction;
+            return this;
+        }
 
 
 
 
         public GameModel build () {
-            return new GameModel(onMoveAction, gameBoard, settings);
+            return new GameModel(onMoveAction, gameBoard, settings,onBackAction );
         }
 
     }
