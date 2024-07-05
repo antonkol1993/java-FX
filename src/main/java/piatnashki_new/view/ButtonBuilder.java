@@ -13,6 +13,7 @@ public class ButtonBuilder {
     private String text = "-";
     private EventHandler<ActionEvent> onAction;
     private FontWeight fontWeight = FontWeight.NORMAL;
+    private int buttonSize = 75;
 
     public static ButtonBuilder get() {
         return new ButtonBuilder();
@@ -37,6 +38,7 @@ public class ButtonBuilder {
         this.fontWeight = fontWeight;
         return this;
     }
+
 
     public Button build() {
         Button button = new Button();

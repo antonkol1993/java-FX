@@ -6,7 +6,8 @@ public enum ButtonSize {
     MEDIUM(12),
     LARGE(16);
 
-    private int size;
+    private final int size;
+
 
     ButtonSize(int size) {
         this.size = size;
@@ -15,4 +16,5 @@ public enum ButtonSize {
     public int getSize() {
         return size;
     }
+
 }

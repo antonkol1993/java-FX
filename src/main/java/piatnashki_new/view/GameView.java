@@ -16,8 +16,8 @@ import piatnashki_new.model.gameBoard.GameBoard;
 public class GameView implements View {
 
     private GameModel model;
-    private final GridPane gridPane = new GridPane();
-
+    private GridPane gridPane = new GridPane();
+    private GameBoard gameBoard;
     public GameView(GameModel model) {
         this.model = model;
     }
@@ -36,12 +36,22 @@ public class GameView implements View {
         vBox.getChildren().add(label);
         vBox.getChildren().add(gridPane);
 
-        gridPane.setPrefSize(50, 50);
+        gridPane.setPrefSize(500, 500);
         gridPane.setPadding(new Insets(paddings, paddings, paddings, paddings));
-        gridPane.setAlignment(Pos.CENTER);
+        gridPane.setAlignment(Pos.TOP_CENTER);
         gridPane.setBackground(Background.fill(Color.GOLD));
 
         buildGameField();
+        Button button;
+        button = ButtonBuilder.get().
+                withFontSize(model.getSettings().getButtonType().getSize()).
+                withFontWeight(model.getSettings().getFontWeight()).
+                withText("Back").
+                withOnAction(model.getOnMoveAction())
+                .build();
+        button.setStyle("-fx-font: 22 arial; -fx-base: green");
+        vBox.getChildren().add(button);
+        button.setAlignment(Pos.BOTTOM_LEFT);
         return vBox;
     }
 
@@ -66,16 +76,15 @@ public class GameView implements View {
                         withFontWeight(model.getSettings().getFontWeight()).
                         withText(nameButton).
                         withOnAction(model.getOnMoveAction())
-
-
                         .build();
-
+                button.setPrefSize(60,60);
 
                 if (value != 0) {
                     gridPane.add(button, j, i);
+                    button.setStyle("-fx-font: 22 arial; -fx-base: LightGray");
                 } else {
                     button.setText("");
-                    button.setStyle("-fx-border-color: #ff0000; -fx-border-width: 3px;");
+                    button.setStyle("-fx-border-color: #ff0000; -fx-border-width: 5px;");
                     gridPane.add(button, j, i);
                 }
                 button.setOnAction(model.getOnMoveAction());
@@ -83,4 +92,6 @@ public class GameView implements View {
             }
         }
     }
+
+
 }
