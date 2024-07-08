@@ -40,7 +40,7 @@ public class MainMenuView implements View {
         vBox.getChildren().add(label);
 
         newGameButton = ButtonBuilder.get().
-                withFontSize(model.getSettings().getButtonType().getSize()).
+                withFontSize(model.getSettings().getButtonSize().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("New game").
                 withOnAction(model.getOnNewGameAction()).
@@ -48,7 +48,7 @@ public class MainMenuView implements View {
         vBox.getChildren().add(newGameButton);
 
         settingsButton = ButtonBuilder.get().
-                withFontSize(model.getSettings().getButtonType().getSize()).
+                withFontSize(model.getSettings().getButtonSize().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Settings").
                 withOnAction(model.getOnSettingsAction()).
@@ -56,7 +56,7 @@ public class MainMenuView implements View {
         vBox.getChildren().add(settingsButton);
 
         exitGameButton = ButtonBuilder.get().
-                withFontSize(model.getSettings().getButtonType().getSize()).
+                withFontSize(model.getSettings().getButtonSize().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Exit").
                 withOnAction(model.getOnExitAction()).
