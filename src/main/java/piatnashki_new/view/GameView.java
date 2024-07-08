@@ -80,6 +80,7 @@ public class GameView implements View {
                 String nameButton = String.valueOf(model.getGameBoard().getBoard()[i][j]);
 
                 moveButton = ButtonBuilder.get().
+
                         withFontSize(model.getSettings().getButtonType().getSize()).
                         withFontWeight(model.getSettings().getFontWeight()).
                         withText(nameButton).
