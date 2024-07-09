@@ -5,20 +5,18 @@ import piatnashki_new.service.ButtonSize;
 
 public class Settings {
 
-    private ButtonSize buttonSize = ButtonSize.MEDIUM;
+    private ButtonSize buttonType = ButtonSize.MEDIUM;
     private FontWeight fontWeight = FontWeight.NORMAL;
-    private String colour = "-fx-border-color:white; -fx-background-color: black;";
-
 
     public Settings() {
     }
 
-    public ButtonSize getButtonSize() {
-        return buttonSize;
+    public ButtonSize getButtonType() {
+        return buttonType;
     }
 
-    public void setButtonSize(ButtonSize buttonSize) {
-        this.buttonSize = buttonSize;
+    public void setButtonType(ButtonSize buttonType) {
+        this.buttonType = buttonType;
     }
 
     public FontWeight getFontWeight() {
@@ -27,14 +25,6 @@ public class Settings {
 
     public void setFontWeight(FontWeight fontWeight) {
         this.fontWeight = fontWeight;
-    }
-
-    public String getColour() {
-        return colour;
-    }
-
-    public void setColour(String colour) {
-        this.colour = colour;
     }
 }
 

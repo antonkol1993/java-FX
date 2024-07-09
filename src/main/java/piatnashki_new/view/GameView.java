@@ -13,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import piatnashki_new.model.GameModel;
 import piatnashki_new.model.gameBoard.GameBoard;
+import piatnashki_new.service.SettingsService;
 
 
 public class GameView implements View {
@@ -47,7 +48,7 @@ public class GameView implements View {
         buildGameField();
 
         backButton = ButtonBuilder.get().
-                withFontSize(model.getSettings().getButtonSize().getSize()).
+                withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Back").
                 withOnAction(model.getOnBackAction())
@@ -61,7 +62,7 @@ public class GameView implements View {
     @Override
     public void refresh() {
 
-        int newSize = model.getSettings().getButtonSize().getSize();
+        int newSize = model.getSettings().getButtonType().getSize();
         FontWeight fontWeight = model.getSettings().getFontWeight();
         moveButton.setFont(Font.font(null, fontWeight,newSize));
         backButton.setFont(Font.font(null, fontWeight,newSize));
@@ -80,7 +81,7 @@ public class GameView implements View {
 
                 moveButton = ButtonBuilder.get().
 
-                        withFontSize(model.getSettings().getButtonSize().getSize()).
+                        withFontSize(model.getSettings().getButtonType().getSize()).
                         withFontWeight(model.getSettings().getFontWeight()).
                         withText(nameButton).
                         withOnAction(model.getOnMoveAction())
@@ -95,6 +96,7 @@ public class GameView implements View {
                     moveButton.setStyle("-fx-border-color: #ff0000; -fx-border-width: 5px;");
                     gridPane.add(moveButton, j, i);
                 }
+                moveButton.setOnAction(model.getOnMoveAction());
 //                button.setOnAction(model.getOnMoveActionProvider().apply(value));
             }
         }

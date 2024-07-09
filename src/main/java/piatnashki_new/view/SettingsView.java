@@ -12,7 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import piatnashki_new.model.SettingsModel;
-import piatnashki_new.service.ButtonColours;
 
 public class SettingsView implements View {
 
@@ -73,7 +72,7 @@ public class SettingsView implements View {
         headButtons.setAlignment(Pos.CENTER_LEFT);
 
         sizeButton = ButtonBuilder.get().
-                withFontSize(model.getSettings().getButtonSize().getSize()).
+                withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Size").
                 withOnAction(model.getOnSizeAction()).
@@ -81,7 +80,7 @@ public class SettingsView implements View {
         headButtons.add(sizeButton, 0, 0);
 
         colourButton = ButtonBuilder.get().
-                withFontSize(model.getSettings().getButtonSize().getSize()).
+                withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Colour").
                 withOnAction(model.getOnColourAction()).
@@ -89,7 +88,7 @@ public class SettingsView implements View {
         headButtons.add(colourButton, 1, 0);
 
         syncWithLabel = ButtonBuilder.get().
-                withFontSize(model.getSettings().getButtonSize().getSize()).
+                withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("SyncWithLabel").
                 withOnAction(model.getOnSyncLabelAction()).
@@ -112,7 +111,7 @@ public class SettingsView implements View {
         vBox.getChildren().add(label);
 
         smallButton = ButtonBuilder.get()
-                .withFontSize(model.getSettings().getButtonSize().getSize())
+                .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Small")
                 .withOnAction(model.getOnSmallAction())
@@ -120,7 +119,7 @@ public class SettingsView implements View {
         vBox.getChildren().add(smallButton);
 
         mediumButton = ButtonBuilder.get()
-                .withFontSize(model.getSettings().getButtonSize().getSize())
+                .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Medium")
                 .withOnAction(model.getOnMediumAction())
@@ -128,7 +127,7 @@ public class SettingsView implements View {
         vBox.getChildren().add(mediumButton);
 
         largeButton = ButtonBuilder.get()
-                .withFontSize(model.getSettings().getButtonSize().getSize())
+                .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Large")
                 .withOnAction(model.getOnLargeAction())
@@ -136,7 +135,7 @@ public class SettingsView implements View {
         vBox.getChildren().add(largeButton);
 
         backButton = ButtonBuilder.get()
-                .withFontSize(model.getSettings().getButtonSize().getSize())
+                .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Back")
                 .withOnAction(model.getOnBackAction())
@@ -158,27 +157,25 @@ public class SettingsView implements View {
 
 
         blackButton = ButtonBuilder.get()
-                .withFontSize(model.getSettings().getButtonSize().getSize())
+                .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Black")
                 .withOnAction(model.getOnBlackAction())
                 .build();
-//        blackButton.setStyle("-fx-border-color:red; -fx-background-color: blue;");
         vBox.getChildren().add(blackButton);
 
 
         redButton = ButtonBuilder.get()
-                .withFontSize(model.getSettings().getButtonSize().getSize())
+                .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Red")
                 .withOnAction(model.getOnRedAction())
                 .build();
-        redButton.setStyle(String.valueOf(Color.GRAY));
         vBox.getChildren().add(redButton);
 
 
         whiteButton = ButtonBuilder.get()
-                .withFontSize(model.getSettings().getButtonSize().getSize())
+                .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("White")
                 .withOnAction(model.getOnWhiteAction())
@@ -187,7 +184,7 @@ public class SettingsView implements View {
 
 
         backButton = ButtonBuilder.get()
-                .withFontSize(model.getSettings().getButtonSize().getSize())
+                .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Back")
                 .withOnAction(model.getOnBackAction())
@@ -198,32 +195,21 @@ public class SettingsView implements View {
 
     @Override
     public void refresh() {
-        int newSize = model.getSettings().getButtonSize().getSize();
+        int newSize = model.getSettings().getButtonType().getSize();
         FontWeight fontWeight = model.getSettings().getFontWeight();
-        String colour = ButtonColours.BLACK.getColour();
-        smallButton.setFont(Font.font(null, fontWeight, newSize));
-        smallButton.setStyle(colour);
-        mediumButton.setFont(Font.font(null, fontWeight, newSize));
-        mediumButton.setStyle(colour);
-        largeButton.setFont(Font.font(null, fontWeight, newSize));
-        largeButton.setStyle(colour);
-        backButton.setFont(Font.font(null, fontWeight, newSize));
-        backButton.setStyle(colour);
 
-        //todo
+        smallButton.setFont(Font.font(null, fontWeight, newSize));
+        mediumButton.setFont(Font.font(null, fontWeight, newSize));
+        largeButton.setFont(Font.font(null, fontWeight, newSize));
+        backButton.setFont(Font.font(null, fontWeight, newSize));
+
         blackButton.setFont(Font.font(null, fontWeight, newSize));
-        blackButton.setStyle(colour);
         redButton.setFont(Font.font(null, fontWeight, newSize));
-        redButton.setStyle(colour);
         whiteButton.setFont(Font.font(null, fontWeight, newSize));
-        whiteButton.setStyle(colour);
 
         sizeButton.setFont(Font.font(null, fontWeight, newSize));
-        sizeButton.setStyle(colour);
         colourButton.setFont(Font.font(null, fontWeight, newSize));
-        colourButton.setStyle(colour);
         syncWithLabel.setFont(Font.font(null, fontWeight, newSize));
-        syncWithLabel.setStyle(colour);
 
 
     }

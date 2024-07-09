@@ -4,7 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import piatnashki_new.model.SettingsModel;
-import piatnashki_new.service.ButtonColours;
 import piatnashki_new.service.ButtonSize;
 import piatnashki_new.service.SettingsService;
 import piatnashki_new.view.SettingsView;
@@ -66,9 +65,7 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
 
                 }).
                 withOnBlackAction(e -> {
-                    settingsService.updateButtonColour(ButtonColours.BLACK.getColour());
-                    model.setSettings(settingsService.getSettings());
-                    view.refresh();
+
 
                 }).
                 withOnRedAction(e -> {

@@ -14,7 +14,6 @@ public class ButtonBuilder {
     private EventHandler<ActionEvent> onAction;
     private FontWeight fontWeight = FontWeight.NORMAL;
     private int buttonSize = 75;
-    String colour = "-fx-border-color:black; -fx-background-color: white;";
 
     public static ButtonBuilder get() {
         return new ButtonBuilder();
@@ -40,10 +39,6 @@ public class ButtonBuilder {
         return this;
     }
 
-    public ButtonBuilder withButtonColour(String colour) {
-        this.colour = colour;
-        return this;
-    }
 
     public Button build() {
         Button button = new Button();
@@ -51,7 +46,7 @@ public class ButtonBuilder {
         button.setText(text);
         button.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         button.setOnAction(onAction);
-        button.setStyle(colour);
+//        button.setStyle(button.getStyle() + "; -fx-font-weight: %s".formatted(fontWeight));
         return button;
     }
 }
