@@ -9,14 +9,17 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import piatnashki_new.model.SettingsModel;
+import piatnashki_new.model.SettingsTab;
 
 public class SettingsView implements View {
-
     private SettingsModel model;
 
+    public VBox box = new VBox();
+    private Label settingsLabel;
     private Button smallButton;
     private Button mediumButton;
     private Button largeButton;
@@ -28,48 +31,26 @@ public class SettingsView implements View {
     private Button colourButton;
     private Button syncWithLabel;
 
+    private Parent sizeView;
+    private Parent colorView;
+    private Parent textStyleView;
+
     public SettingsView(SettingsModel model) {
         this.model = model;
     }
 
     @Override
     public Parent getView() {
-        getSizeView();
-        getColourView();
-        getSyncLabelView();
-        VBox vBox = new VBox();
-        vBox.getChildren().add(getSizeView());
-        return vBox;
-    }
+        settingsLabel = new Label();
+        settingsLabel.setText("Settings");
 
-    public Parent getSizeView() {
-        VBox vBox = new VBox();
-        vBox.getChildren().add(settingsHead());
-        vBox.getChildren().add(sizeButtons());
-        return vBox;
-    }
+        box.setAlignment(Pos.TOP_CENTER);
+        box.getChildren().add(settingsLabel);
 
-    public Parent getColourView() {
-        VBox vBox = new VBox();
-        vBox.getChildren().add(settingsHead());
-        vBox.getChildren().add(coloursButtons());
-        return vBox;
-    }
 
-    public Parent getSyncLabelView() {
-        VBox vBox = new VBox();
-        vBox.getChildren().add(settingsHead());
-        vBox.getChildren().add(coloursButtons());
-        return vBox;
-    }
-
-    private Parent labelSettings() {
-        return new VBox();
-    }
-
-    private GridPane settingsHead() {
         GridPane headButtons = new GridPane();
-        headButtons.setAlignment(Pos.CENTER_LEFT);
+        headButtons.setAlignment(Pos.CENTER);
+        headButtons.setPadding(new Insets(5.0, 5.0, 5.0, 5.0));
 
         sizeButton = ButtonBuilder.get().
                 withFontSize(model.getSettings().getButtonType().getSize()).
@@ -95,9 +76,21 @@ public class SettingsView implements View {
                 build();
         headButtons.add(syncWithLabel, 2, 0);
 
+        box.getChildren().add(headButtons);
 
-        return headButtons;
+        sizeView = sizeButtons();
+        colorView = coloursButtons();
+//        textStyleView = coloursButtons();
+
+        Parent view = switch (model.getSettingsTab()) {
+            case SIZE -> sizeView;
+            case COLOUR -> colorView;
+            case TEXT_STYLE -> throw new RuntimeException();
+        };
+        box.getChildren().add(view);
+        return box;
     }
+
 
     private Parent sizeButtons() {
         VBox vBox = new VBox();
@@ -105,10 +98,6 @@ public class SettingsView implements View {
         vBox.setPadding(new Insets(20, 20, 20, 20));
         vBox.setAlignment(Pos.CENTER);
         vBox.setBackground(Background.fill(Color.GRAY));
-
-        Label label = new Label();
-        label.setText("Settings");
-        vBox.getChildren().add(label);
 
         smallButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
@@ -151,11 +140,6 @@ public class SettingsView implements View {
         vBox.setAlignment(Pos.CENTER);
         vBox.setBackground(Background.fill(Color.OLDLACE));
 
-        Label label = new Label();
-        label.setText("Settings");
-        vBox.getChildren().add(label);
-
-
         blackButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
@@ -197,19 +181,40 @@ public class SettingsView implements View {
     public void refresh() {
         int newSize = model.getSettings().getButtonType().getSize();
         FontWeight fontWeight = model.getSettings().getFontWeight();
+        SettingsTab settingsTab = model.getSettingsTab();
 
+
+        settingsLabel.setFont(Font.font(null, fontWeight, newSize));
+
+        // submenu area
+        sizeButton.setFont(Font.font(null, fontWeight, newSize));
+        sizeButton.setTextFill(Color.RED);
+        colourButton.setFont(Font.font(null, fontWeight, newSize));
+        colourButton.setTextFill(Color.BLUE);
+        syncWithLabel.setFont(Font.font(null, fontWeight, newSize));
+        syncWithLabel.setTextFill(Color.GREEN);
+
+        // size menu area
         smallButton.setFont(Font.font(null, fontWeight, newSize));
         mediumButton.setFont(Font.font(null, fontWeight, newSize));
         largeButton.setFont(Font.font(null, fontWeight, newSize));
         backButton.setFont(Font.font(null, fontWeight, newSize));
 
+
+        // color menu area
         blackButton.setFont(Font.font(null, fontWeight, newSize));
         redButton.setFont(Font.font(null, fontWeight, newSize));
         whiteButton.setFont(Font.font(null, fontWeight, newSize));
 
-        sizeButton.setFont(Font.font(null, fontWeight, newSize));
-        colourButton.setFont(Font.font(null, fontWeight, newSize));
-        syncWithLabel.setFont(Font.font(null, fontWeight, newSize));
+        Parent view = switch (settingsTab) {
+            case SIZE -> sizeView;
+            case COLOUR -> colorView;
+            case TEXT_STYLE -> throw new RuntimeException();
+        };
+        box.getChildren().remove(2);
+        box.getChildren().add(view);
+//        view.refresh(); // при выносе в отдельный класс
+
 
 
     }

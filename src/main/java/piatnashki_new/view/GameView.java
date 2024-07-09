@@ -22,6 +22,7 @@ public class GameView implements View {
     private Button backButton;
     private GameModel model;
     private GridPane gridPane = new GridPane();
+
     public GameView(GameModel model) {
         this.model = model;
     }
@@ -47,12 +48,7 @@ public class GameView implements View {
 
         buildGameField();
 
-        backButton = ButtonBuilder.get().
-                withFontSize(model.getSettings().getButtonType().getSize()).
-                withFontWeight(model.getSettings().getFontWeight()).
-                withText("Back").
-                withOnAction(model.getOnBackAction())
-                .build();
+        backButton = ButtonBuilder.get().withFontSize(model.getSettings().getButtonType().getSize()).withFontWeight(model.getSettings().getFontWeight()).withText("Back").withOnAction(model.getOnBackAction()).build();
         backButton.setStyle("-fx-font: 22 arial; -fx-base: green");
         vBox.getChildren().add(backButton);
         backButton.setAlignment(Pos.BOTTOM_LEFT);
@@ -64,8 +60,8 @@ public class GameView implements View {
 
         int newSize = model.getSettings().getButtonType().getSize();
         FontWeight fontWeight = model.getSettings().getFontWeight();
-        moveButton.setFont(Font.font(null, fontWeight,newSize));
-        backButton.setFont(Font.font(null, fontWeight,newSize));
+        moveButton.setFont(Font.font(null, fontWeight, newSize));
+        backButton.setFont(Font.font(null, fontWeight, newSize));
         buildGameField();
     }
 
@@ -76,28 +72,17 @@ public class GameView implements View {
             for (int j = 0; j < gameBoard.getSizeWidth(); j++) {
                 //todo uncorrect born instance
 
-                Integer value = gameBoard.getBoard()[i][j];
-                String nameButton = String.valueOf(model.getGameBoard().getBoard()[i][j]);
+                Integer intValue = gameBoard.getBoard()[i][j];
+                String text = intValue == 0 ? "" : String.valueOf(intValue);
 
-                moveButton = ButtonBuilder.get().
-
-                        withFontSize(model.getSettings().getButtonType().getSize()).
-                        withFontWeight(model.getSettings().getFontWeight()).
-                        withText(nameButton).
-                        withOnAction(model.getOnMoveAction())
+                moveButton = ButtonBuilder.get()
+                        .withFontSize(model.getSettings().getButtonType().getSize())
+                        .withFontWeight(model.getSettings().getFontWeight())
+                        .withText(text)
+                        .withOnAction(model.getOnMoveAction())
                         .build();
-                moveButton.setPrefSize(60,60);
-
-                if (value != 0) {
-                    gridPane.add(moveButton, j, i);
-                    moveButton.setStyle("-fx-font: 22 arial; -fx-base: LightGray");
-                } else {
-                    moveButton.setText("");
-                    moveButton.setStyle("-fx-border-color: #ff0000; -fx-border-width: 5px;");
-                    gridPane.add(moveButton, j, i);
-                }
-                moveButton.setOnAction(model.getOnMoveAction());
-//                button.setOnAction(model.getOnMoveActionProvider().apply(value));
+                moveButton.setPrefSize(60, 60);
+                gridPane.add(moveButton, j, i);
             }
         }
     }

@@ -8,6 +8,7 @@ import java.util.Objects;
 public class SettingsModel implements Model {
 
     private Settings settings;
+    private SettingsTab settingsTab;
     private final EventHandler<ActionEvent> onSmallAction;
     private final EventHandler<ActionEvent> onMediumAction;
     private final EventHandler<ActionEvent> onLargeAction;
@@ -20,6 +21,7 @@ public class SettingsModel implements Model {
     private final EventHandler<ActionEvent> onWhiteAction;
 
     private SettingsModel(Settings settings,
+                          SettingsTab settingsTab,
                           EventHandler<ActionEvent> onSmallAction,
                           EventHandler<ActionEvent> onMediumAction,
                           EventHandler<ActionEvent> onLargeAction,
@@ -32,6 +34,7 @@ public class SettingsModel implements Model {
                           EventHandler<ActionEvent> onWhiteAction
     ) {
         Objects.requireNonNull(settings, "settings can't be null");
+        Objects.requireNonNull(settingsTab);
         Objects.requireNonNull(onSmallAction, "onSmallAction can't be null");
         Objects.requireNonNull(onMediumAction, "onMediumAction can't be null");
         Objects.requireNonNull(onLargeAction, "onLargeAction can't be null");
@@ -44,6 +47,7 @@ public class SettingsModel implements Model {
         Objects.requireNonNull(onWhiteAction, "onWhiteAction can't be null");
 
         this.settings = settings;
+        this.settingsTab = settingsTab;
         this.onSmallAction = onSmallAction;
         this.onMediumAction = onMediumAction;
         this.onLargeAction = onLargeAction;
@@ -58,6 +62,14 @@ public class SettingsModel implements Model {
 
     public Settings getSettings() {
         return settings;
+    }
+
+    public SettingsTab getSettingsTab() {
+        return settingsTab;
+    }
+
+    public void setSettingsTab(SettingsTab settingsTab) {
+        this.settingsTab = settingsTab;
     }
 
     public void setSettings(Settings settings) {
@@ -110,6 +122,9 @@ public class SettingsModel implements Model {
 
     public static class Builder {
         private Settings settings;
+
+        private SettingsTab settingsTab;
+
         private EventHandler<ActionEvent> onSmallAction;
         private EventHandler<ActionEvent> onMediumAction;
         private EventHandler<ActionEvent> onLargeAction;
@@ -126,6 +141,11 @@ public class SettingsModel implements Model {
 
         public Builder withSettings(Settings settings) {
             this.settings = settings;
+            return this;
+        }
+
+        public Builder withSettingsTab(SettingsTab settingsTab) {
+            this.settingsTab = settingsTab;
             return this;
         }
 
@@ -180,7 +200,7 @@ public class SettingsModel implements Model {
         }
 
         public SettingsModel build() {
-            return new SettingsModel(settings, onSmallAction, onMediumAction, onLargeAction, onBackAction, onSizeAction,
+            return new SettingsModel(settings, settingsTab, onSmallAction, onMediumAction, onLargeAction, onBackAction, onSizeAction,
                     onColourAction, onSyncLabelAction, onBlackAction, onRedAction, onWhiteAction
             );
         }

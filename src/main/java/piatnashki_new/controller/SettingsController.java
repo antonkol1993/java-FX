@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import piatnashki_new.model.SettingsModel;
+import piatnashki_new.model.SettingsTab;
 import piatnashki_new.service.ButtonSize;
 import piatnashki_new.service.SettingsService;
 import piatnashki_new.view.SettingsView;
@@ -17,6 +18,7 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
 
         model = SettingsModel.builder()
                 .withSettings(settingsService.getSettings())
+                .withSettingsTab(SettingsTab.SIZE)
                 .withOnSmallAction(e -> {
                     settingsService.updateButtonType(ButtonSize.SMALL);
                     settingsService.updateFontWeight(FontWeight.THIN);
@@ -39,34 +41,22 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
                     new MainMenuController(stage).show();
                 })
                 .withOnSizeAction(e -> {
-
-
-                    Scene scene = new Scene(view.getSizeView(), V, V);
-
-                    getStage().setHeight(V);
-                    getStage().setWidth(V);
-
-                    getStage().setScene(scene);
-                    getStage().show();
+                    model.setSettingsTab(SettingsTab.SIZE);
+                    view.refresh();
 
                 }).
                 withOnColourAction(e -> {
-
-
-                    Scene scene = new Scene(view.getColourView(), V, V);
-                    getStage().setHeight(V);
-                    getStage().setWidth(V);
-
-                    getStage().setScene(scene);
-                    getStage().show();
+                    model.setSettingsTab(SettingsTab.COLOUR);
+                    view.refresh();
                 }).
                 withOnSyncLabelAction(e -> {
 
 
                 }).
                 withOnBlackAction(e -> {
-
-
+                    //TODO: update global settings
+                    model.setSettings(settingsService.getSettings());
+                    view.refresh();
                 }).
                 withOnRedAction(e -> {
 
