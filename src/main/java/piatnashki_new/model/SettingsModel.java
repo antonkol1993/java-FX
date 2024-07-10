@@ -84,15 +84,15 @@ public class SettingsModel implements Model {
         this.settings = settings;
     }
 
-    public EventHandler<ActionEvent> getOnSmallAction() {
+    public EventHandler<ActionEvent> getOnSmallSizeAction() {
         return onSmallSizeAction;
     }
 
-    public EventHandler<ActionEvent> getOnMediumAction() {
+    public EventHandler<ActionEvent> getOnMediumSizeAction() {
         return onMediumSizeAction;
     }
 
-    public EventHandler<ActionEvent> getOnLargeAction() {
+    public EventHandler<ActionEvent> getOnLargeSizeAction() {
         return onLargeSizeAction;
     }
 
