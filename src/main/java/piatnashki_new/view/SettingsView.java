@@ -9,10 +9,12 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import piatnashki_new.model.SettingsModel;
 import piatnashki_new.model.SettingsTab;
+import piatnashki_new.service.ButtonTextColour;
 
 public class SettingsView implements View {
     private SettingsModel model;
@@ -181,8 +183,8 @@ public class SettingsView implements View {
         whiteButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
-                .withText("White")
-                .withOnAction(model.getOnWhiteAction())
+                .withText("Green")
+                .withOnAction(model.getOnGreenAction())
                 .build();
         vBox.getChildren().add(whiteButton);
 
@@ -246,7 +248,7 @@ public class SettingsView implements View {
         int newSize = model.getSettings().getButtonType().getSize();
         FontWeight fontWeight = model.getSettings().getFontWeight();
         SettingsTab settingsTab = model.getSettingsTab();
-
+        Paint textColour = model.getSettings().getTextColour();
 
         settingsLabel.setFont(Font.font(null, fontWeight, newSize));
 
@@ -269,10 +271,13 @@ public class SettingsView implements View {
 
         // color menu area
         blackButton.setFont(Font.font(null, fontWeight, newSize));
+        blackButton.setTextFill(textColour);
         redButton.setFont(Font.font(null, fontWeight, newSize));
+        redButton.setTextFill(textColour);
         whiteButton.setFont(Font.font(null, fontWeight, newSize));
+        whiteButton.setTextFill(textColour);
         backInColourButton.setFont(Font.font(null, fontWeight, newSize));
-
+        backInColourButton.setTextFill(textColour);
 
         thinFontButton.setFont(Font.font(null, fontWeight, newSize));
         mediumFontButton.setFont(Font.font(null, fontWeight, newSize));

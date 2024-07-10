@@ -26,7 +26,7 @@ public class SettingsModel implements Model {
 
     private final EventHandler<ActionEvent> onBlackAction;
     private final EventHandler<ActionEvent> onRedAction;
-    private final EventHandler<ActionEvent> onWhiteAction;
+    private final EventHandler<ActionEvent> onGreenAction;
 
     private SettingsModel(Settings settings,
                           SettingsTab settingsTab,
@@ -42,7 +42,7 @@ public class SettingsModel implements Model {
 
                           EventHandler<ActionEvent> onBlackAction,
                           EventHandler<ActionEvent> onRedAction,
-                          EventHandler<ActionEvent> onWhiteAction
+                          EventHandler<ActionEvent> onGreenAction
     ) {
         Objects.requireNonNull(settings, "settings can't be null");
         Objects.requireNonNull(settingsTab);
@@ -59,7 +59,7 @@ public class SettingsModel implements Model {
 
         Objects.requireNonNull(onBlackAction, "onBlackAction can't be null");
         Objects.requireNonNull(onRedAction, "onRedAction can't be null");
-        Objects.requireNonNull(onWhiteAction, "onWhiteAction can't be null");
+        Objects.requireNonNull(onGreenAction, "onGreenAction can't be null");
 
         this.settings = settings;
         this.settingsTab = settingsTab;
@@ -76,7 +76,7 @@ public class SettingsModel implements Model {
 
         this.onBlackAction = onBlackAction;
         this.onRedAction = onRedAction;
-        this.onWhiteAction = onWhiteAction;
+        this.onGreenAction = onGreenAction;
     }
 
     public Settings getSettings() {
@@ -135,8 +135,8 @@ public class SettingsModel implements Model {
         return onRedAction;
     }
 
-    public EventHandler<ActionEvent> getOnWhiteAction() {
-        return onWhiteAction;
+    public EventHandler<ActionEvent> getOnGreenAction() {
+        return onGreenAction;
     }
 
     public static Builder builder() {
@@ -160,7 +160,7 @@ public class SettingsModel implements Model {
 
         private EventHandler<ActionEvent> onBlackAction;
         private EventHandler<ActionEvent> onRedAction;
-        private EventHandler<ActionEvent> onWhiteAction;
+        private EventHandler<ActionEvent> onGreenAction;
 
         private Builder() {
         }
@@ -226,14 +226,14 @@ public class SettingsModel implements Model {
             return this;
         }
 
-        public Builder withOnWhiteAction(EventHandler<ActionEvent> onWhiteAction) {
-            this.onWhiteAction = onWhiteAction;
+        public Builder withOnWhiteAction(EventHandler<ActionEvent> onGreenAction) {
+            this.onGreenAction = onGreenAction;
             return this;
         }
 
         public SettingsModel build() {
             return new SettingsModel(settings, settingsTab, onSmallSizeAction, onMediumSizeAction, onLargeSizeAction, onBackAction, onSizeAction,
-                    onColourAction, onSyncLabelAction, onFontAction, onBlackAction, onRedAction, onWhiteAction
+                    onColourAction, onSyncLabelAction, onFontAction, onBlackAction, onRedAction, onGreenAction
             );
         }
     }

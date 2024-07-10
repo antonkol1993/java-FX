@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import piatnashki_new.model.SettingsModel;
 import piatnashki_new.model.SettingsTab;
 import piatnashki_new.service.ButtonSize;
+import piatnashki_new.service.ButtonTextColour;
 import piatnashki_new.service.SettingsService;
 import piatnashki_new.view.SettingsView;
 
@@ -56,15 +57,20 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
                 }).
                 withOnBlackAction(e -> {
                     //TODO: update global settings
+                    settingsService.updateTextColour(ButtonTextColour.BLACK.getTextColour());
                     model.setSettings(settingsService.getSettings());
                     view.refresh();
                 }).
                 withOnRedAction(e -> {
-
+                    settingsService.updateTextColour(ButtonTextColour.RED.getTextColour());
+                    model.setSettings(settingsService.getSettings());
+                    view.refresh();
 
                 }).
                 withOnWhiteAction(e -> {
-
+                    settingsService.updateTextColour(ButtonTextColour.GREEN.getTextColour());
+                    model.setSettings(settingsService.getSettings());
+                    view.refresh();
 
                 })
                 .build();

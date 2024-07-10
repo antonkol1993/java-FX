@@ -1,6 +1,7 @@
 package piatnashki_new.service;
 
 import com.anarut.gamefifteen.gameboard.back.end.GameBoardService;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.FontWeight;
 import piatnashki_new.model.Settings;
 
@@ -30,6 +31,10 @@ public class SettingsService {
 
     public void updateFontWeight(FontWeight fontWeight) {
         settings.setFontWeight(fontWeight);
+    }
+
+    public void updateTextColour(Paint textColour) {
+        settings.setTextColour(textColour);
     }
 
 
