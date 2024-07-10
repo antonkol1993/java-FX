@@ -1,12 +1,11 @@
 package piatnashki_new.controller;
 
-import javafx.scene.Scene;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import piatnashki_new.model.SettingsModel;
 import piatnashki_new.model.SettingsTab;
-import piatnashki_new.service.ButtonSize;
-import piatnashki_new.service.ButtonTextColour;
+import piatnashki_new.service.enums_properties.ButtonFont;
+import piatnashki_new.service.enums_properties.ButtonSize;
+import piatnashki_new.service.enums_properties.ButtonTextColour;
 import piatnashki_new.service.SettingsService;
 import piatnashki_new.view.SettingsView;
 
@@ -67,8 +66,26 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
                     view.refresh();
 
                 }).
-                withOnWhiteAction(e -> {
+                withOnGreenAction(e -> {
                     settingsService.updateTextColour(ButtonTextColour.GREEN.getTextColour());
+                    model.setSettings(settingsService.getSettings());
+                    view.refresh();
+
+                }).
+                withOnThinFontAction(e -> {
+                    settingsService.updateFontWeight(ButtonFont.THIN_FONT.getFont());
+                    model.setSettings(settingsService.getSettings());
+                    view.refresh();
+
+                }).
+                withOnMediumFontAction(e -> {
+                    settingsService.updateFontWeight(ButtonFont.MEDIUM_FONT.getFont());
+                    model.setSettings(settingsService.getSettings());
+                    view.refresh();
+
+                }).
+                withOnBoldFontAction(e -> {
+                    settingsService.updateFontWeight(ButtonFont.BOLD_FONT.getFont());
                     model.setSettings(settingsService.getSettings());
                     view.refresh();
 

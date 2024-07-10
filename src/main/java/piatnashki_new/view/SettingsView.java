@@ -14,7 +14,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import piatnashki_new.model.SettingsModel;
 import piatnashki_new.model.SettingsTab;
-import piatnashki_new.service.ButtonTextColour;
 
 public class SettingsView implements View {
     private SettingsModel model;
@@ -53,8 +52,10 @@ public class SettingsView implements View {
 
     @Override
     public Parent getView() {
+
         settingsLabel = new Label();
         settingsLabel.setText("Settings");
+
 
         box.setAlignment(Pos.TOP_CENTER);
         box.getChildren().add(settingsLabel);
@@ -68,7 +69,8 @@ public class SettingsView implements View {
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Size").
-                withOnAction(model.getOnSizeAction()).
+                withOnAction(model.getOnSizeButtonAction()).
+                withTextColour(Color.RED).
                 build();
         headButtons.add(sizeButton, 0, 0);
 
@@ -76,7 +78,8 @@ public class SettingsView implements View {
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Colour").
-                withOnAction(model.getOnColourAction()).
+                withOnAction(model.getOnColourButtonAction()).
+                withTextColour(Color.BLUE).
                 build();
         headButtons.add(colourButton, 1, 0);
 
@@ -84,7 +87,8 @@ public class SettingsView implements View {
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Font").
-                withOnAction(model.getOnFontAction()).
+                withOnAction(model.getOnFontButtonAction()).
+                withTextColour(Color.ORANGE).
                 build();
         headButtons.add(fontButton, 2, 0);
 
@@ -92,7 +96,8 @@ public class SettingsView implements View {
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("SyncWithLabel").
-                withOnAction(model.getOnSyncLabelAction()).
+                withOnAction(model.getOnSyncLabelButtonAction()).
+                withTextColour(Color.GREEN).
                 build();
         headButtons.add(syncWithLabel, 3, 0);
 
@@ -218,7 +223,7 @@ public class SettingsView implements View {
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Thin font")
-//                .withOnAction(model.getOnBlackAction())
+                .withOnAction(model.getOnThinFontAction())
                 .withTextColour(model.getSettings().getTextColour())
                 .build();
         vBox.getChildren().add(thinFontButton);
@@ -228,7 +233,7 @@ public class SettingsView implements View {
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Medium font")
-//                .withOnAction(model.getOnRedAction())
+                .withOnAction(model.getOnMediumFontAction())
                 .withTextColour(model.getSettings().getTextColour())
                 .build();
         vBox.getChildren().add(mediumFontButton);
@@ -238,7 +243,7 @@ public class SettingsView implements View {
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Bold font")
-//                .withOnAction(model.getOnWhiteAction())
+                .withOnAction(model.getOnBoldFontAction())
                 .withTextColour(model.getSettings().getTextColour())
                 .build();
         vBox.getChildren().add(boldFontButton);
@@ -251,6 +256,7 @@ public class SettingsView implements View {
                 .withOnAction(model.getOnBackAction())
                 .withTextColour(model.getSettings().getTextColour())
                 .build();
+
         vBox.getChildren().add(backInFontButton);
         return vBox;
     }
@@ -263,6 +269,7 @@ public class SettingsView implements View {
         Paint textColour = model.getSettings().getTextColour();
 
         settingsLabel.setFont(Font.font(null, fontWeight, newSize));
+        settingsLabel.setTextFill(textColour);
 
         // submenu area
         sizeButton.setFont(Font.font(null, fontWeight, newSize));
@@ -313,7 +320,6 @@ public class SettingsView implements View {
         box.getChildren().remove(2);
         box.getChildren().add(view);
 //        view.refresh(); // при выносе в отдельный класс
-
 
 
     }

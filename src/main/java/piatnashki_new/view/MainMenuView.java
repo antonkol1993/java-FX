@@ -8,13 +8,20 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import piatnashki_new.model.MainMenuModel;
+import piatnashki_new.model.SettingsTab;
 
 public class MainMenuView implements View {
 
 
     private final MainMenuModel model;
     private final Label label = new Label();
+    private Button newGameButton;
+    private Button settingsButton;
+    private Button exitGameButton;
 
     public MainMenuView(MainMenuModel model) {
         this.model = model;
@@ -24,9 +31,8 @@ public class MainMenuView implements View {
 
     @Override
     public Parent getView() {
-        Button newGameButton;
-        Button settingsButton;
-        Button exitGameButton;
+
+
 
 
         VBox vBox = new VBox();
@@ -36,7 +42,13 @@ public class MainMenuView implements View {
         vBox.setBackground(Background.fill(Color.BEIGE));
 
 
+        int newSize = model.getSettings().getButtonType().getSize();
+        FontWeight fontWeight = model.getSettings().getFontWeight();
+        Paint textColour = model.getSettings().getTextColour();
         label.setText("Game 15");
+        label.setFont(Font.font(null, fontWeight, newSize));
+        label.setTextFill(textColour);
+
         vBox.getChildren().add(label);
 
         newGameButton = ButtonBuilder.get().
@@ -44,6 +56,7 @@ public class MainMenuView implements View {
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("New game").
                 withOnAction(model.getOnNewGameAction()).
+                withTextColour(model.getSettings().getTextColour()).
                 build();
         vBox.getChildren().add(newGameButton);
 
@@ -52,6 +65,7 @@ public class MainMenuView implements View {
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Settings").
                 withOnAction(model.getOnSettingsAction()).
+                withTextColour(model.getSettings().getTextColour()).
                 build();
         vBox.getChildren().add(settingsButton);
 
@@ -60,6 +74,7 @@ public class MainMenuView implements View {
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Exit").
                 withOnAction(model.getOnExitAction()).
+                withTextColour(model.getSettings().getTextColour()).
                 build();
         vBox.getChildren().add(exitGameButton);
 

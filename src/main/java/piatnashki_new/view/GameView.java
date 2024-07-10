@@ -9,6 +9,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import piatnashki_new.model.GameModel;
@@ -30,11 +31,17 @@ public class GameView implements View {
     @Override
     public Parent getView() {
         GameBoard gameBoard = model.getGameBoard();
+        int newSize = model.getSettings().getButtonType().getSize();
+        FontWeight fontWeight = model.getSettings().getFontWeight();
+        Paint textColour = model.getSettings().getTextColour();
+
 
         String labelName = "GameBoard " + gameBoard.getSizeHeight() + "x" + gameBoard.getSizeWidth();
         int paddings = 20;
         Label label = new Label();
         label.setText(labelName);
+        label.setFont(Font.font(null, fontWeight, newSize));
+        label.setTextFill(textColour);
 
         VBox vBox = new VBox();
 

@@ -3,13 +3,12 @@ package piatnashki_new.model;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.FontWeight;
-import piatnashki_new.service.ButtonSize;
-import piatnashki_new.service.ButtonTextColour;
+import piatnashki_new.service.enums_properties.ButtonSize;
 
 public class Settings {
 
     private ButtonSize buttonType = ButtonSize.MEDIUM;
-    private FontWeight fontWeight = FontWeight.NORMAL;
+    private FontWeight fontWeight = FontWeight.MEDIUM;
     private Paint textColour = Color.BLACK;
 
     public Settings() {

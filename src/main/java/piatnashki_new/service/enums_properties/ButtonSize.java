@@ -1,4 +1,4 @@
-package piatnashki_new.service;
+package piatnashki_new.service.enums_properties;
 
 public enum ButtonSize {
 
