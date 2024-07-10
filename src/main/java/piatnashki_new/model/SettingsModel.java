@@ -16,6 +16,7 @@ public class SettingsModel implements Model {
     private final EventHandler<ActionEvent> onSizeAction;
     private final EventHandler<ActionEvent> onColourAction;
     private final EventHandler<ActionEvent> onSyncLabelAction;
+
     private final EventHandler<ActionEvent> onBlackAction;
     private final EventHandler<ActionEvent> onRedAction;
     private final EventHandler<ActionEvent> onWhiteAction;

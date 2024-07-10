@@ -5,12 +5,14 @@ import javafx.application.Platform;
 import piatnashki_new.model.MainMenuModel;
 import piatnashki_new.model.gameBoard.GameBoard;
 import piatnashki_new.service.GameBoardService;
-
+import javafx.scene.control.Button;
 import java.awt.*;
 import java.util.Scanner;
 
+
 public class Main {
     public static void main(String[] args) {
+
 //        MainMenuModel.Builder builder = MainMenuModel.builder();
 //        builder.setOnNewGameAction(e -> System.out.println());
 //        builder.setOnExitAction(event -> System.out.println());
