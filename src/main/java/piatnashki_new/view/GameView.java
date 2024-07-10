@@ -80,6 +80,7 @@ public class GameView implements View {
                         .withFontWeight(model.getSettings().getFontWeight())
                         .withText(text)
                         .withOnAction(model.getOnMoveAction())
+                        .withTextColour(model.getSettings().getTextColour())
                         .build();
                 moveButton.setPrefSize(60, 60);
                 gridPane.add(moveButton, j, i);

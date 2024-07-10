@@ -16,7 +16,7 @@ public class ButtonBuilder {
     private EventHandler<ActionEvent> onAction;
     private FontWeight fontWeight = FontWeight.NORMAL;
     private int buttonSize = 75;
-//    private Paint textColour = Color.BLACK;
+    private Paint textColour = Color.BLACK;
 
     public static ButtonBuilder get() {
         return new ButtonBuilder();
@@ -42,10 +42,10 @@ public class ButtonBuilder {
         return this;
     }
     // todo don't use while
-//    public ButtonBuilder withTextColour(Paint textColour) {
-//        this.textColour = textColour;
-//        return this;
-//    }
+    public ButtonBuilder withTextColour(Paint textColour) {
+        this.textColour = textColour;
+        return this;
+    }
 
 
     public Button build() {
@@ -54,7 +54,7 @@ public class ButtonBuilder {
         button.setText(text);
         button.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         button.setOnAction(onAction);
-//        button.setTextFill(textColour);
+        button.setTextFill(textColour);
 //        button.setStyle(button.getStyle() + "; -fx-font-weight: %s".formatted(fontWeight));
         return button;
     }
