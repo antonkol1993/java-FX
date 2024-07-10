@@ -24,8 +24,6 @@ public class SettingsView implements View {
     private Button largeSizeButton;
     private Button backInSizeButton;
 
-
-
     private Button blackButton;
     private Button redButton;
     private Button whiteButton;
@@ -84,7 +82,7 @@ public class SettingsView implements View {
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Font").
-//                withOnAction(model.getOnSyncLabelAction()).
+                withOnAction(model.getOnFontAction()).
                 build();
         headButtons.add(fontButton, 2, 0);
 
@@ -209,7 +207,7 @@ public class SettingsView implements View {
         thinFontButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
-                .withText("Thin")
+                .withText("Thin font")
 //                .withOnAction(model.getOnBlackAction())
                 .build();
         vBox.getChildren().add(thinFontButton);
@@ -218,7 +216,7 @@ public class SettingsView implements View {
         mediumFontButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
-                .withText("Red")
+                .withText("Medium font")
 //                .withOnAction(model.getOnRedAction())
                 .build();
         vBox.getChildren().add(mediumFontButton);
@@ -227,7 +225,7 @@ public class SettingsView implements View {
         boldFontButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
-                .withText("White")
+                .withText("Bold font")
 //                .withOnAction(model.getOnWhiteAction())
                 .build();
         vBox.getChildren().add(boldFontButton);

@@ -50,6 +50,10 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
 
 
                 }).
+                withOnFontAction(e -> {
+                    model.setSettingsTab(SettingsTab.FONT);
+                    view.refresh();
+                }).
                 withOnBlackAction(e -> {
                     //TODO: update global settings
                     model.setSettings(settingsService.getSettings());
