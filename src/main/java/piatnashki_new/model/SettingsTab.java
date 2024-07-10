@@ -4,5 +4,6 @@ public enum SettingsTab {
 
     SIZE,
     COLOUR,
-    TEXT_STYLE
+    TEXT_STYLE,
+    FONT
 }

@@ -19,17 +19,17 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
         model = SettingsModel.builder()
                 .withSettings(settingsService.getSettings())
                 .withSettingsTab(SettingsTab.SIZE)
-                .withOnSmallAction(e -> {
+                .withOnSmallSizeAction(e -> {
                     settingsService.updateButtonType(ButtonSize.SMALL);
                     model.setSettings(settingsService.getSettings());
                     view.refresh();
                 })
-                .withOnMediumAction(e -> {
+                .withOnMediumSizeAction(e -> {
                     settingsService.updateButtonType(ButtonSize.MEDIUM);
                     model.setSettings(settingsService.getSettings());
                     view.refresh();
                 })
-                .withOnLargeAction(e -> {
+                .withOnLargeSizeAction(e -> {
                     settingsService.updateButtonType(ButtonSize.LARGE);
                     model.setSettings(settingsService.getSettings());
                     view.refresh();

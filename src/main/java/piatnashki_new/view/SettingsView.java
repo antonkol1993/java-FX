@@ -9,7 +9,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import piatnashki_new.model.SettingsModel;
@@ -20,15 +19,23 @@ public class SettingsView implements View {
 
     public VBox box = new VBox();
     private Label settingsLabel;
-    private Button smallButton;
-    private Button mediumButton;
-    private Button largeButton;
+    private Button smallSizeButton;
+    private Button mediumSizeButton;
+    private Button largeSizeButton;
     private Button backInSizeButton;
-    private Button backInColourButton;
-    private Button backInFontButton;
+
+
+
     private Button blackButton;
     private Button redButton;
     private Button whiteButton;
+    private Button backInColourButton;
+
+    private Button thinButton;
+    private Button mediumButton;
+    private Button largeButton;
+    private Button backInFontButton;
+
     private Button sizeButton;
     private Button colourButton;
     private Button syncWithLabel;
@@ -38,6 +45,7 @@ public class SettingsView implements View {
     private Parent sizeView;
     private Parent colorView;
     private Parent textStyleView;
+    private Parent fontView;
 
     public SettingsView(SettingsModel model) {
         this.model = model;
@@ -93,11 +101,13 @@ public class SettingsView implements View {
         sizeView = sizeButtons();
         colorView = coloursButtons();
 //        textStyleView = coloursButtons();
+        fontView = fontView();
 
         Parent view = switch (model.getSettingsTab()) {
             case SIZE -> sizeView;
             case COLOUR -> colorView;
             case TEXT_STYLE -> throw new RuntimeException();
+            case FONT -> fontView;
         };
         box.getChildren().add(view);
         return box;
@@ -111,29 +121,29 @@ public class SettingsView implements View {
         vBox.setAlignment(Pos.CENTER);
         vBox.setBackground(Background.fill(Color.GRAY));
 
-        smallButton = ButtonBuilder.get()
+        smallSizeButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
-                .withText("Small")
+                .withText("Small size")
                 .withOnAction(model.getOnSmallAction())
                 .build();
-        vBox.getChildren().add(smallButton);
+        vBox.getChildren().add(smallSizeButton);
 
-        mediumButton = ButtonBuilder.get()
+        mediumSizeButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
-                .withText("Medium")
+                .withText("Medium size")
                 .withOnAction(model.getOnMediumAction())
                 .build();
-        vBox.getChildren().add(mediumButton);
+        vBox.getChildren().add(mediumSizeButton);
 
-        largeButton = ButtonBuilder.get()
+        largeSizeButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
-                .withText("Large")
+                .withText("Large size")
                 .withOnAction(model.getOnLargeAction())
                 .build();
-        vBox.getChildren().add(largeButton);
+        vBox.getChildren().add(largeSizeButton);
 
         backInSizeButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
@@ -189,6 +199,50 @@ public class SettingsView implements View {
         return vBox;
     }
 
+    private Parent fontView() {
+        VBox vBox = new VBox();
+        vBox.setSpacing(20);
+        vBox.setPadding(new Insets(20, 20, 20, 20));
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setBackground(Background.fill(Color.OLDLACE));
+
+        smallSizeButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("Black")
+                .withOnAction(model.getOnBlackAction())
+                .build();
+        vBox.getChildren().add(smallSizeButton);
+
+
+        redButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("Red")
+                .withOnAction(model.getOnRedAction())
+                .build();
+        vBox.getChildren().add(redButton);
+
+
+        whiteButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("White")
+                .withOnAction(model.getOnWhiteAction())
+                .build();
+        vBox.getChildren().add(whiteButton);
+
+
+        backInColourButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("Back")
+                .withOnAction(model.getOnBackAction())
+                .build();
+        vBox.getChildren().add(backInColourButton);
+        return vBox;
+    }
+
     @Override
     public void refresh() {
         int newSize = model.getSettings().getButtonType().getSize();
@@ -209,9 +263,9 @@ public class SettingsView implements View {
         syncWithLabel.setTextFill(Color.GREEN);
 
         // size menu area
-        smallButton.setFont(Font.font(null, fontWeight, newSize));
-        mediumButton.setFont(Font.font(null, fontWeight, newSize));
-        largeButton.setFont(Font.font(null, fontWeight, newSize));
+        smallSizeButton.setFont(Font.font(null, fontWeight, newSize));
+        mediumSizeButton.setFont(Font.font(null, fontWeight, newSize));
+        largeSizeButton.setFont(Font.font(null, fontWeight, newSize));
         backInSizeButton.setFont(Font.font(null, fontWeight, newSize));
 
 
@@ -225,6 +279,7 @@ public class SettingsView implements View {
             case SIZE -> sizeView;
             case COLOUR -> colorView;
             case TEXT_STYLE -> throw new RuntimeException();
+            case FONT -> fontView;
         };
         box.getChildren().remove(2);
         box.getChildren().add(view);

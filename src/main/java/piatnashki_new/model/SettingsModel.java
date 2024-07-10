@@ -9,10 +9,16 @@ public class SettingsModel implements Model {
 
     private Settings settings;
     private SettingsTab settingsTab;
-    private final EventHandler<ActionEvent> onSmallAction;
-    private final EventHandler<ActionEvent> onMediumAction;
-    private final EventHandler<ActionEvent> onLargeAction;
+    private final EventHandler<ActionEvent> onSmallSizeAction;
+    private final EventHandler<ActionEvent> onMediumSizeAction;
+    private final EventHandler<ActionEvent> onLargeSizeAction;
     private final EventHandler<ActionEvent> onBackAction;
+
+//    private final EventHandler<ActionEvent> on;
+//    private final EventHandler<ActionEvent> onBackInSizeButton;
+//    private final EventHandler<ActionEvent> onBackInSizeButton;
+//    private final EventHandler<ActionEvent> onBackInSizeButton;
+
     private final EventHandler<ActionEvent> onSizeAction;
     private final EventHandler<ActionEvent> onColourAction;
     private final EventHandler<ActionEvent> onSyncLabelAction;
@@ -23,9 +29,9 @@ public class SettingsModel implements Model {
 
     private SettingsModel(Settings settings,
                           SettingsTab settingsTab,
-                          EventHandler<ActionEvent> onSmallAction,
-                          EventHandler<ActionEvent> onMediumAction,
-                          EventHandler<ActionEvent> onLargeAction,
+                          EventHandler<ActionEvent> onSmallSizeAction,
+                          EventHandler<ActionEvent> onMediumSizeAction,
+                          EventHandler<ActionEvent> onLargeSizeAction,
                           EventHandler<ActionEvent> onBackAction,
                           EventHandler<ActionEvent> onSizeAction,
                           EventHandler<ActionEvent> onColourAction,
@@ -36,9 +42,9 @@ public class SettingsModel implements Model {
     ) {
         Objects.requireNonNull(settings, "settings can't be null");
         Objects.requireNonNull(settingsTab);
-        Objects.requireNonNull(onSmallAction, "onSmallAction can't be null");
-        Objects.requireNonNull(onMediumAction, "onMediumAction can't be null");
-        Objects.requireNonNull(onLargeAction, "onLargeAction can't be null");
+        Objects.requireNonNull(onSmallSizeAction, "onSmallSizeAction can't be null");
+        Objects.requireNonNull(onMediumSizeAction, "onMediumSizeAction can't be null");
+        Objects.requireNonNull(onLargeSizeAction, "onLargeSizeAction can't be null");
         Objects.requireNonNull(onBackAction, "onBackAction can't be null");
         Objects.requireNonNull(onSizeAction, "onSizeAction can't be null");
         Objects.requireNonNull(onColourAction, "onColourAction can't be null");
@@ -49,9 +55,10 @@ public class SettingsModel implements Model {
 
         this.settings = settings;
         this.settingsTab = settingsTab;
-        this.onSmallAction = onSmallAction;
-        this.onMediumAction = onMediumAction;
-        this.onLargeAction = onLargeAction;
+        this.onSmallSizeAction = onSmallSizeAction;
+        this.onMediumSizeAction = onMediumSizeAction;
+        this.onLargeSizeAction = onLargeSizeAction;
+
         this.onBackAction = onBackAction;
         this.onSizeAction = onSizeAction;
         this.onColourAction = onColourAction;
@@ -78,15 +85,15 @@ public class SettingsModel implements Model {
     }
 
     public EventHandler<ActionEvent> getOnSmallAction() {
-        return onSmallAction;
+        return onSmallSizeAction;
     }
 
     public EventHandler<ActionEvent> getOnMediumAction() {
-        return onMediumAction;
+        return onMediumSizeAction;
     }
 
     public EventHandler<ActionEvent> getOnLargeAction() {
-        return onLargeAction;
+        return onLargeSizeAction;
     }
 
     public EventHandler<ActionEvent> getOnBackAction() {
@@ -126,9 +133,9 @@ public class SettingsModel implements Model {
 
         private SettingsTab settingsTab;
 
-        private EventHandler<ActionEvent> onSmallAction;
-        private EventHandler<ActionEvent> onMediumAction;
-        private EventHandler<ActionEvent> onLargeAction;
+        private EventHandler<ActionEvent> onSmallSizeAction;
+        private EventHandler<ActionEvent> onMediumSizeAction;
+        private EventHandler<ActionEvent> onLargeSizeAction;
         private EventHandler<ActionEvent> onBackAction;
         private EventHandler<ActionEvent> onSizeAction;
         private EventHandler<ActionEvent> onColourAction;
@@ -150,18 +157,18 @@ public class SettingsModel implements Model {
             return this;
         }
 
-        public Builder withOnSmallAction(EventHandler<ActionEvent> onSmallAction) {
-            this.onSmallAction = onSmallAction;
+        public Builder withOnSmallSizeAction(EventHandler<ActionEvent> onSmallSizeAction) {
+            this.onSmallSizeAction = onSmallSizeAction;
             return this;
         }
 
-        public Builder withOnMediumAction(EventHandler<ActionEvent> onMediumAction) {
-            this.onMediumAction = onMediumAction;
+        public Builder withOnMediumSizeAction(EventHandler<ActionEvent> onMediumSizeAction) {
+            this.onMediumSizeAction = onMediumSizeAction;
             return this;
         }
 
-        public Builder withOnLargeAction(EventHandler<ActionEvent> onLargeAction) {
-            this.onLargeAction = onLargeAction;
+        public Builder withOnLargeSizeAction(EventHandler<ActionEvent> onLargeSizeAction) {
+            this.onLargeSizeAction = onLargeSizeAction;
             return this;
         }
 
@@ -201,7 +208,7 @@ public class SettingsModel implements Model {
         }
 
         public SettingsModel build() {
-            return new SettingsModel(settings, settingsTab, onSmallAction, onMediumAction, onLargeAction, onBackAction, onSizeAction,
+            return new SettingsModel(settings, settingsTab, onSmallSizeAction, onMediumSizeAction, onLargeSizeAction, onBackAction, onSizeAction,
                     onColourAction, onSyncLabelAction, onBlackAction, onRedAction, onWhiteAction
             );
         }
