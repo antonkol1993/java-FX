@@ -3,9 +3,9 @@ package piatnashki_new.controller;
 import javafx.stage.Stage;
 import piatnashki_new.model.SettingsModel;
 import piatnashki_new.model.SettingsTab;
-import piatnashki_new.service.enums_properties.ButtonFont;
-import piatnashki_new.service.enums_properties.ButtonSize;
-import piatnashki_new.service.enums_properties.ButtonTextColour;
+import piatnashki_new.enums_properties.ButtonFont;
+import piatnashki_new.enums_properties.ButtonSize;
+import piatnashki_new.enums_properties.ButtonTextColour;
 import piatnashki_new.service.SettingsService;
 import piatnashki_new.view.SettingsView;
 

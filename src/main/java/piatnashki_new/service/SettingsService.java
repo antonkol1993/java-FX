@@ -3,7 +3,7 @@ package piatnashki_new.service;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.FontWeight;
 import piatnashki_new.model.Settings;
-import piatnashki_new.service.enums_properties.ButtonSize;
+import piatnashki_new.enums_properties.ButtonSize;
 
 public class SettingsService {
 

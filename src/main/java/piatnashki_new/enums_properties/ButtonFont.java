@@ -1,6 +1,5 @@
-package piatnashki_new.service.enums_properties;
+package piatnashki_new.enums_properties;
 
-import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public enum ButtonFont {

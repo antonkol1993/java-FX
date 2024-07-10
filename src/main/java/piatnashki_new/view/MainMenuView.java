@@ -12,7 +12,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import piatnashki_new.model.MainMenuModel;
-import piatnashki_new.model.SettingsTab;
+import piatnashki_new.service.ButtonBuilder;
 
 public class MainMenuView implements View {
 

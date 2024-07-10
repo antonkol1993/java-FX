@@ -14,7 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import piatnashki_new.model.GameModel;
 import piatnashki_new.model.gameBoard.GameBoard;
-import piatnashki_new.service.SettingsService;
+import piatnashki_new.service.ButtonBuilder;
 
 
 public class GameView implements View {
@@ -67,6 +67,7 @@ public class GameView implements View {
 
         int newSize = model.getSettings().getButtonType().getSize();
         FontWeight fontWeight = model.getSettings().getFontWeight();
+        
         moveButton.setFont(Font.font(null, fontWeight, newSize));
         backButton.setFont(Font.font(null, fontWeight, newSize));
         buildGameField();

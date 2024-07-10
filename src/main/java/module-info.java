@@ -20,5 +20,7 @@ module com.anarut.gamefifteen {
     opens piatnashki_new.view to javafx.fxml;
     exports piatnashki_new;
     opens piatnashki_new to javafx.fxml;
+    exports piatnashki_new.service;
+    opens piatnashki_new.service to javafx.fxml;
 
 }

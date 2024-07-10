@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import piatnashki_new.model.SettingsModel;
 import piatnashki_new.model.SettingsTab;
+import piatnashki_new.service.ButtonBuilder;
 
 public class SettingsView implements View {
     private SettingsModel model;

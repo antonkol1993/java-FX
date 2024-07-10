@@ -1,4 +1,4 @@
-package piatnashki_new.service.enums_properties;
+package piatnashki_new.enums_properties;
 
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;

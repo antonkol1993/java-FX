@@ -1,4 +1,4 @@
-package piatnashki_new.view;
+package piatnashki_new.service;
 
 import com.anarut.gamefifteen.Constants;
 import javafx.event.ActionEvent;
