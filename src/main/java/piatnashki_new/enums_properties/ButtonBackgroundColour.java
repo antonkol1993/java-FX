@@ -5,9 +5,9 @@ import javafx.scene.paint.Paint;
 
 public enum ButtonBackgroundColour {
 
-    RED(Color.GRAY),
-    GREEN(Color.VIOLET),
-    BLACK(Color.PINK);
+    GRAY(Color.GRAY),
+    VIOLET(Color.VIOLET),
+    PINK(Color.PINK);
 
     private final Paint backgroundColour;
 

@@ -29,10 +29,10 @@ public class SettingsView implements View {
     private Button backInSizeButton;
 
     // text colour button
-    private Button blackColourButton;
-    private Button redColourButton;
-    private Button whiteColourButton;
-    private Button backInColourButton;
+    private Button blackTextButton;
+    private Button redTextButton;
+    private Button whiteTextButton;
+    private Button backInTextButton;
 
     // font button
     private Button thinFontButton;
@@ -136,7 +136,7 @@ public class SettingsView implements View {
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20, 20, 20, 20));
         vBox.setAlignment(Pos.CENTER);
-        vBox.setBackground(Background.fill(Color.GRAY));
+        vBox.setBackground(Background.fill(Color.BEIGE));
 
         grayButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
@@ -145,6 +145,7 @@ public class SettingsView implements View {
 //                .withOnAction(model.getOnSmallSizeAction())
                 .withTextColour(model.getSettings().getTextColour())
                 .build();
+
         vBox.getChildren().add(grayButton);
 
         violetButton = ButtonBuilder.get()
@@ -189,6 +190,7 @@ public class SettingsView implements View {
                 .withText("Small size")
                 .withOnAction(model.getOnSmallSizeAction())
                 .withTextColour(model.getSettings().getTextColour())
+                .withButtonColour(model.getSettings().getBackgroundColour())
                 .build();
         vBox.getChildren().add(smallSizeButton);
 
@@ -198,6 +200,7 @@ public class SettingsView implements View {
                 .withText("Medium size")
                 .withOnAction(model.getOnMediumSizeAction())
                 .withTextColour(model.getSettings().getTextColour())
+                .withButtonColour(model.getSettings().getBackgroundColour())
                 .build();
         vBox.getChildren().add(mediumSizeButton);
 
@@ -207,7 +210,10 @@ public class SettingsView implements View {
                 .withText("Large size")
                 .withOnAction(model.getOnLargeSizeAction())
                 .withTextColour(model.getSettings().getTextColour())
+                .withButtonColour(model.getSettings().getBackgroundColour())
                 .build();
+//        largeSizeButton.setBackground(Background.fill(Color.WHITESMOKE));
+//         largeSizeButton.setStyle(mediumSizeButton.getStyle());
         vBox.getChildren().add(largeSizeButton);
 
         backInSizeButton = ButtonBuilder.get()
@@ -216,6 +222,7 @@ public class SettingsView implements View {
                 .withText("Back")
                 .withOnAction(model.getOnBackAction())
                 .withTextColour(model.getSettings().getTextColour())
+                .withButtonColour(model.getSettings().getBackgroundColour())
                 .build();
         vBox.getChildren().add(backInSizeButton);
         return vBox;
@@ -228,44 +235,48 @@ public class SettingsView implements View {
         vBox.setAlignment(Pos.CENTER);
         vBox.setBackground(Background.fill(Color.OLDLACE));
 
-        blackColourButton = ButtonBuilder.get()
+        blackTextButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Black")
                 .withOnAction(model.getOnBlackAction())
                 .withTextColour(model.getSettings().getTextColour())
+                .withButtonColour(model.getSettings().getBackgroundColour())
                 .build();
-        vBox.getChildren().add(blackColourButton);
+        vBox.getChildren().add(blackTextButton);
 
 
-        redColourButton = ButtonBuilder.get()
+        redTextButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Red")
                 .withOnAction(model.getOnRedAction())
                 .withTextColour(model.getSettings().getTextColour())
+                .withButtonColour(model.getSettings().getBackgroundColour())
                 .build();
-        vBox.getChildren().add(redColourButton);
+        vBox.getChildren().add(redTextButton);
 
 
-        whiteColourButton = ButtonBuilder.get()
+        whiteTextButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Green")
                 .withOnAction(model.getOnGreenAction())
                 .withTextColour(model.getSettings().getTextColour())
+                .withButtonColour(model.getSettings().getBackgroundColour())
                 .build();
-        vBox.getChildren().add(whiteColourButton);
+        vBox.getChildren().add(whiteTextButton);
 
 
-        backInColourButton = ButtonBuilder.get()
+        backInTextButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Back")
                 .withOnAction(model.getOnBackAction())
                 .withTextColour(model.getSettings().getTextColour())
+                .withButtonColour(model.getSettings().getBackgroundColour())
                 .build();
-        vBox.getChildren().add(backInColourButton);
+        vBox.getChildren().add(backInTextButton);
         return vBox;
     }
 
@@ -274,7 +285,7 @@ public class SettingsView implements View {
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20, 20, 20, 20));
         vBox.setAlignment(Pos.CENTER);
-        vBox.setBackground(Background.fill(Color.OLDLACE));
+        vBox.setBackground(Background.fill(Color.LIGHTBLUE));
 
         thinFontButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
@@ -324,6 +335,8 @@ public class SettingsView implements View {
         FontWeight fontWeight = model.getSettings().getFontWeight();
         SettingsTab settingsTab = model.getSettingsTab();
         Paint textColour = model.getSettings().getTextColour();
+        Paint buttonColour = model.getSettings().getBackgroundColour();
+
 
         settingsLabel.setFont(Font.font(null, fontWeight, newSize));
         settingsLabel.setTextFill(textColour);
@@ -331,33 +344,41 @@ public class SettingsView implements View {
         // submenu area
         sizeButton.setFont(Font.font(null, fontWeight, newSize));
         sizeButton.setTextFill(Color.RED);
+        sizeButton.setBackground(Background.fill(buttonColour));
+
         textColourButton.setFont(Font.font(null, fontWeight, newSize));
         textColourButton.setTextFill(Color.BLUE);
+        textColourButton.setBackground(Background.fill(buttonColour));
         fontButton.setFont(Font.font(null, fontWeight, newSize));
         fontButton.setTextFill(Color.ORANGE);
+        fontButton.setBackground(Background.fill(buttonColour));
         backgroundColorButton.setFont(Font.font(null, fontWeight, newSize));
         backgroundColorButton.setTextFill(Color.GREEN);
+        backgroundColorButton.setBackground(Background.fill(buttonColour));
 
         // size menu area
         smallSizeButton.setFont(Font.font(null, fontWeight, newSize));
         smallSizeButton.setTextFill(textColour);
+        smallSizeButton.setBackground(Background.fill(buttonColour));
         mediumSizeButton.setFont(Font.font(null, fontWeight, newSize));
         mediumSizeButton.setTextFill(textColour);
+        mediumSizeButton.setBackground(Background.fill(buttonColour));
         largeSizeButton.setFont(Font.font(null, fontWeight, newSize));
         largeSizeButton.setTextFill(textColour);
+        largeSizeButton.setBackground(Background.fill(buttonColour));
         backInSizeButton.setFont(Font.font(null, fontWeight, newSize));
         backInSizeButton.setTextFill(textColour);
-
+        backInSizeButton.setBackground(Background.fill(buttonColour));
 
         // color menu area
-        blackColourButton.setFont(Font.font(null, fontWeight, newSize));
-        blackColourButton.setTextFill(textColour);
-        redColourButton.setFont(Font.font(null, fontWeight, newSize));
-        redColourButton.setTextFill(textColour);
-        whiteColourButton.setFont(Font.font(null, fontWeight, newSize));
-        whiteColourButton.setTextFill(textColour);
-        backInColourButton.setFont(Font.font(null, fontWeight, newSize));
-        backInColourButton.setTextFill(textColour);
+        blackTextButton.setFont(Font.font(null, fontWeight, newSize));
+        blackTextButton.setTextFill(textColour);
+        redTextButton.setFont(Font.font(null, fontWeight, newSize));
+        redTextButton.setTextFill(textColour);
+        whiteTextButton.setFont(Font.font(null, fontWeight, newSize));
+        whiteTextButton.setTextFill(textColour);
+        backInTextButton.setFont(Font.font(null, fontWeight, newSize));
+        backInTextButton.setTextFill(textColour);
 
         thinFontButton.setFont(Font.font(null, fontWeight, newSize));
         thinFontButton.setTextFill(textColour);

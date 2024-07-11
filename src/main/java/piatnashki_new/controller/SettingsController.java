@@ -1,6 +1,7 @@
 package piatnashki_new.controller;
 
 import javafx.stage.Stage;
+import piatnashki_new.enums_properties.ButtonBackgroundColour;
 import piatnashki_new.model.SettingsModel;
 import piatnashki_new.model.SettingsTab;
 import piatnashki_new.enums_properties.ButtonFont;
@@ -90,6 +91,23 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
                     model.setSettings(settingsService.getSettings());
                     view.refresh();
 
+                }).
+                withOnGrayButtonAction(e -> {
+                    settingsService.updateBackgroundColour(ButtonBackgroundColour.GRAY.getBackgroundColour());
+                    model.setSettings(settingsService.getSettings());
+                    view.refresh();
+
+                }).
+                withOnPinkButtonAction(e -> {
+                    settingsService.updateBackgroundColour(ButtonBackgroundColour.PINK.getBackgroundColour());
+                    model.setSettings(settingsService.getSettings());
+                    view.refresh();
+
+                }).
+                withOnVioletButtonAction(e -> {
+                    settingsService.updateBackgroundColour(ButtonBackgroundColour.VIOLET.getBackgroundColour());
+                    model.setSettings(settingsService.getSettings());
+                    view.refresh();
                 })
                 .build();
 

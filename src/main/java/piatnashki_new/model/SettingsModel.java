@@ -28,6 +28,10 @@ public class SettingsModel implements Model {
     private final EventHandler<ActionEvent> onMediumFontAction;
     private final EventHandler<ActionEvent> onBoldFontAction;
 
+    private final EventHandler<ActionEvent> onGrayButtonAction;
+    private final EventHandler<ActionEvent> onPinkButtonAction;
+    private final EventHandler<ActionEvent> onVioletButtonAction;
+
     private SettingsModel(Settings settings,
                           SettingsTab settingsTab,
                           EventHandler<ActionEvent> onSmallSizeAction,
@@ -45,7 +49,10 @@ public class SettingsModel implements Model {
                           EventHandler<ActionEvent> onGreenAction,
                           EventHandler<ActionEvent> onThinFontAction,
                           EventHandler<ActionEvent> onMediumFontAction,
-                          EventHandler<ActionEvent> onBoldFontAction
+                          EventHandler<ActionEvent> onBoldFontAction,
+                          EventHandler<ActionEvent> onGrayButtonAction,
+                          EventHandler<ActionEvent> onPinkButtonAction,
+                          EventHandler<ActionEvent> onVioletButtonAction
     ) {
         Objects.requireNonNull(settings, "settings can't be null");
         Objects.requireNonNull(settingsTab);
@@ -67,6 +74,10 @@ public class SettingsModel implements Model {
         Objects.requireNonNull(onThinFontAction, "onThinFontAction can't be null");
         Objects.requireNonNull(onMediumFontAction, "onMediumFontAction can't be null");
         Objects.requireNonNull(onBoldFontAction, "onBoldFontAction can't be null");
+
+        Objects.requireNonNull(onGrayButtonAction, "onGrayButtonAction can't be null");
+        Objects.requireNonNull(onPinkButtonAction, "onPinkButtonAction can't be null");
+        Objects.requireNonNull(onVioletButtonAction, "onVioletButtonAction can't be null");
 
 
         this.settings = settings;
@@ -90,6 +101,11 @@ public class SettingsModel implements Model {
         this.onThinFontAction = onThinFontAction;
         this.onMediumFontAction = onMediumFontAction;
         this.onBoldFontAction = onBoldFontAction;
+
+        this.onGrayButtonAction = onGrayButtonAction;
+        this.onPinkButtonAction = onPinkButtonAction;
+        this.onVioletButtonAction = onVioletButtonAction;
+
 
     }
 
@@ -165,6 +181,19 @@ public class SettingsModel implements Model {
         return onBoldFontAction;
     }
 
+    public EventHandler<ActionEvent> getOnGrayButtonAction() {
+        return onGrayButtonAction;
+    }
+
+    public EventHandler<ActionEvent> getOnPinkButtonAction() {
+        return onPinkButtonAction;
+    }
+
+    public EventHandler<ActionEvent> getOnVioletButtonAction() {
+        return onVioletButtonAction;
+    }
+
+
     public static Builder builder() {
         return new SettingsModel.Builder();
     }
@@ -173,6 +202,10 @@ public class SettingsModel implements Model {
         private Settings settings;
 
         private SettingsTab settingsTab;
+        EventHandler<ActionEvent> onGrayButtonAction;
+        EventHandler<ActionEvent> onPinkButtonAction;
+        EventHandler<ActionEvent> onVioletButtonAction;
+
 
         private EventHandler<ActionEvent> onSmallSizeAction;
         private EventHandler<ActionEvent> onMediumSizeAction;
@@ -184,9 +217,9 @@ public class SettingsModel implements Model {
         private EventHandler<ActionEvent> onBackgroundColourAction;
         private EventHandler<ActionEvent> onFontAction;
 
-        private EventHandler<ActionEvent> onBlackAction;
-        private EventHandler<ActionEvent> onRedAction;
-        private EventHandler<ActionEvent> onGreenAction;
+        private EventHandler<ActionEvent> onBlackTextAction;
+        private EventHandler<ActionEvent> onRedTextAction;
+        private EventHandler<ActionEvent> onGreenTextAction;
 
         private EventHandler<ActionEvent> onThinFontAction;
         private EventHandler<ActionEvent> onMediumFontAction;
@@ -247,17 +280,17 @@ public class SettingsModel implements Model {
 
 
         public Builder withOnBlackAction(EventHandler<ActionEvent> onBlackAction) {
-            this.onBlackAction = onBlackAction;
+            this.onBlackTextAction = onBlackAction;
             return this;
         }
 
         public Builder withOnRedAction(EventHandler<ActionEvent> onRedAction) {
-            this.onRedAction = onRedAction;
+            this.onRedTextAction = onRedAction;
             return this;
         }
 
         public Builder withOnGreenAction(EventHandler<ActionEvent> onGreenAction) {
-            this.onGreenAction = onGreenAction;
+            this.onGreenTextAction = onGreenAction;
             return this;
         }
 
@@ -265,23 +298,36 @@ public class SettingsModel implements Model {
             this.onThinFontAction = onThinFontAction;
             return this;
         }
+
         public Builder withOnMediumFontAction(EventHandler<ActionEvent> onMediumFontAction) {
             this.onMediumFontAction = onMediumFontAction;
             return this;
         }
+
         public Builder withOnBoldFontAction(EventHandler<ActionEvent> onBoldFontAction) {
             this.onBoldFontAction = onBoldFontAction;
             return this;
         }
-
-
+        public Builder withOnGrayButtonAction(EventHandler<ActionEvent> onGrayButtonAction) {
+            this.onGrayButtonAction = onGrayButtonAction;
+            return this;
+        }
+        public Builder withOnPinkButtonAction(EventHandler<ActionEvent> onPinkButtonAction) {
+            this.onPinkButtonAction = onPinkButtonAction;
+            return this;
+        }
+        public Builder withOnVioletButtonAction(EventHandler<ActionEvent> onVioletButtonAction) {
+            this.onVioletButtonAction = onVioletButtonAction;
+            return this;
+        }
 
 
 
         public SettingsModel build() {
             return new SettingsModel(settings, settingsTab, onSmallSizeAction, onMediumSizeAction, onLargeSizeAction,
-                    onBackAction, onSizeAction, onTextColourAction, onBackgroundColourAction, onFontAction, onBlackAction,
-                    onRedAction, onGreenAction, onThinFontAction, onMediumFontAction, onBoldFontAction
+                    onBackAction, onSizeAction, onTextColourAction, onBackgroundColourAction, onFontAction, onBlackTextAction,
+                    onRedTextAction, onGreenTextAction, onThinFontAction, onMediumFontAction, onBoldFontAction,onGrayButtonAction,
+                    onPinkButtonAction,onVioletButtonAction
             );
         }
     }

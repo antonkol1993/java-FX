@@ -4,6 +4,7 @@ import com.anarut.gamefifteen.Constants;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -17,6 +18,7 @@ public class ButtonBuilder {
     private FontWeight fontWeight = FontWeight.NORMAL;
     private int buttonSize = 75;
     private Paint textColour = Color.BLACK;
+    private Paint buttonColour = Color.GRAY;
 
     public static ButtonBuilder get() {
         return new ButtonBuilder();
@@ -47,16 +49,20 @@ public class ButtonBuilder {
         return this;
     }
 
-
+    public ButtonBuilder withButtonColour(Paint buttonColour) {
+        this.buttonColour = buttonColour;
+        return this;
+    }
 
     public Button build() {
         Button button = new Button();
+
         button.setFont(Font.font(null, fontWeight, fontSize));
         button.setText(text);
         button.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
         button.setOnAction(onAction);
         button.setTextFill(textColour);
-//        button.setStyle(button.getStyle() + "; -fx-font-weight: %s".formatted(fontWeight));
+        button.setBackground(Background.fill(buttonColour));
         return button;
     }
 }

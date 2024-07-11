@@ -25,17 +25,20 @@ public class SettingsService {
         return settings;
     }
 
+
     public void updateButtonType(ButtonSize buttonSize) {
         settings.setButtonType(buttonSize);
     }
-
     public void updateFontWeight(FontWeight fontWeight) {
         settings.setFontWeight(fontWeight);
     }
-
     public void updateTextColour(Paint textColour) {
         settings.setTextColour(textColour);
     }
+    public void updateBackgroundColour(Paint backgroundColour) {
+        settings.setBackgroundColour(backgroundColour);
+    }
+
 
 
 }
