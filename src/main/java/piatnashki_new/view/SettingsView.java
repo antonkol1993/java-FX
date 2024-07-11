@@ -21,31 +21,36 @@ public class SettingsView implements View {
 
     public VBox box = new VBox();
     private Label settingsLabel;
+
+    // size button
     private Button smallSizeButton;
     private Button mediumSizeButton;
     private Button largeSizeButton;
     private Button backInSizeButton;
 
-    private Button blackButton;
-    private Button redButton;
-    private Button whiteButton;
+    // text colour button
+    private Button blackColourButton;
+    private Button redColourButton;
+    private Button whiteColourButton;
     private Button backInColourButton;
 
+    // font button
     private Button thinFontButton;
     private Button mediumFontButton;
     private Button boldFontButton;
     private Button backInFontButton;
 
+    // head menu button
     private Button sizeButton;
     private Button textColourButton;
-    private Button syncWithLabel;
+    private Button backgroundColorButton;
     private Button fontButton;
 
-
+    // view sources
     private Parent sizeView;
-    private Parent colorView;
-    private Parent textStyleView;
+    private Parent textColorView;
     private Parent fontView;
+    private Parent backgroundColorView;
 
     public SettingsView(SettingsModel model) {
         this.model = model;
@@ -93,32 +98,54 @@ public class SettingsView implements View {
                 build();
         headButtons.add(fontButton, 2, 0);
 
-        syncWithLabel = ButtonBuilder.get().
+        backgroundColorButton = ButtonBuilder.get().
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
-                withText("SyncWithLabel").
-//                withOnAction(model.getOnSyncLabelButtonAction()).
+                withText("Background color").
+                withOnAction(model.getOnBackgroundColourAction()).
                 withTextColour(Color.GREEN).
                 build();
-        headButtons.add(syncWithLabel, 3, 0);
+        headButtons.add(backgroundColorButton, 3, 0);
 
         box.getChildren().add(headButtons);
 
         sizeView = sizeButtons();
-        colorView = coloursButtons();
+        textColorView = coloursButtons();
 //        textStyleView = coloursButtons();
         fontView = fontView();
+        backgroundColorView = buttonColorView();
 
         Parent view = switch (model.getSettingsTab()) {
             case SIZE -> sizeView;
-            case COLOUR -> colorView;
-            case TEXT_STYLE -> throw new RuntimeException();
+            case TEXT_COLOUR -> textColorView;
+            case BACKGROUND_COLOUR -> backgroundColorView;
             case FONT -> fontView;
         };
         box.getChildren().add(view);
         return box;
     }
 
+    private Parent buttonColorView() {
+        VBox vBox = new VBox();
+        smallSizeButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("GRAY")
+                .withOnAction(model.getOnSmallSizeAction())
+                .withTextColour(model.getSettings().getTextColour())
+                .build();
+        vBox.getChildren().add(smallSizeButton);
+
+        mediumSizeButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("wqewqewqwqeewwqe")
+                .withOnAction(model.getOnMediumSizeAction())
+                .withTextColour(model.getSettings().getTextColour())
+                .build();
+        vBox.getChildren().add(mediumSizeButton);
+        return vBox;
+    }
 
     private Parent sizeButtons() {
         VBox vBox = new VBox();
@@ -172,34 +199,34 @@ public class SettingsView implements View {
         vBox.setAlignment(Pos.CENTER);
         vBox.setBackground(Background.fill(Color.OLDLACE));
 
-        blackButton = ButtonBuilder.get()
+        blackColourButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Black")
                 .withOnAction(model.getOnBlackAction())
                 .withTextColour(model.getSettings().getTextColour())
                 .build();
-        vBox.getChildren().add(blackButton);
+        vBox.getChildren().add(blackColourButton);
 
 
-        redButton = ButtonBuilder.get()
+        redColourButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Red")
                 .withOnAction(model.getOnRedAction())
                 .withTextColour(model.getSettings().getTextColour())
                 .build();
-        vBox.getChildren().add(redButton);
+        vBox.getChildren().add(redColourButton);
 
 
-        whiteButton = ButtonBuilder.get()
+        whiteColourButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
                 .withText("Green")
                 .withOnAction(model.getOnGreenAction())
                 .withTextColour(model.getSettings().getTextColour())
                 .build();
-        vBox.getChildren().add(whiteButton);
+        vBox.getChildren().add(whiteColourButton);
 
 
         backInColourButton = ButtonBuilder.get()
@@ -279,8 +306,8 @@ public class SettingsView implements View {
         textColourButton.setTextFill(Color.BLUE);
         fontButton.setFont(Font.font(null, fontWeight, newSize));
         fontButton.setTextFill(Color.ORANGE);
-        syncWithLabel.setFont(Font.font(null, fontWeight, newSize));
-        syncWithLabel.setTextFill(Color.GREEN);
+        backgroundColorButton.setFont(Font.font(null, fontWeight, newSize));
+        backgroundColorButton.setTextFill(Color.GREEN);
 
         // size menu area
         smallSizeButton.setFont(Font.font(null, fontWeight, newSize));
@@ -294,12 +321,12 @@ public class SettingsView implements View {
 
 
         // color menu area
-        blackButton.setFont(Font.font(null, fontWeight, newSize));
-        blackButton.setTextFill(textColour);
-        redButton.setFont(Font.font(null, fontWeight, newSize));
-        redButton.setTextFill(textColour);
-        whiteButton.setFont(Font.font(null, fontWeight, newSize));
-        whiteButton.setTextFill(textColour);
+        blackColourButton.setFont(Font.font(null, fontWeight, newSize));
+        blackColourButton.setTextFill(textColour);
+        redColourButton.setFont(Font.font(null, fontWeight, newSize));
+        redColourButton.setTextFill(textColour);
+        whiteColourButton.setFont(Font.font(null, fontWeight, newSize));
+        whiteColourButton.setTextFill(textColour);
         backInColourButton.setFont(Font.font(null, fontWeight, newSize));
         backInColourButton.setTextFill(textColour);
 
@@ -314,8 +341,8 @@ public class SettingsView implements View {
 
         Parent view = switch (settingsTab) {
             case SIZE -> sizeView;
-            case COLOUR -> colorView;
-            case TEXT_STYLE -> throw new RuntimeException();
+            case TEXT_COLOUR -> textColorView;
+            case BACKGROUND_COLOUR -> backgroundColorView;
             case FONT -> fontView;
         };
         box.getChildren().remove(2);

@@ -17,7 +17,7 @@ public class SettingsModel implements Model {
 
     private final EventHandler<ActionEvent> onSizeAction;
     private final EventHandler<ActionEvent> onTextColourAction;
-    private final EventHandler<ActionEvent> onSyncLabelAction;
+    private final EventHandler<ActionEvent> onBackgroundColourAction;
     private final EventHandler<ActionEvent> onFontAction;
 
     private final EventHandler<ActionEvent> onBlackAction;
@@ -37,7 +37,7 @@ public class SettingsModel implements Model {
 
                           EventHandler<ActionEvent> onSizeAction,
                           EventHandler<ActionEvent> onTextColourAction,
-                          EventHandler<ActionEvent> onSyncLabelAction,
+                          EventHandler<ActionEvent> onBackgroundColourAction,
                           EventHandler<ActionEvent> onFontAction,
 
                           EventHandler<ActionEvent> onBlackAction,
@@ -57,7 +57,7 @@ public class SettingsModel implements Model {
 
         Objects.requireNonNull(onSizeAction, "onSizeAction can't be null");
         Objects.requireNonNull(onTextColourAction, "onTextColourAction can't be null");
-        Objects.requireNonNull(onSyncLabelAction, "onSyncLabelAction can't be null");
+        Objects.requireNonNull(onBackgroundColourAction, "onBackgroundColourAction can't be null");
         Objects.requireNonNull(onFontAction, "onFontAction can't be null");
 
         Objects.requireNonNull(onBlackAction, "onBlackAction can't be null");
@@ -79,7 +79,7 @@ public class SettingsModel implements Model {
 
         this.onSizeAction = onSizeAction;
         this.onTextColourAction = onTextColourAction;
-        this.onSyncLabelAction = onSyncLabelAction;
+        this.onBackgroundColourAction = onBackgroundColourAction;
         this.onFontAction = onFontAction;
 
         this.onBlackAction = onBlackAction;
@@ -137,8 +137,8 @@ public class SettingsModel implements Model {
         return onFontAction;
     }
 
-    public EventHandler<ActionEvent> getOnSyncLabelButtonAction() {
-        return onSyncLabelAction;
+    public EventHandler<ActionEvent> getOnBackgroundColourAction() {
+        return onBackgroundColourAction;
     }
 
     public EventHandler<ActionEvent> getOnBlackAction() {
@@ -181,7 +181,7 @@ public class SettingsModel implements Model {
 
         private EventHandler<ActionEvent> onSizeAction;
         private EventHandler<ActionEvent> onTextColourAction;
-        private EventHandler<ActionEvent> onSyncLabelAction;
+        private EventHandler<ActionEvent> onBackgroundColourAction;
         private EventHandler<ActionEvent> onFontAction;
 
         private EventHandler<ActionEvent> onBlackAction;
@@ -235,8 +235,8 @@ public class SettingsModel implements Model {
             return this;
         }
 
-        public Builder withOnSyncLabelAction(EventHandler<ActionEvent> onSyncLabelAction) {
-            this.onSyncLabelAction = onSyncLabelAction;
+        public Builder withOnBackgroundColourAction(EventHandler<ActionEvent> onBackgroundColourAction) {
+            this.onBackgroundColourAction = onBackgroundColourAction;
             return this;
         }
 
@@ -280,7 +280,7 @@ public class SettingsModel implements Model {
 
         public SettingsModel build() {
             return new SettingsModel(settings, settingsTab, onSmallSizeAction, onMediumSizeAction, onLargeSizeAction,
-                    onBackAction, onSizeAction, onTextColourAction, onSyncLabelAction, onFontAction, onBlackAction,
+                    onBackAction, onSizeAction, onTextColourAction, onBackgroundColourAction, onFontAction, onBlackAction,
                     onRedAction, onGreenAction, onThinFontAction, onMediumFontAction, onBoldFontAction
             );
         }

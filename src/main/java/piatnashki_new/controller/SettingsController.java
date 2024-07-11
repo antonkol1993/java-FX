@@ -43,11 +43,12 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
 
                 }).
                 withOnTextColourAction(e -> {
-                    model.setSettingsTab(SettingsTab.COLOUR);
+                    model.setSettingsTab(SettingsTab.TEXT_COLOUR);
                     view.refresh();
                 }).
-                withOnSyncLabelAction(e -> {
-
+                withOnBackgroundColourAction(e -> {
+                    model.setSettingsTab(SettingsTab.BACKGROUND_COLOUR);
+                    view.refresh();
 
                 }).
                 withOnFontAction(e -> {
