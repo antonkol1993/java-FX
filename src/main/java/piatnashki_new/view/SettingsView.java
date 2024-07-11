@@ -37,7 +37,7 @@ public class SettingsView implements View {
     private Button backInFontButton;
 
     private Button sizeButton;
-    private Button colourButton;
+    private Button textColourButton;
     private Button syncWithLabel;
     private Button fontButton;
 
@@ -75,14 +75,14 @@ public class SettingsView implements View {
                 build();
         headButtons.add(sizeButton, 0, 0);
 
-        colourButton = ButtonBuilder.get().
+        textColourButton = ButtonBuilder.get().
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Colour").
-                withOnAction(model.getOnColourButtonAction()).
+                withOnAction(model.getOnTextColourAction()).
                 withTextColour(Color.BLUE).
                 build();
-        headButtons.add(colourButton, 1, 0);
+        headButtons.add(textColourButton, 1, 0);
 
         fontButton = ButtonBuilder.get().
                 withFontSize(model.getSettings().getButtonType().getSize()).
@@ -97,7 +97,7 @@ public class SettingsView implements View {
                 withFontSize(model.getSettings().getButtonType().getSize()).
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("SyncWithLabel").
-                withOnAction(model.getOnSyncLabelButtonAction()).
+//                withOnAction(model.getOnSyncLabelButtonAction()).
                 withTextColour(Color.GREEN).
                 build();
         headButtons.add(syncWithLabel, 3, 0);
@@ -275,8 +275,8 @@ public class SettingsView implements View {
         // submenu area
         sizeButton.setFont(Font.font(null, fontWeight, newSize));
         sizeButton.setTextFill(Color.RED);
-        colourButton.setFont(Font.font(null, fontWeight, newSize));
-        colourButton.setTextFill(Color.BLUE);
+        textColourButton.setFont(Font.font(null, fontWeight, newSize));
+        textColourButton.setTextFill(Color.BLUE);
         fontButton.setFont(Font.font(null, fontWeight, newSize));
         fontButton.setTextFill(Color.ORANGE);
         syncWithLabel.setFont(Font.font(null, fontWeight, newSize));

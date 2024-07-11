@@ -16,7 +16,7 @@ public class SettingsModel implements Model {
 
 
     private final EventHandler<ActionEvent> onSizeAction;
-    private final EventHandler<ActionEvent> onColourAction;
+    private final EventHandler<ActionEvent> onTextColourAction;
     private final EventHandler<ActionEvent> onSyncLabelAction;
     private final EventHandler<ActionEvent> onFontAction;
 
@@ -36,7 +36,7 @@ public class SettingsModel implements Model {
                           EventHandler<ActionEvent> onBackAction,
 
                           EventHandler<ActionEvent> onSizeAction,
-                          EventHandler<ActionEvent> onColourAction,
+                          EventHandler<ActionEvent> onTextColourAction,
                           EventHandler<ActionEvent> onSyncLabelAction,
                           EventHandler<ActionEvent> onFontAction,
 
@@ -56,7 +56,7 @@ public class SettingsModel implements Model {
         Objects.requireNonNull(onBackAction, "Button BACK can't be null everywhere");
 
         Objects.requireNonNull(onSizeAction, "onSizeAction can't be null");
-        Objects.requireNonNull(onColourAction, "onColourAction can't be null");
+        Objects.requireNonNull(onTextColourAction, "onTextColourAction can't be null");
         Objects.requireNonNull(onSyncLabelAction, "onSyncLabelAction can't be null");
         Objects.requireNonNull(onFontAction, "onFontAction can't be null");
 
@@ -78,7 +78,7 @@ public class SettingsModel implements Model {
         this.onBackAction = onBackAction;
 
         this.onSizeAction = onSizeAction;
-        this.onColourAction = onColourAction;
+        this.onTextColourAction = onTextColourAction;
         this.onSyncLabelAction = onSyncLabelAction;
         this.onFontAction = onFontAction;
 
@@ -129,8 +129,8 @@ public class SettingsModel implements Model {
         return onSizeAction;
     }
 
-    public EventHandler<ActionEvent> getOnColourButtonAction() {
-        return onColourAction;
+    public EventHandler<ActionEvent> getOnTextColourAction() {
+        return onTextColourAction;
     }
 
     public EventHandler<ActionEvent> getOnFontButtonAction() {
@@ -180,7 +180,7 @@ public class SettingsModel implements Model {
         private EventHandler<ActionEvent> onBackAction;
 
         private EventHandler<ActionEvent> onSizeAction;
-        private EventHandler<ActionEvent> onColourAction;
+        private EventHandler<ActionEvent> onTextColourAction;
         private EventHandler<ActionEvent> onSyncLabelAction;
         private EventHandler<ActionEvent> onFontAction;
 
@@ -230,8 +230,8 @@ public class SettingsModel implements Model {
             return this;
         }
 
-        public Builder withOnColourAction(EventHandler<ActionEvent> onColourAction) {
-            this.onColourAction = onColourAction;
+        public Builder withOnTextColourAction(EventHandler<ActionEvent> onTextColourAction) {
+            this.onTextColourAction = onTextColourAction;
             return this;
         }
 
@@ -280,7 +280,7 @@ public class SettingsModel implements Model {
 
         public SettingsModel build() {
             return new SettingsModel(settings, settingsTab, onSmallSizeAction, onMediumSizeAction, onLargeSizeAction,
-                    onBackAction, onSizeAction, onColourAction, onSyncLabelAction, onFontAction, onBlackAction,
+                    onBackAction, onSizeAction, onTextColourAction, onSyncLabelAction, onFontAction, onBlackAction,
                     onRedAction, onGreenAction, onThinFontAction, onMediumFontAction, onBoldFontAction
             );
         }

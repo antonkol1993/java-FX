@@ -42,7 +42,7 @@ public class SettingsController extends AbstractController<SettingsModel, Settin
                     view.refresh();
 
                 }).
-                withOnColourAction(e -> {
+                withOnTextColourAction(e -> {
                     model.setSettingsTab(SettingsTab.COLOUR);
                     view.refresh();
                 }).
