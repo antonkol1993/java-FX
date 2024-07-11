@@ -52,6 +52,12 @@ public class SettingsView implements View {
     private Parent fontView;
     private Parent backgroundColorView;
 
+    // background colours button
+    private Button grayButton;
+    private Button pinkButton;
+    private Button violetButton;
+    private Button backInBackgroundColorButton;
+
     public SettingsView(SettingsModel model) {
         this.model = model;
     }
@@ -127,23 +133,46 @@ public class SettingsView implements View {
 
     private Parent buttonColorView() {
         VBox vBox = new VBox();
-        smallSizeButton = ButtonBuilder.get()
-                .withFontSize(model.getSettings().getButtonType().getSize())
-                .withFontWeight(model.getSettings().getFontWeight())
-                .withText("GRAY")
-                .withOnAction(model.getOnSmallSizeAction())
-                .withTextColour(model.getSettings().getTextColour())
-                .build();
-        vBox.getChildren().add(smallSizeButton);
+        vBox.setSpacing(20);
+        vBox.setPadding(new Insets(20, 20, 20, 20));
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setBackground(Background.fill(Color.GRAY));
 
-        mediumSizeButton = ButtonBuilder.get()
+        grayButton = ButtonBuilder.get()
                 .withFontSize(model.getSettings().getButtonType().getSize())
                 .withFontWeight(model.getSettings().getFontWeight())
-                .withText("wqewqewqwqeewwqe")
-                .withOnAction(model.getOnMediumSizeAction())
+                .withText("Gray")
+//                .withOnAction(model.getOnSmallSizeAction())
                 .withTextColour(model.getSettings().getTextColour())
                 .build();
-        vBox.getChildren().add(mediumSizeButton);
+        vBox.getChildren().add(grayButton);
+
+        violetButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("Violet")
+//                .withOnAction(model.getOnMediumSizeAction())
+                .withTextColour(model.getSettings().getTextColour())
+                .build();
+        vBox.getChildren().add(violetButton);
+
+        pinkButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("Pink")
+//                .withOnAction(model.getOnMediumSizeAction())
+                .withTextColour(model.getSettings().getTextColour())
+                .build();
+        vBox.getChildren().add(pinkButton);
+
+        backInBackgroundColorButton = ButtonBuilder.get()
+                .withFontSize(model.getSettings().getButtonType().getSize())
+                .withFontWeight(model.getSettings().getFontWeight())
+                .withText("Back")
+                .withOnAction(model.getOnBackAction())
+                .withTextColour(model.getSettings().getTextColour())
+                .build();
+        vBox.getChildren().add(backInBackgroundColorButton);
         return vBox;
     }
 
