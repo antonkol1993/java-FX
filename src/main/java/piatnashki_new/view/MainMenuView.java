@@ -57,6 +57,7 @@ public class MainMenuView implements View {
                 withText("New game").
                 withOnAction(model.getOnNewGameAction()).
                 withTextColour(model.getSettings().getTextColour()).
+                withButtonColour(model.getSettings().getBackgroundColour()).
                 build();
         vBox.getChildren().add(newGameButton);
 
@@ -66,6 +67,7 @@ public class MainMenuView implements View {
                 withText("Settings").
                 withOnAction(model.getOnSettingsAction()).
                 withTextColour(model.getSettings().getTextColour()).
+                withButtonColour(model.getSettings().getBackgroundColour()).
                 build();
         vBox.getChildren().add(settingsButton);
 
@@ -75,6 +77,7 @@ public class MainMenuView implements View {
                 withText("Exit").
                 withOnAction(model.getOnExitAction()).
                 withTextColour(model.getSettings().getTextColour()).
+                withButtonColour(model.getSettings().getBackgroundColour()).
                 build();
         vBox.getChildren().add(exitGameButton);
 
