@@ -51,7 +51,7 @@ public class GameView implements View {
         gridPane.setPrefSize(500, 500);
         gridPane.setPadding(new Insets(paddings, paddings, paddings, paddings));
         gridPane.setAlignment(Pos.TOP_CENTER);
-        gridPane.setBackground(Background.fill(Color.GOLD));
+        gridPane.setBackground(Background.fill(Color.BEIGE));
 
         buildGameField();
 
@@ -89,8 +89,8 @@ public class GameView implements View {
                         .withText(text)
                         .withOnAction(model.getOnMoveAction())
                         .withTextColour(model.getSettings().getTextColour())
-                        .build();
-                moveButton.setPrefSize(60, 60);
+                        .withGameButtonSize(model.getSettings().getSizeInGameBoard().getFont())
+                        .gameBoardBuild();
                 if (intValue == 0) {
                     moveButton.setStyle("-fx-border-color: blue; -fx-border-width: 5px;");
                 } else {

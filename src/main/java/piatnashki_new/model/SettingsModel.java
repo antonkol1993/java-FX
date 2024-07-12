@@ -19,6 +19,7 @@ public class SettingsModel implements Model {
     private final EventHandler<ActionEvent> onTextColourAction;
     private final EventHandler<ActionEvent> onBackgroundColourAction;
     private final EventHandler<ActionEvent> onFontAction;
+    private final EventHandler<ActionEvent> onSizeInGameAction;
 
     private final EventHandler<ActionEvent> onBlackTextAction;
     private final EventHandler<ActionEvent> onRedTextAction;
@@ -43,6 +44,7 @@ public class SettingsModel implements Model {
                           EventHandler<ActionEvent> onTextColourAction,
                           EventHandler<ActionEvent> onBackgroundColourAction,
                           EventHandler<ActionEvent> onFontAction,
+                          EventHandler<ActionEvent> onSizeInGameAction,
 
                           EventHandler<ActionEvent> onBlackAction,
                           EventHandler<ActionEvent> onRedAction,
@@ -66,6 +68,7 @@ public class SettingsModel implements Model {
         Objects.requireNonNull(onTextColourAction, "onTextColourAction can't be null");
         Objects.requireNonNull(onBackgroundColourAction, "onBackgroundColourAction can't be null");
         Objects.requireNonNull(onFontAction, "onFontAction can't be null");
+        Objects.requireNonNull(onSizeInGameAction, "onSizeInGameAction can't be null");
 
         Objects.requireNonNull(onBlackAction, "onBlackAction can't be null");
         Objects.requireNonNull(onRedAction, "onRedAction can't be null");
@@ -92,6 +95,7 @@ public class SettingsModel implements Model {
         this.onTextColourAction = onTextColourAction;
         this.onBackgroundColourAction = onBackgroundColourAction;
         this.onFontAction = onFontAction;
+        this.onSizeInGameAction = onSizeInGameAction;
 
         this.onBlackTextAction = onBlackAction;
         this.onRedTextAction = onRedAction;
@@ -193,6 +197,9 @@ public class SettingsModel implements Model {
         return onVioletButtonAction;
     }
 
+    public EventHandler<ActionEvent> getOnSizeInGameAction() {
+        return onSizeInGameAction;
+    }
 
     public static Builder builder() {
         return new SettingsModel.Builder();
@@ -216,6 +223,7 @@ public class SettingsModel implements Model {
         private EventHandler<ActionEvent> onTextColourAction;
         private EventHandler<ActionEvent> onBackgroundColourAction;
         private EventHandler<ActionEvent> onFontAction;
+        private EventHandler<ActionEvent> onSizeInGameAction;
 
         private EventHandler<ActionEvent> onBlackTextAction;
         private EventHandler<ActionEvent> onRedTextAction;
@@ -308,26 +316,33 @@ public class SettingsModel implements Model {
             this.onBoldFontAction = onBoldFontAction;
             return this;
         }
+
         public Builder withOnGrayButtonAction(EventHandler<ActionEvent> onGrayButtonAction) {
             this.onGrayButtonAction = onGrayButtonAction;
             return this;
         }
+
         public Builder withOnPinkButtonAction(EventHandler<ActionEvent> onPinkButtonAction) {
             this.onPinkButtonAction = onPinkButtonAction;
             return this;
         }
+
         public Builder withOnVioletButtonAction(EventHandler<ActionEvent> onVioletButtonAction) {
             this.onVioletButtonAction = onVioletButtonAction;
             return this;
         }
 
+        public Builder withOnSizeInGameAction(EventHandler<ActionEvent> onSizeInGameAction) {
+            this.onSizeInGameAction = onSizeInGameAction;
+            return this;
+        }
 
 
         public SettingsModel build() {
             return new SettingsModel(settings, settingsTab, onSmallSizeAction, onMediumSizeAction, onLargeSizeAction,
                     onBackAction, onSizeAction, onTextColourAction, onBackgroundColourAction, onFontAction, onBlackTextAction,
-                    onRedTextAction, onGreenTextAction, onThinFontAction, onMediumFontAction, onBoldFontAction,onGrayButtonAction,
-                    onPinkButtonAction,onVioletButtonAction
+                    onRedTextAction, onGreenTextAction, onThinFontAction, onMediumFontAction, onBoldFontAction, onGrayButtonAction,
+                    onPinkButtonAction, onVioletButtonAction, onSizeInGameAction
             );
         }
     }

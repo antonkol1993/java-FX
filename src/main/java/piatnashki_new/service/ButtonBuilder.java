@@ -9,6 +9,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.paint.*;
+import piatnashki_new.enums_properties.ButtonBackgroundColour;
+import piatnashki_new.enums_properties.GameButtonSize;
 
 public class ButtonBuilder {
 
@@ -16,10 +18,10 @@ public class ButtonBuilder {
     private String text = "-";
     private EventHandler<ActionEvent> onAction;
     private FontWeight fontWeight = FontWeight.NORMAL;
-    private int buttonSize = 75;
     private Paint textColour = Color.BLACK;
-    private Paint buttonColour = Color.GRAY;
+    private Paint buttonColour = ButtonBackgroundColour.LIGHT_GREY.getBackgroundColour();
     private String styleButton = "-fx-border-color: black; -fx-border-width: 1px;";
+    private double buttonSize = GameButtonSize.MEDIUM_SIZE_GAMEBUTTON.getFont();
 
     public static ButtonBuilder get() {
         return new ButtonBuilder();
@@ -58,6 +60,10 @@ public class ButtonBuilder {
         this.styleButton = styleButton;
         return this;
     }
+    public ButtonBuilder withGameButtonSize(double buttonSize) {
+        this.buttonSize = buttonSize;
+        return this;
+    }
 
     public Button build() {
         Button button = new Button();
@@ -71,4 +77,18 @@ public class ButtonBuilder {
         button.setStyle(styleButton);
         return button;
     }
+    public Button gameBoardBuild() {
+        Button button = new Button();
+
+        button.setFont(Font.font(null, fontWeight, fontSize));
+        button.setText(text);
+        button.setPrefWidth(Constants.BUTTON_PREF_WIDTH);
+        button.setOnAction(onAction);
+        button.setTextFill(textColour);
+        button.setBackground(Background.fill(buttonColour));
+        button.setStyle(styleButton);
+        button.setPrefSize(buttonSize,buttonSize);
+        return button;
+    }
+
 }

@@ -45,6 +45,8 @@ public class SettingsView implements View {
     private Button textColourButton;
     private Button backgroundColorButton;
     private Button fontButton;
+    private Button sizeInGameButton;
+
 
     // view sources
     private Parent sizeView;
@@ -57,6 +59,13 @@ public class SettingsView implements View {
     private Button pinkButton;
     private Button violetButton;
     private Button backInBackgroundColorButton;
+
+    // size in Game buttons
+    private Button smallGameButton;
+    private Button mediumGameButton;
+    private Button largeGameButton;
+    private Button backInGameButton;
+
 
     public SettingsView(SettingsModel model) {
         this.model = model;
@@ -115,12 +124,23 @@ public class SettingsView implements View {
                 withTextColour(Color.GREEN).
                 withButtonColour(Color.LIGHTBLUE).
                 build();
-        headButtons.add(backgroundColorButton, 3, 0);
+
+        headButtons.add(backgroundColorButton, 0, 1);
+
+        sizeInGameButton = ButtonBuilder.get().
+                withFontSize(model.getSettings().getButtonType().getSize()).
+                withFontWeight(model.getSettings().getFontWeight()).
+                withText("Size in board").
+                withOnAction(model.getOnSizeInGameAction()).
+                withTextColour(Color.BLACK).
+                withButtonColour(Color.LIGHTBLUE).
+                build();
+        headButtons.add(sizeInGameButton, 1, 1);
 
         box.getChildren().add(headButtons);
 
         sizeView = sizeButtons();
-        textColorView = coloursButtons();
+        textColorView = textColoursButtons();
 //        textStyleView = coloursButtons();
         fontView = fontView();
         backgroundColorView = buttonColorView();
@@ -230,7 +250,7 @@ public class SettingsView implements View {
         return vBox;
     }
 
-    private Parent coloursButtons() {
+    private Parent textColoursButtons() {
         VBox vBox = new VBox();
         vBox.setSpacing(20);
         vBox.setPadding(new Insets(20, 20, 20, 20));
