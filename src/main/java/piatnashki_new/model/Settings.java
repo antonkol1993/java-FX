@@ -10,7 +10,7 @@ public class Settings {
     private ButtonSize buttonType = ButtonSize.MEDIUM;
     private FontWeight fontWeight = FontWeight.MEDIUM;
     private Paint textColour = Color.BLACK;
-    private Paint backgroundColour = Color.BEIGE;
+    private Paint backgroundColour = Color.GRAY;
 
     public Settings() {
     }

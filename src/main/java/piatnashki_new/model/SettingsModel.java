@@ -20,9 +20,9 @@ public class SettingsModel implements Model {
     private final EventHandler<ActionEvent> onBackgroundColourAction;
     private final EventHandler<ActionEvent> onFontAction;
 
-    private final EventHandler<ActionEvent> onBlackAction;
-    private final EventHandler<ActionEvent> onRedAction;
-    private final EventHandler<ActionEvent> onGreenAction;
+    private final EventHandler<ActionEvent> onBlackTextAction;
+    private final EventHandler<ActionEvent> onRedTextAction;
+    private final EventHandler<ActionEvent> onGreenTextAction;
 
     private final EventHandler<ActionEvent> onThinFontAction;
     private final EventHandler<ActionEvent> onMediumFontAction;
@@ -93,9 +93,9 @@ public class SettingsModel implements Model {
         this.onBackgroundColourAction = onBackgroundColourAction;
         this.onFontAction = onFontAction;
 
-        this.onBlackAction = onBlackAction;
-        this.onRedAction = onRedAction;
-        this.onGreenAction = onGreenAction;
+        this.onBlackTextAction = onBlackAction;
+        this.onRedTextAction = onRedAction;
+        this.onGreenTextAction = onGreenAction;
 
 
         this.onThinFontAction = onThinFontAction;
@@ -157,16 +157,16 @@ public class SettingsModel implements Model {
         return onBackgroundColourAction;
     }
 
-    public EventHandler<ActionEvent> getOnBlackAction() {
-        return onBlackAction;
+    public EventHandler<ActionEvent> getOnBlackTextAction() {
+        return onBlackTextAction;
     }
 
-    public EventHandler<ActionEvent> getOnRedAction() {
-        return onRedAction;
+    public EventHandler<ActionEvent> getOnRedTextAction() {
+        return onRedTextAction;
     }
 
-    public EventHandler<ActionEvent> getOnGreenAction() {
-        return onGreenAction;
+    public EventHandler<ActionEvent> getOnGreenTextAction() {
+        return onGreenTextAction;
     }
 
     public EventHandler<ActionEvent> getOnThinFontAction() {
