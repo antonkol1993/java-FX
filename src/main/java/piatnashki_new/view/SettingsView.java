@@ -83,6 +83,7 @@ public class SettingsView implements View {
                 withText("Size").
                 withOnAction(model.getOnSizeButtonAction()).
                 withTextColour(Color.RED).
+                withButtonColour(Color.LIGHTBLUE).
                 build();
         headButtons.add(sizeButton, 0, 0);
 
@@ -91,7 +92,8 @@ public class SettingsView implements View {
                 withFontWeight(model.getSettings().getFontWeight()).
                 withText("Colour").
                 withOnAction(model.getOnTextColourAction()).
-                withTextColour(Color.BLUE).
+                withTextColour(Color.DARKBLUE).
+                withButtonColour(Color.LIGHTBLUE).
                 build();
         headButtons.add(textColourButton, 1, 0);
 
@@ -101,6 +103,7 @@ public class SettingsView implements View {
                 withText("Font").
                 withOnAction(model.getOnFontButtonAction()).
                 withTextColour(Color.ORANGE).
+                withButtonColour(Color.LIGHTBLUE).
                 build();
         headButtons.add(fontButton, 2, 0);
 
@@ -110,6 +113,7 @@ public class SettingsView implements View {
                 withText("Background color").
                 withOnAction(model.getOnBackgroundColourAction()).
                 withTextColour(Color.GREEN).
+                withButtonColour(Color.LIGHTBLUE).
                 build();
         headButtons.add(backgroundColorButton, 3, 0);
 
@@ -341,17 +345,17 @@ public class SettingsView implements View {
         // submenu area
         sizeButton.setFont(Font.font(null, fontWeight, newSize));
         sizeButton.setTextFill(Color.RED);
-        sizeButton.setBackground(Background.fill(buttonColour));
+//        sizeButton.setBackground(Background.fill(buttonColour));
 
         textColourButton.setFont(Font.font(null, fontWeight, newSize));
         textColourButton.setTextFill(Color.BLUE);
-        textColourButton.setBackground(Background.fill(buttonColour));
+//        textColourButton.setBackground(Background.fill(buttonColour));
         fontButton.setFont(Font.font(null, fontWeight, newSize));
         fontButton.setTextFill(Color.ORANGE);
-        fontButton.setBackground(Background.fill(buttonColour));
+//        fontButton.setBackground(Background.fill(buttonColour));
         backgroundColorButton.setFont(Font.font(null, fontWeight, newSize));
         backgroundColorButton.setTextFill(Color.GREEN);
-        backgroundColorButton.setBackground(Background.fill(buttonColour));
+//        backgroundColorButton.setBackground(Background.fill(buttonColour));
 
         // size menu area
         smallSizeButton.setFont(Font.font(null, fontWeight, newSize));
@@ -381,14 +385,35 @@ public class SettingsView implements View {
         backInTextButton.setTextFill(textColour);
         backInTextButton.setBackground(Background.fill(buttonColour));
 
+        // font menu area
         thinFontButton.setFont(Font.font(null, fontWeight, newSize));
         thinFontButton.setTextFill(textColour);
+        thinFontButton.setBackground(Background.fill(buttonColour));
         mediumFontButton.setFont(Font.font(null, fontWeight, newSize));
         mediumFontButton.setTextFill(textColour);
+        mediumFontButton.setBackground(Background.fill(buttonColour));
         boldFontButton.setFont(Font.font(null, fontWeight, newSize));
         boldFontButton.setTextFill(textColour);
+        boldFontButton.setBackground(Background.fill(buttonColour));
         backInFontButton.setFont(Font.font(null, fontWeight, newSize));
         backInFontButton.setTextFill(textColour);
+        backInFontButton.setBackground(Background.fill(buttonColour));
+
+
+
+        // button's background color  menu area
+        grayButton.setFont(Font.font(null, fontWeight, newSize));
+        grayButton.setTextFill(textColour);
+        grayButton.setBackground(Background.fill(buttonColour));
+        pinkButton.setFont(Font.font(null, fontWeight, newSize));
+        pinkButton.setTextFill(textColour);
+        pinkButton.setBackground(Background.fill(buttonColour));
+        violetButton.setFont(Font.font(null, fontWeight, newSize));
+        violetButton.setTextFill(textColour);
+        violetButton.setBackground(Background.fill(buttonColour));
+        backInBackgroundColorButton.setFont(Font.font(null, fontWeight, newSize));
+        backInBackgroundColorButton.setTextFill(textColour);
+        backInBackgroundColorButton.setBackground(Background.fill(buttonColour));
 
         Parent view = switch (settingsTab) {
             case SIZE -> sizeView;
