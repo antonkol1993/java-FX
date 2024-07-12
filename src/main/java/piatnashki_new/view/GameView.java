@@ -91,6 +91,11 @@ public class GameView implements View {
                         .withTextColour(model.getSettings().getTextColour())
                         .build();
                 moveButton.setPrefSize(60, 60);
+                if (intValue == 0) {
+                    moveButton.setStyle("-fx-border-color: blue; -fx-border-width: 5px;");
+                } else {
+                    moveButton.setStyle("-fx-border-color: #ff0000; -fx-border-width: 1px;");
+                }
                 gridPane.add(moveButton, j, i);
             }
         }

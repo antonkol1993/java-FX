@@ -19,6 +19,7 @@ public class ButtonBuilder {
     private int buttonSize = 75;
     private Paint textColour = Color.BLACK;
     private Paint buttonColour = Color.GRAY;
+    private String styleButton = "-fx-border-color: black; -fx-border-width: 1px;";
 
     public static ButtonBuilder get() {
         return new ButtonBuilder();
@@ -53,6 +54,10 @@ public class ButtonBuilder {
         this.buttonColour = buttonColour;
         return this;
     }
+    public ButtonBuilder withButtonStyle(String styleButton) {
+        this.styleButton = styleButton;
+        return this;
+    }
 
     public Button build() {
         Button button = new Button();
@@ -63,6 +68,7 @@ public class ButtonBuilder {
         button.setOnAction(onAction);
         button.setTextFill(textColour);
         button.setBackground(Background.fill(buttonColour));
+        button.setStyle(styleButton);
         return button;
     }
 }
